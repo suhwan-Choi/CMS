@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fashiongo.cms.mapper.HelloMapper">
+    <select id="selectHello" resultType="string">
+        select 1
+    </select>
+    
+    <select id="selectEmployees" parameterType="hashmap" resultType="hashmap">
+    	select 
+    		employeeid, firstname, lastname, title, socialnumber, birthdate, hiredate, address, city, state, zipcode
+    	from Employees
+    	where active = #{active}
+    </select>
+    
+    <select id="selectEmployeesForModel" parameterType="boolean" resultType="employees">
+    	select 
+    		employeeid, firstname, lastname, title, socialnumber, birthdate, hiredate, address, city, state, zipcode
+    	from Employees
+    	where active = #{active}
+    </select>
+</mapper>

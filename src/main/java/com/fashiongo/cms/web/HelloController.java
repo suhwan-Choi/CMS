@@ -18,8 +18,7 @@ import com.fashiongo.cms.service.HelloService;
  * @author Search Team
  */
 @RestController
-@RequestMapping("/")
-public class HelloController {
+public class HelloController extends MainController{
 	
 	@Autowired
 	private HelloService helloService;	

@@ -1,17 +1,24 @@
-package com.fashiongo.cms.security.jwt;
+package com.fashiongo.cms.security.auth;
 
 import java.util.Collection;
 
-import com.fashiongo.cms.security.model.UserContext;
-import com.fashiongo.cms.security.model.token.RawAccessJwtToken;
 import org.springframework.security.authentication.AbstractAuthenticationToken;
 import org.springframework.security.core.GrantedAuthority;
 
+import com.fashiongo.cms.security.model.UserContext;
+import com.fashiongo.cms.security.model.token.RawAccessJwtToken;
+
+/**
+ * An {@link org.springframework.security.core.Authentication} implementation
+ * that is designed for simple presentation of JwtToken.
+ * 
+ * @author vladimir.stankovic
+ *
+ *         May 23, 2016
+ */
 public class JwtAuthenticationToken extends AbstractAuthenticationToken {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 3941302818280757001L;
+    private static final long serialVersionUID = 2877954820905567501L;
+
     private RawAccessJwtToken rawAccessToken;
     private UserContext userContext;
 
@@ -51,4 +58,5 @@ public class JwtAuthenticationToken extends AbstractAuthenticationToken {
     public void eraseCredentials() {        
         super.eraseCredentials();
         this.rawAccessToken = null;
-    }}
+    }
+}

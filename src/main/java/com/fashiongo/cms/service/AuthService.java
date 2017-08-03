@@ -15,7 +15,7 @@ public class AuthService extends CommonService {
 	public CMSAdminUser selectAdminUser(String username, String password) {
 		logger.info("AuthService.selectAdminUser!!!");
 		
-		Query query = entityManager.createNamedStoredProcedureQuery("get_adminUserInfo");
+		Query query = entityManager.createNamedStoredProcedureQuery("up_Security_GetAccessUser");
 		query.setParameter("username", username);
 		query.setParameter("password", password);
 		

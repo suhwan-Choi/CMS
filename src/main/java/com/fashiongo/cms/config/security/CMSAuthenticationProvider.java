@@ -35,6 +35,10 @@ public class CMSAuthenticationProvider implements AuthenticationProvider{
 		if(adminUser == null) {
 			throw new BadCredentialsException();
 		}
+		
+		if(!adminUser.getGroupActive()) {
+			throw new BadAccessGroupException();
+		}
 
 		List<GrantedAuthority> grantedAuths = new ArrayList<>();
 		grantedAuths.add(new SimpleGrantedAuthority("CMS_ADMIN"));
@@ -43,6 +47,8 @@ public class CMSAuthenticationProvider implements AuthenticationProvider{
 		userInfo.setUserId(adminUser.getUserId());
 		userInfo.setUserName(adminUser.getUserName());
 		userInfo.setGroupId(adminUser.getGroupId());
+		userInfo.setGroupName(adminUser.getGroupName());
+		userInfo.setGroupActive(adminUser.getGroupActive());
 		
 		CMSAdminAuthenticationToken authToken = new CMSAdminAuthenticationToken(username, password, grantedAuths);
 		authToken.setUserInfo(userInfo);

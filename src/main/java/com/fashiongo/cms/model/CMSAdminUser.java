@@ -11,7 +11,7 @@ import javax.persistence.ParameterMode;
 import javax.persistence.StoredProcedureParameter;
 
 @NamedStoredProcedureQueries({
-	@NamedStoredProcedureQuery(name="get_adminUserInfo", procedureName="dbo.up_Get_AdminUserInfo", parameters= {
+	@NamedStoredProcedureQuery(name="up_Security_GetAccessUser", procedureName="dbo.up_Security_GetAccessUser", parameters= {
 			@StoredProcedureParameter(mode=ParameterMode.IN, name="username", type=String.class),
 			@StoredProcedureParameter(mode=ParameterMode.IN, name="password", type=String.class)
 	}, resultClasses=com.fashiongo.cms.model.CMSAdminUser.class)
@@ -29,6 +29,12 @@ public class CMSAdminUser implements Serializable{
 	
 	@Column(name="groupid")
 	private Integer groupId;
+	
+	@Column(name="groupname")
+	private String groupName;
+	
+	@Column(name="groupactive")
+	private Boolean groupActive;
 	
 	public Integer getUserId() {
 		return userId;
@@ -52,5 +58,21 @@ public class CMSAdminUser implements Serializable{
 
 	public void setGroupId(Integer groupId) {
 		this.groupId = groupId;
+	}
+
+	public String getGroupName() {
+		return groupName;
+	}
+
+	public void setGroupName(String groupName) {
+		this.groupName = groupName;
+	}
+
+	public Boolean getGroupActive() {
+		return groupActive;
+	}
+
+	public void setGroupActive(Boolean groupActive) {
+		this.groupActive = groupActive;
 	}
 }

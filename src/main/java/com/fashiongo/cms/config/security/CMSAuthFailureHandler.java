@@ -38,7 +38,11 @@ public class CMSAuthFailureHandler implements AuthenticationFailureHandler {
 		
 		JSONResponse<ErrorResponse> res;
 		if(e instanceof BadCredentialsException){
-			res = new JSONResponse<ErrorResponse>(true, "", ErrorResponse.of("Invalid username or password", ErrorCode.Authentication_Failure, HttpStatus.UNAUTHORIZED));
+			res = new JSONResponse<ErrorResponse>(true, "", ErrorResponse.of(e.getMessage(), ErrorCode.Authentication_Failure, HttpStatus.UNAUTHORIZED));
+			
+		}else if(e instanceof BadAccessGroupException) {
+			res = new JSONResponse<ErrorResponse>(true, "", ErrorResponse.of(e.getMessage(), ErrorCode.Not_Authorized, HttpStatus.CONFLICT));
+			
 		}else{
 			res = new JSONResponse<ErrorResponse>(true, "", ErrorResponse.of(e.getMessage(), ErrorCode.Authentication_Failure, HttpStatus.UNAUTHORIZED));
 		}

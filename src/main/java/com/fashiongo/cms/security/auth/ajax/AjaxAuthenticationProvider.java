@@ -1,5 +1,6 @@
 package com.fashiongo.cms.security.auth.ajax;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -11,15 +12,14 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
 
+import com.fashiongo.cms.entity.Role;
 import com.fashiongo.cms.entity.User;
+import com.fashiongo.cms.entity.UserRole;
 import com.fashiongo.cms.security.model.UserContext;
-import com.fashiongo.cms.user.service.DatabaseUserService;
 
 /**
  * 
@@ -30,10 +30,10 @@ import com.fashiongo.cms.user.service.DatabaseUserService;
 @Component
 public class AjaxAuthenticationProvider implements AuthenticationProvider {
     private final BCryptPasswordEncoder encoder;
-    private final DatabaseUserService userService;
+    private final UserService userService;
 
     @Autowired
-    public AjaxAuthenticationProvider(final DatabaseUserService userService, final BCryptPasswordEncoder encoder) {
+    public AjaxAuthenticationProvider(final UserService userService, final BCryptPasswordEncoder encoder) {
         this.userService = userService;
         this.encoder = encoder;
     }
@@ -43,8 +43,9 @@ public class AjaxAuthenticationProvider implements AuthenticationProvider {
         Assert.notNull(authentication, "No authentication data provided");
 
         String username = (String) authentication.getPrincipal();
-        String password = (String) authentication.getCredenti`als();
+        String password = (String) authentication.getCredentials();
 
+        // if userService exist start
         User user = userService.getByUsername(username).orElseThrow(() -> new UsernameNotFoundException("User not found: " + username));
         
         if (!encoder.matches(password, user.getPassword())) {
@@ -58,12 +59,13 @@ public class AjaxAuthenticationProvider implements AuthenticationProvider {
                 .collect(Collectors.toList());
         
         UserContext userContext = UserContext.create(user.getUsername(), authorities);
+        // if userService exist
         
         return new UsernamePasswordAuthenticationToken(userContext, null, userContext.getAuthorities());
     }
 
     @Override
     public boolean supports(Class<?> authentication) {
-        return (UsernamePasswordAuthenticationToken.class.isAssignableFrom(authentication));
-    }
+		return (UsernamePasswordAuthenticationToken.class.isAssignableFrom(authentication));
+	}
 }

@@ -1,4 +1,4 @@
-package com.fashiongo.cms.model;
+package com.fashiongo.cms.common;
 
 /**
  * JSONResponse<T>
@@ -10,6 +10,17 @@ public class JSONResponse<T> {
 	private String reason;
 	private long totalCount;
 	private T data;
+	
+	public JSONResponse() {
+		this.success = true;
+		this.reason = "";
+		
+	}
+	public JSONResponse(boolean success, String reason, T data) {
+		this.success = success;
+		this.reason = reason;
+		this.data = data;
+	}
 	
 	public boolean isSuccess() {
 		return success;

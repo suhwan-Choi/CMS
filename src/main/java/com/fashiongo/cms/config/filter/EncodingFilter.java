@@ -1,4 +1,4 @@
-package com.fashiongo.cms.config;
+package com.fashiongo.cms.config.filter;
 
 import java.nio.charset.Charset;
 
@@ -15,7 +15,7 @@ import org.springframework.web.filter.CharacterEncodingFilter;
  * @author Search Team
  */
 @Configuration
-public class EncodingFilterConfig {
+public class EncodingFilter {
 	
 	@Bean
 	public HttpMessageConverter<String> responseBodyConverter(){

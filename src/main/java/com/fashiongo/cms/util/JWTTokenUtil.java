@@ -15,11 +15,12 @@ import io.jsonwebtoken.SignatureAlgorithm;
 
 @Component
 public class JWTTokenUtil {
-	private static final String CLAIM_KEY_USER_ID 	= "userId";
-	private static final String CLAIM_KEY_USERNAME 	= "userName";
-	private static final String CLAIM_KEY_GROUP_ID 	= "groupId";
-	private static final String CLAIM_KEY_GROUPNAME = "groupName";
-	private static final String CLAIM_KEY_CREATED 	= "created";
+	private static final String CLAIM_KEY_USER_ID 		= "userId";
+	private static final String CLAIM_KEY_USER_NAME 	= "userName";
+	private static final String CLAIM_KEY_USER_ACCOUNT 	= "userAccount";
+	private static final String CLAIM_KEY_GROUP_ID 		= "groupId";
+	private static final String CLAIM_KEY_GROUP_NAME 	= "groupName";
+	private static final String CLAIM_KEY_CREATED 		= "created";
 	
 	@Value("${cms.jwt.expiration.value}")
 	private long expiration;
@@ -145,10 +146,11 @@ public class JWTTokenUtil {
 	 */
 	public String generateToken(CMSAdminUser adminUser) throws Exception {
 		Map<String, Object> claims = new HashMap<String, Object>();
-		claims.put(CLAIM_KEY_USERNAME, adminUser.getUserName());
+		claims.put(CLAIM_KEY_USER_NAME, adminUser.getUserName());
 		claims.put(CLAIM_KEY_USER_ID, adminUser.getUserId());
+		claims.put(CLAIM_KEY_USER_ACCOUNT, adminUser.getUserAccount());
 		claims.put(CLAIM_KEY_GROUP_ID, adminUser.getGroupId());
-		claims.put(CLAIM_KEY_GROUPNAME, adminUser.getGroupName());
+		claims.put(CLAIM_KEY_GROUP_NAME, adminUser.getGroupName());
 		claims.put(CLAIM_KEY_CREATED, new Date());
 
 		return generateToken(claims);
@@ -222,9 +224,10 @@ public class JWTTokenUtil {
 		
 		Claims claims = getClaimsFromToken(token);
 		adminUser.setUserId((Integer)claims.get(CLAIM_KEY_USER_ID));
-		adminUser.setUserName((String)claims.get(CLAIM_KEY_USERNAME));
+		adminUser.setUserName((String)claims.get(CLAIM_KEY_USER_NAME));
 		adminUser.setGroupId((Integer)claims.get(CLAIM_KEY_GROUP_ID));
-		adminUser.setGroupName((String)claims.get(CLAIM_KEY_GROUPNAME));
+		adminUser.setGroupName((String)claims.get(CLAIM_KEY_GROUP_NAME));
+		adminUser.setUserAccount((String)claims.get(CLAIM_KEY_USER_ACCOUNT));
 		
 		return adminUser;
 	}

@@ -46,6 +46,7 @@ public class CMSAuthenticationProvider implements AuthenticationProvider{
 		CMSAdminUser userInfo = new CMSAdminUser();
 		userInfo.setUserId(adminUser.getUserId());
 		userInfo.setUserName(adminUser.getUserName());
+		userInfo.setUserAccount(adminUser.getUserAccount());
 		userInfo.setGroupId(adminUser.getGroupId());
 		userInfo.setGroupName(adminUser.getGroupName());
 		userInfo.setGroupActive(adminUser.getGroupActive());

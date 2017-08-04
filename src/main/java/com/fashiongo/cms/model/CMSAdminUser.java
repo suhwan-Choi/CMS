@@ -24,6 +24,9 @@ public class CMSAdminUser implements Serializable{
 	@Column(name="userid")
 	private Integer userId;
 	
+	@Column(name="useraccount")
+	private String userAccount;
+	
 	@Column(name="username")
 	private String userName;
 	
@@ -44,6 +47,14 @@ public class CMSAdminUser implements Serializable{
 		this.userId = userId;
 	}
 	
+	public String getUserAccount() {
+		return userAccount;
+	}
+
+	public void setUserAccount(String userAccount) {
+		this.userAccount = userAccount;
+	}
+
 	public String getUserName() {
 		return userName;
 	}

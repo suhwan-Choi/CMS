@@ -2,9 +2,8 @@ package com.fashiongo.cms.param;
 
 import java.util.Date;
 
-public class AssignRollBackListParam {
+public class AssignRollBackRollBackListParam {
 	private Integer keywordType;
-	private Integer listType;
 	private String keyword;
 	private Integer assignType;
 	private Integer	categoryId;
@@ -20,14 +19,6 @@ public class AssignRollBackListParam {
 	
 	public void setKeywordType(Integer keywordType) {
 		this.keywordType = keywordType;
-	}
-	
-	public Integer getListType() {
-		return listType;
-	}
-	
-	public void setListType(Integer listType) {
-		this.listType = listType;
 	}
 	
 	public String getKeyword() {

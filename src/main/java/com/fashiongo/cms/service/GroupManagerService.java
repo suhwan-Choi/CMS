@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Query;
+import javax.persistence.StoredProcedureQuery;
 
+import com.fashiongo.cms.param.GroupManagerSaveParam;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -17,7 +19,6 @@ public class GroupManagerService extends CommonService {
 	private static Logger logger = LoggerFactory.getLogger(GroupManagerService.class);
 
 	/**
-	 * 
 	 * @param groupManagerListParam
 	 * @return
 	 */
@@ -25,9 +26,9 @@ public class GroupManagerService extends CommonService {
 	public List<GroupManager> selectGroupManagerList(GroupManagerListParam groupManagerListParam) throws Exception {
 
 		List<GroupManager> groupManagerList = null;
-		Query query = entityManager.createNamedStoredProcedureQuery("upWeb_GetAccessGroupList");
-		query.setParameter("Page", groupManagerListParam.getPage());
-		query.setParameter("PageSize", groupManagerListParam.getPageSize());
+		StoredProcedureQuery query = entityManager.createNamedStoredProcedureQuery("upWeb_GetAccessGroupList");
+		query.setParameter("Page", groupManagerListParam.getPn());
+		query.setParameter("PageSize", groupManagerListParam.getPs());
 		query.setParameter("GroupName", groupManagerListParam.getGroupName());
 		query.setParameter("Active", groupManagerListParam.getActive());
 
@@ -38,10 +39,18 @@ public class GroupManagerService extends CommonService {
 
 	public GroupManager selectGroupManager(int groupId) {
 		GroupManager groupManager = null;
-		Query query = entityManager.createNamedStoredProcedureQuery("upWeb_GetAccessGroup");
+		StoredProcedureQuery query = entityManager.createNamedStoredProcedureQuery("upWeb_GetAccessGroup");
 		query.setParameter("GroupId", groupId);
 
 		groupManager = (GroupManager) query.getSingleResult();
+
+		return groupManager;
+	}
+
+	public GroupManager mergeSaveGroupmanager(GroupManagerSaveParam groupManagerSaveParam) {
+		GroupManager groupManager = null;
+		StoredProcedureQuery query = entityManager.createStoredProcedureQuery("");
+
 
 		return groupManager;
 	}

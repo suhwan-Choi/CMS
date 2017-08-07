@@ -26,22 +26,18 @@ public class GroupManagerController {
 	private GroupManagerService groupManagerService;
 
 	/**
-	 * 
 	 * @param groupManagerListParam
 	 * @return
 	 */
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public @ResponseBody JSONResponse<List<GroupManager>> list(GroupManagerListParam groupManagerListParam)
-			throws Exception {
+	public @ResponseBody JSONResponse<List<GroupManager>> list(GroupManagerListParam groupManagerListParam) throws Exception {
 		JSONResponse<List<GroupManager>> jsonResponse = new JSONResponse<>();
-		List<GroupManager> groupManagerList = new ArrayList<>();
-		groupManagerList = groupManagerService.selectGroupManagerList(groupManagerListParam);
+		List<GroupManager> groupManagerList = groupManagerService.selectGroupManagerList(groupManagerListParam);
 		jsonResponse.setData(groupManagerList);
 		return jsonResponse;
 	}
 
 	/**
-	 * 
 	 * @param groupId
 	 * @return
 	 */
@@ -53,7 +49,11 @@ public class GroupManagerController {
 		return jsonResponse;
 	}
 
+	@RequestMapping(value = "/save",method = RequestMethod.POST)
 	public JSONResponse<GroupManager> save(GroupManagerSaveParam groupManagerSaveParam) {
-		return null;
+		JSONResponse<GroupManager> jsonResponse = new JSONResponse<>();
+		GroupManager groupManager = groupManagerService.mergeSaveGroupmanager(groupManagerSaveParam);
+		jsonResponse.setData(groupManager);
+		return jsonResponse;
 	}
 }

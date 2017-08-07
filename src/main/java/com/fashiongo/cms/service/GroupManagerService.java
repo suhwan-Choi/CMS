@@ -1,5 +1,6 @@
 package com.fashiongo.cms.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Query;
@@ -9,7 +10,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import com.fashiongo.cms.model.GroupManager;
-import com.fashiongo.cms.model.GroupManagerList;
 import com.fashiongo.cms.param.GroupManagerListParam;
 
 @Service
@@ -21,28 +21,28 @@ public class GroupManagerService extends CommonService {
 	 * @param groupManagerListParam
 	 * @return
 	 */
-	public GroupManagerList selectGroupManagerList(GroupManagerListParam groupManagerListParam) {
+	@SuppressWarnings("unchecked")
+	public List<GroupManager> selectGroupManagerList(GroupManagerListParam groupManagerListParam) throws Exception {
 
-		GroupManagerList groupManagerList = new GroupManagerList();
+		List<GroupManager> groupManagerList = null;
 		Query query = entityManager.createNamedStoredProcedureQuery("upWeb_GetAccessGroupList");
 		query.setParameter("Page", groupManagerListParam.getPage());
 		query.setParameter("PageSize", groupManagerListParam.getPageSize());
 		query.setParameter("GroupName", groupManagerListParam.getGroupName());
-		query.setParameter("Active", groupManagerListParam.isActive());
+		query.setParameter("Active", groupManagerListParam.getActive());
 
-		List<GroupManager> groupManagers = null;
-
-		try {
-			groupManagers = query.getResultList();
-			groupManagerList.setGroupManagerList(groupManagers);
-		} catch (Exception e) {
-		}
+		groupManagerList = (List<GroupManager>) query.getResultList();
 
 		return groupManagerList;
 	}
 
 	public GroupManager selectGroupManager(int groupId) {
-		// TODO Auto-generated method stub
-		return null;
+		GroupManager groupManager = null;
+		Query query = entityManager.createNamedStoredProcedureQuery("upWeb_GetAccessGroup");
+		query.setParameter("GroupId", groupId);
+
+		groupManager = (GroupManager) query.getSingleResult();
+
+		return groupManager;
 	}
 }

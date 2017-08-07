@@ -7,48 +7,37 @@ import javax.persistence.NamedStoredProcedureQueries;
 import javax.persistence.NamedStoredProcedureQuery;
 import javax.persistence.ParameterMode;
 import javax.persistence.StoredProcedureParameter;
-
-import lombok.Getter;
-import lombok.Setter;
+import javax.persistence.Transient;
 
 @NamedStoredProcedureQueries({
 		@NamedStoredProcedureQuery(name = "upWeb_GetAccessGroupList", procedureName = "dbo.upWeb_GetAccessGroupList", parameters = {
 				@StoredProcedureParameter(mode = ParameterMode.IN, name = "Page", type = Integer.class),
 				@StoredProcedureParameter(mode = ParameterMode.IN, name = "PageSize", type = Integer.class),
 				@StoredProcedureParameter(mode = ParameterMode.IN, name = "GroupName", type = String.class),
-				@StoredProcedureParameter(mode = ParameterMode.IN, name = "Active", type = Boolean.class) }, resultClasses = com.fashiongo.cms.model.GroupManager.class) })
+				@StoredProcedureParameter(mode = ParameterMode.IN, name = "Active", type = Boolean.class) }, resultClasses = com.fashiongo.cms.model.GroupManager.class),
+		@NamedStoredProcedureQuery(name = "upWeb_GetAccessGroup", procedureName = "dbo.upWeb_GetAccessGroup", parameters = {
+				@StoredProcedureParameter(mode = ParameterMode.IN, name = "GroupId", type = Integer.class) }, resultClasses = com.fashiongo.cms.model.GroupManager.class)
+
+})
 @Entity
 public class GroupManager {
 	@Id
-	@Setter
-	@Getter
 	@Column(name = "groupid")
 	private Integer groupId;
 
-	@Setter
-	@Getter
-	@Column(name = "groupname")
+	@Column(name = "groupname", nullable = true)
 	private String groupName;
 
-	@Setter
-	@Getter
-	@Column(name = "groupactive")
+	@Column(name = "active", nullable = true)
 	private Boolean groupActive;
 
-	@Setter
-	@Getter
 	@Column(name = "groupdescription")
 	private String GroupDescription;
-	// private DateTime
 
-	@Setter
-	@Getter
-	@Column(name = "createdby")
-	private Integer CreateBy;
-
-	@Setter
-	@Getter
-	@Column(name = "modifiedby")
-	private Integer ModifiedBy;
+	// @Column(name = "createdby")
+	// private Integer CreateBy;
+	//
+	// @Column(name = "modifiedby")
+	// private Integer ModifiedBy;
 
 }

@@ -8,8 +8,8 @@ import lombok.Setter;
 @Setter
 @Data
 public class GroupManagerListParam {
-	private Integer page;
-	private Integer pageSize;
+	private Integer page = 1;
+	private Integer pageSize = 10;
 	private String groupName;
-	private boolean active;
+	private Boolean active;
 }

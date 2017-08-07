@@ -32,7 +32,39 @@ public class GroupManager {
 	private Boolean groupActive;
 
 	@Column(name = "groupdescription")
-	private String GroupDescription;
+	private String groupDescription;
+
+	public Integer getGroupId() {
+		return groupId;
+	}
+
+	public void setGroupId(Integer groupId) {
+		this.groupId = groupId;
+	}
+
+	public String getGroupName() {
+		return groupName;
+	}
+
+	public void setGroupName(String groupName) {
+		this.groupName = groupName;
+	}
+
+	public Boolean getGroupActive() {
+		return groupActive;
+	}
+
+	public void setGroupActive(Boolean groupActive) {
+		this.groupActive = groupActive;
+	}
+
+	public String getGroupDescription() {
+		return groupDescription;
+	}
+
+	public void setGroupDescription(String groupDescription) {
+		this.groupDescription = groupDescription;
+	}
 
 	// @Column(name = "createdby")
 	// private Integer CreateBy;

@@ -1,8 +1,8 @@
 package com.fashiongo.cms.param;
 
 public class GroupManagerListParam {
-	private Integer page = 1;
-	private Integer pageSize = 10;
+	private Integer page;
+	private Integer pageSize;
 	private String groupName;
 	private Boolean active;
 

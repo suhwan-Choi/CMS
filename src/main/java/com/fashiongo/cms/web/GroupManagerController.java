@@ -31,7 +31,8 @@ public class GroupManagerController {
 	 * @return
 	 */
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public JSONResponse<List<GroupManager>> list(GroupManagerListParam groupManagerListParam) throws Exception {
+	public @ResponseBody JSONResponse<List<GroupManager>> list(GroupManagerListParam groupManagerListParam)
+			throws Exception {
 		JSONResponse<List<GroupManager>> jsonResponse = new JSONResponse<>();
 		List<GroupManager> groupManagerList = new ArrayList<>();
 		groupManagerList = groupManagerService.selectGroupManagerList(groupManagerListParam);
@@ -42,10 +43,10 @@ public class GroupManagerController {
 	/**
 	 * 
 	 * @param groupId
-	 * @return specific Group Infor
+	 * @return
 	 */
-	@RequestMapping(value = "/{groupId}", method = RequestMethod.GET)
-	public JSONResponse<GroupManager> groupManager(@PathVariable Integer groupId) throws Exception {
+	@RequestMapping(value = "/detail/{groupId}", method = RequestMethod.GET)
+	public @ResponseBody JSONResponse<GroupManager> detailGroupManager(@PathVariable Integer groupId) {
 		JSONResponse<GroupManager> jsonResponse = new JSONResponse<>();
 		GroupManager groupManager = groupManagerService.selectGroupManager(groupId);
 		jsonResponse.setData(groupManager);

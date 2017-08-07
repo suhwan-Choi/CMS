@@ -8,7 +8,6 @@ package com.fashiongo.cms.common;
 public class JSONResponse<T> {
 	private boolean success;
 	private String reason;
-	private long totalCount;
 	private T data;
 	
 	public JSONResponse() {
@@ -44,13 +43,5 @@ public class JSONResponse<T> {
 	
 	public void setData(T data) {
 		this.data = data;
-	}
-	
-	public long getTotalCount() {
-		return totalCount;
-	}
-	
-	public void setTotalCount(long totalCount) {
-		this.totalCount = totalCount;
 	}
 }

@@ -15,6 +15,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Component;
 
 import com.fashiongo.cms.model.CMSAdminUser;
+import com.fashiongo.cms.model.ProcedureResult;
 import com.fashiongo.cms.service.AuthService;
 
 @Component
@@ -26,19 +27,16 @@ public class CMSAuthenticationProvider implements AuthenticationProvider{
 	
 	@Override
 	public Authentication authenticate(Authentication authentication) throws AuthenticationException {
+		ProcedureResult result = authService.selectAdminLoginCheck(authentication);
+		
+		if(result.getResultCode() != 0) {
+			throw new BadCredentialsException(result);
+		}
+		
 		String username = authentication.getName();
 		Object password = authentication.getCredentials();
 		
-		logger.info("username :: " + username + " / password :: " + password);
 		CMSAdminUser adminUser = authService.selectAdminUser(username, password.toString());
-		
-		if(adminUser == null) {
-			throw new BadCredentialsException();
-		}
-		
-		if(!adminUser.getGroupActive()) {
-			throw new BadAccessGroupException();
-		}
 
 		List<GrantedAuthority> grantedAuths = new ArrayList<>();
 		grantedAuths.add(new SimpleGrantedAuthority("CMS_ADMIN"));
@@ -49,7 +47,6 @@ public class CMSAuthenticationProvider implements AuthenticationProvider{
 		userInfo.setUserAccount(adminUser.getUserAccount());
 		userInfo.setGroupId(adminUser.getGroupId());
 		userInfo.setGroupName(adminUser.getGroupName());
-		userInfo.setGroupActive(adminUser.getGroupActive());
 		
 		CMSAdminAuthenticationToken authToken = new CMSAdminAuthenticationToken(username, password, grantedAuths);
 		authToken.setUserInfo(userInfo);

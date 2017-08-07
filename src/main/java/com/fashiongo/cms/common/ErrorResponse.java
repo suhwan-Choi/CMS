@@ -2,8 +2,6 @@ package com.fashiongo.cms.common;
 
 import org.springframework.http.HttpStatus;
 
-import net.fashiongo.common.ErrorCode;
-
 public class ErrorResponse {
 	private final HttpStatus status;
 
@@ -11,15 +9,15 @@ public class ErrorResponse {
     private final String message;
 
     // Error code
-    private final ErrorCode errorCode;
+    private final Integer errorCode;
 
-    protected ErrorResponse(final String message, final ErrorCode errorCode, HttpStatus status) {
+    protected ErrorResponse(final String message, final Integer errorCode, HttpStatus status) {
         this.message = message;
         this.errorCode = errorCode;
         this.status = status;
     }
 
-    public static ErrorResponse of(final String message, final ErrorCode errorCode, HttpStatus status) {
+    public static ErrorResponse of(final String message, final Integer errorCode, HttpStatus status) {
         return new ErrorResponse(message, errorCode, status);
     }
 
@@ -31,7 +29,7 @@ public class ErrorResponse {
         return message;
     }
 
-    public ErrorCode getErrorCode() {
+    public Integer getErrorCode() {
         return errorCode;
     }
 }

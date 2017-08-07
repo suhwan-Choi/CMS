@@ -1,6 +1,6 @@
 package com.fashiongo.cms.service;
 
-import javax.persistence.Query;
+import javax.persistence.StoredProcedureQuery;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,14 +14,14 @@ public class NewItemService extends CommonService {
 	private static Logger logger = LoggerFactory.getLogger(NewItemService.class);
 	
 	public void selectList(NewItemListParam newItemListParam) {
-		Query query = entityManager.createNamedStoredProcedureQuery("");
+		StoredProcedureQuery query = entityManager.createNamedStoredProcedureQuery("");
 	}
 	
 	public void mergeSaveShare(NewItemSaveShareParam newItemSaveShareParam) {
-		Query query = entityManager.createNamedStoredProcedureQuery("");
+		StoredProcedureQuery query = entityManager.createNamedStoredProcedureQuery("");
 	}
 	
 	public void selectDetail(Integer itemId) {
-		Query query = entityManager.createNamedStoredProcedureQuery("");
+		StoredProcedureQuery query = entityManager.createNamedStoredProcedureQuery("");
 	}
 }

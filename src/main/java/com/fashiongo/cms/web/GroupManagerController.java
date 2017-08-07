@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -30,8 +31,7 @@ public class GroupManagerController {
 	 * @return
 	 */
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public @ResponseBody JSONResponse<List<GroupManager>> list(GroupManagerListParam groupManagerListParam)
-			throws Exception {
+	public JSONResponse<List<GroupManager>> list(GroupManagerListParam groupManagerListParam) throws Exception {
 		JSONResponse<List<GroupManager>> jsonResponse = new JSONResponse<>();
 		List<GroupManager> groupManagerList = new ArrayList<>();
 		groupManagerList = groupManagerService.selectGroupManagerList(groupManagerListParam);
@@ -44,8 +44,8 @@ public class GroupManagerController {
 	 * @param groupId
 	 * @return specific Group Infor
 	 */
-	@RequestMapping(value = "/{groupId}}", method = RequestMethod.GET)
-	public @ResponseBody JSONResponse<GroupManager> groupManager(int groupId) throws Exception {
+	@RequestMapping(value = "/{groupId}", method = RequestMethod.GET)
+	public JSONResponse<GroupManager> groupManager(@PathVariable Integer groupId) throws Exception {
 		JSONResponse<GroupManager> jsonResponse = new JSONResponse<>();
 		GroupManager groupManager = groupManagerService.selectGroupManager(groupId);
 		jsonResponse.setData(groupManager);

@@ -1,26 +1,10 @@
 package com.fashiongo.cms.param;
 
 public class GroupManagerListParam {
-	private Integer page = 1;
-	private Integer pageSize = 10;
 	private String groupName;
 	private Boolean active;
-
-	public Integer getPage() {
-		return page;
-	}
-
-	public void setPage(Integer page) {
-		this.page = page;
-	}
-
-	public Integer getPageSize() {
-		return pageSize;
-	}
-
-	public void setPageSize(Integer pageSize) {
-		this.pageSize = pageSize;
-	}
+	private Integer ps;
+	private Integer pn;
 
 	public String getGroupName() {
 		return groupName;
@@ -36,6 +20,22 @@ public class GroupManagerListParam {
 
 	public void setActive(Boolean active) {
 		this.active = active;
+	}
+
+	public Integer getPs() {
+		return ps;
+	}
+
+	public void setPs(Integer ps) {
+		this.ps = ps;
+	}
+
+	public Integer getPn() {
+		return pn;
+	}
+
+	public void setPn(Integer pn) {
+		this.pn = pn;
 	}
 
 }

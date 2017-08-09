@@ -46,7 +46,7 @@ public class AccessCode{
     private Date modifiedOn;
     
     @Column(name = "modifiedbyaccount")
-    private Integer modifedByAccount;
+    private String modifedByAccount;
     
     @Column(name = "active")
     private Boolean active;
@@ -110,11 +110,11 @@ public class AccessCode{
 		this.modifiedOn = modifiedOn;
 	}
 
-	public Integer getModifedByAccount() {
+	public String getModifedByAccount() {
 		return modifedByAccount;
 	}
 
-	public void setModifedByAccount(Integer modifedByAccount) {
+	public void setModifedByAccount(String modifedByAccount) {
 		this.modifedByAccount = modifedByAccount;
 	}
 

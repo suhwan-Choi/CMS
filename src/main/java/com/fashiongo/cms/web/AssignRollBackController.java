@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fashiongo.cms.common.JSONResponse;
-import com.fashiongo.cms.param.AssignRollBackAssignListParam;
-import com.fashiongo.cms.param.AssignRollBackRollBackListParam;
+import com.fashiongo.cms.param.AssignRollBackListAssignParam;
+import com.fashiongo.cms.param.AssignRollBackListRollBackParam;
 import com.fashiongo.cms.param.AssignRollBackSaveAssignParam;
 import com.fashiongo.cms.param.AssignRollBackSaveRejectParam;
 import com.fashiongo.cms.param.AssignRollBackSaveReshareParam;
@@ -24,18 +24,18 @@ public class AssignRollBackController {
 	@Autowired
 	private AssignRollBackService assignRollBackService;
 	
-	@RequestMapping(value = "/assign_list", method = RequestMethod.GET)
- 	public @ResponseBody JSONResponse<?> assignList(AssignRollBackAssignListParam assignRollBackAssignListParam) throws Exception{
+	@RequestMapping(value = "/list_assign", method = RequestMethod.GET)
+ 	public @ResponseBody JSONResponse<?> listAssign(AssignRollBackListAssignParam assignRollBackListAssignParam) throws Exception{
  		JSONResponse<?> response = new JSONResponse<>();
- 		assignRollBackService.selectAssignList(assignRollBackAssignListParam);
+ 		assignRollBackService.selectAssignList(assignRollBackListAssignParam);
  		
 		return response;
 	}
 	
-	@RequestMapping(value = "/rollback_list", method = RequestMethod.GET)
- 	public @ResponseBody JSONResponse<?> rollbackList(AssignRollBackRollBackListParam assignRollBackRollBackListParam) throws Exception{
+	@RequestMapping(value = "/list_rollback", method = RequestMethod.GET)
+ 	public @ResponseBody JSONResponse<?> listRollback(AssignRollBackListRollBackParam assignRollBackListRollBackParam) throws Exception{
  		JSONResponse<?> response = new JSONResponse<>();
- 		assignRollBackService.selectRollbackList(assignRollBackRollBackListParam);
+ 		assignRollBackService.selectRollbackList(assignRollBackListRollBackParam);
  		
 		return response;
 	}

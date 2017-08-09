@@ -7,11 +7,8 @@ public class GroupManagerSaveParam {
 	private String groupName;
 	private Boolean active;
 	private String groupDescription;
-	private Date createdOn;
 	private Integer createdBy;
-	private Date workedOn;
 	private Integer workedBy;
-	//TODO check JSON converter 
 	private String permission;
 
 	public Integer getGroupId() {
@@ -46,28 +43,12 @@ public class GroupManagerSaveParam {
 		this.groupDescription = groupDescription;
 	}
 
-	public Date getCreatedOn() {
-		return createdOn;
-	}
-
-	public void setCreatedOn(Date createdOn) {
-		this.createdOn = createdOn;
-	}
-
 	public Integer getCreatedBy() {
 		return createdBy;
 	}
 
 	public void setCreatedBy(Integer createdBy) {
 		this.createdBy = createdBy;
-	}
-
-	public Date getWorkedOn() {
-		return workedOn;
-	}
-
-	public void setWorkedOn(Date workedOn) {
-		this.workedOn = workedOn;
 	}
 
 	public Integer getWorkedBy() {

@@ -1,5 +1,6 @@
 package com.fashiongo.cms.service;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.StoredProcedureQuery;
@@ -71,12 +72,12 @@ public class GroupManagerService extends CommonService {
 		StoredProcedureQuery query;
 		if (groupManagerSaveParam.getGroupId() == null) {
 			query = entityManager.createNamedStoredProcedureQuery("upWeb_CreateAccessGroup");
-			query.setParameter("WorkedOn", groupManagerSaveParam.getCreatedOn());
+			query.setParameter("WorkedOn", new Date());
 			query.setParameter("WorkedBy", groupManagerSaveParam.getCreatedBy());
 		} else {
 			query = entityManager.createNamedStoredProcedureQuery("upWeb_ModifyAccessGroup");
 			query.setParameter("GroupId", groupManagerSaveParam.getGroupId());
-			query.setParameter("WorkedOn", groupManagerSaveParam.getWorkedOn());
+			query.setParameter("WorkedOn", new Date());
 			query.setParameter("WorkedBy", groupManagerSaveParam.getWorkedBy());
 		}
 
@@ -95,10 +96,9 @@ public class GroupManagerService extends CommonService {
 	}
 
 	/**
-	 * Delete one group.
 	 * 
 	 * @param groupId
-	 * @return resultCode >=0: success, 0<failure
+	 * @return
 	 * @author : Mason
 	 * @date : 2017. 8. 9.
 	 */

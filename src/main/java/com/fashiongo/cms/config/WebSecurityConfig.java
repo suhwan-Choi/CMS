@@ -1,6 +1,7 @@
 package com.fashiongo.cms.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -30,10 +31,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	private TokenAuthService tokenAuthService;
 	
+	@Value("${cms.jwt.develop.check-token}")
+	private boolean isCheckToken;
+	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http 
-			.addFilterBefore(new SimpleCorsFilter(), ChannelProcessingFilter.class)
+		http.addFilterBefore(new SimpleCorsFilter(), ChannelProcessingFilter.class);
+		
+		if(isCheckToken) {
+			http
 			.addFilterBefore(new JWTLoginFilter("/auth/login", authenticationManager(), failureHandler, tokenAuthService), UsernamePasswordAuthenticationFilter.class)
 			.addFilterBefore(new JWTAuthenticationFilter(tokenAuthService), UsernamePasswordAuthenticationFilter.class)
 			.csrf().disable() 
@@ -42,6 +48,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			.antMatchers(HttpMethod.OPTIONS, "/**").permitAll() 
 			.antMatchers("/**").hasAuthority("CMS_ADMIN")
 			.anyRequest().authenticated();
+			
+		}else {
+			http
+			.csrf().disable() 
+			.authorizeRequests()
+			.antMatchers("/**").permitAll()
+			.anyRequest().authenticated();
+		}
 	}
 
 	@Override

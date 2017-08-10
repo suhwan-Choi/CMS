@@ -12,44 +12,58 @@ import javax.persistence.StoredProcedureParameter;
 
 @NamedStoredProcedureQueries({
 		@NamedStoredProcedureQuery(name = "upWeb_GetAccessUser", procedureName = "dbo.upWeb_GetAccessUser", parameters = {
-				@StoredProcedureParameter(mode = ParameterMode.IN, name = "UserID", type = Integer.class) }, resultClasses = UserManager.class) })
+				@StoredProcedureParameter(mode = ParameterMode.IN, name = "UserID", type = Integer.class) }, resultClasses = UserManager.class),
+		@NamedStoredProcedureQuery(name = "upWeb_CreateModifyAccessUser", procedureName = "dbo.upWeb_CreateModifyAccessUser", parameters = {
+				@StoredProcedureParameter(mode = ParameterMode.IN, name = "UserID", type = Integer.class),
+				@StoredProcedureParameter(mode = ParameterMode.IN, name = "Active", type = Boolean.class),
+				@StoredProcedureParameter(mode = ParameterMode.IN, name = "UserAccount", type = String.class),
+				@StoredProcedureParameter(mode = ParameterMode.IN, name = "UserPassword", type = String.class),
+				@StoredProcedureParameter(mode = ParameterMode.IN, name = "UserName", type = String.class),
+				@StoredProcedureParameter(mode = ParameterMode.IN, name = "GroupID", type = Integer.class),
+				@StoredProcedureParameter(mode = ParameterMode.IN, name = "UserDescription", type = String.class),
+				@StoredProcedureParameter(mode = ParameterMode.IN, name = "WorkedOn", type = Date.class),
+				@StoredProcedureParameter(mode = ParameterMode.IN, name = "WorkedBy", type = Integer.class),
+				@StoredProcedureParameter(mode = ParameterMode.OUT, name = "ResultCode", type = Integer.class),
+				@StoredProcedureParameter(mode = ParameterMode.OUT, name = "ErrorMessage", type = String.class)
+
+		}) })
 @Entity
 public class UserManager {
 	@Id
-	@Column(name="userid")
+	@Column(name = "userid")
 	private Integer userID;
 
 	@Column(name = "active")
 	private Boolean active;
 
-	@Column(name="useraccount")
+	@Column(name = "useraccount")
 	private String userAccout;
 
-	@Column(name="userpassword")
+	@Column(name = "userpassword")
 	private String userPassword;
 
-	@Column(name="username")
+	@Column(name = "username")
 	private String userName;
 
-	@Column(name="groupid")
+	@Column(name = "groupid")
 	private Integer groupID;
 
-	@Column(name="groupname")
+	@Column(name = "groupname")
 	private String groupName;
 
-	@Column(name="groupactive")
+	@Column(name = "groupactive")
 	private Boolean groupActive;
 
-	@Column(name="createdon")
+	@Column(name = "createdon")
 	private Date createdON;
 
-	@Column(name="createdbyaccount")
+	@Column(name = "createdbyaccount")
 	private String createdByAccount;
 
-	@Column(name="modifiedon")
+	@Column(name = "modifiedon")
 	private String modifiedOn;
 
-	@Column(name="modifiedbyaccount")
+	@Column(name = "modifiedbyaccount")
 	private String modifiedByAccount;
 
 	public Integer getUserID() {

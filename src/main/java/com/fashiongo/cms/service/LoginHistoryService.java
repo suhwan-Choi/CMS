@@ -21,7 +21,7 @@ public class LoginHistoryService extends CommonService {
 	private static Logger logger = LoggerFactory.getLogger(LoginHistoryService.class);
 
 	@SuppressWarnings("unchecked")
-	public List<LoginHistory> selectAccessIPList(LoginHistoryListParam loginHistoryListParam) throws Exception{
+	public List<LoginHistory> selectAccessLoginHistoryList(LoginHistoryListParam loginHistoryListParam) throws Exception{
 		List<LoginHistory> loginHistoryList = null;
 		Query query = entityManager.createNamedStoredProcedureQuery("upWeb_GetLogLoginList");
 		query.setParameter("Page", loginHistoryListParam.getPage());

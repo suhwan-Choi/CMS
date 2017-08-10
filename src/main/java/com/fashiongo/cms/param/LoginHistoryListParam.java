@@ -1,6 +1,8 @@
 package com.fashiongo.cms.param;
 
-import java.sql.Date;
+import java.util.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 public class LoginHistoryListParam{
 	private Integer page;
@@ -8,15 +10,10 @@ public class LoginHistoryListParam{
 	
 	private String keywordType;
 	private String keywordText;
-	private Date loginStartDate;
-	private Date loginEndDate;
+	private String loginStartDate;
+	private String loginEndDate;
 	private Integer totalCount;
-	public Date getLoginEndDate() {
-		return loginEndDate;
-	}
-	public void setLoginEndDate(Date loginEndDate) {
-		this.loginEndDate = loginEndDate;
-	}
+	
 	public String getKeywordType() {
 		return keywordType;
 	}
@@ -29,11 +26,19 @@ public class LoginHistoryListParam{
 	public void setKeywordText(String keywordText) {
 		this.keywordText = keywordText;
 	}
-	public Date getLoginStartDate() {
-		return loginStartDate;
+	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+	public Date getLoginStartDate() throws ParseException {
+		return sdf.parse(this.loginStartDate);
 	}
-	public void setLoginStartDate(Date loginStartDate) {
+	public void setLoginStartDate(String loginStartDate) {
 		this.loginStartDate = loginStartDate;
+	}
+	
+	public Date getLoginEndDate() throws ParseException {
+		return sdf.parse(this.loginEndDate);
+	}
+	public void setLoginEndDate(String loginEndDate) {
+		this.loginEndDate = loginEndDate;
 	}
 
 	public Integer getTotalCount() {

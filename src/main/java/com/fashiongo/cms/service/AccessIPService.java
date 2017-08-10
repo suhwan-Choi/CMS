@@ -1,6 +1,5 @@
 package com.fashiongo.cms.service;
 
-import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.StoredProcedureQuery;
 
@@ -9,17 +8,24 @@ import javax.persistence.Query;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
-import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Service;
 
 import com.fashiongo.cms.model.AccessIP;
 import com.fashiongo.cms.model.ProcedureResult;
 import com.fashiongo.cms.param.AccessIPListParam;
+import com.fashiongo.cms.param.AccessIPSaveParam;
 
 @Service
 public class AccessIPService extends CommonService {
 	private static Logger logger = LoggerFactory.getLogger(AccessIPService.class);
 
+	/**
+	 * 
+	 * @param accessIPListParam
+	 * @return
+	 * @throws Exception
+	 * @author Reo
+	 * @date 2017. 8. 10.
+	 */
 	@SuppressWarnings("unchecked")
 	public List<AccessIP> selectAccessIPList(AccessIPListParam accessIPListParam) throws Exception{
 		List<AccessIP> accessIPList = null;
@@ -38,14 +44,49 @@ public class AccessIPService extends CommonService {
 		return accessIPList;
 	}
 	
-	public ProcedureResult updateSaveAccessIP(AccessIPListParam accessIPListParam) {
-		StoredProcedureQuery query = entityManager.createNamedStoredProcedureQuery("upWeb_CreateModifyAccessIP");
-        query.execute();
-		
-		ProcedureResult result = new ProcedureResult();
-		result.setResultCode((Integer)query.getOutputParameterValue("ResultCode"));
-		result.setErrorMessage((String)query.getOutputParameterValue("ErrorMessage"));
-		
-		return result;
+	/**
+	 * 
+	 * @param accessIPSaveParam
+	 * @return
+	 * @author Reo
+	 * @date 2017. 8. 10.
+	 */
+	public ProcedureResult mergeSaveAccessIP(AccessIPSaveParam accessIPSaveParam) {
+		StoredProcedureQuery query;
+		query = entityManager.createNamedStoredProcedureQuery("upWeb_CreateModifyAccessIP");
+		query.setParameter("IPID", accessIPSaveParam.getIpID());
+		query.setParameter("IPAddress", accessIPSaveParam.getIpAddress());
+		query.setParameter("Active", accessIPSaveParam.getActive());
+		query.setParameter("IPDescription", accessIPSaveParam.getIpDescription());
+		query.setParameter("WorkedOn", accessIPSaveParam.getWorkedOn());
+		query.setParameter("WorkedBy", accessIPSaveParam.getWorkedBy());
+
+		query.execute();
+
+		ProcedureResult procedureResult = new ProcedureResult();
+		procedureResult.setResultCode((Integer) query.getOutputParameterValue("ResultCode"));
+		procedureResult.setErrorMessage((String) query.getOutputParameterValue("ErrorMessage"));
+
+		return procedureResult;
+	}
+	
+	/**
+	 * 
+	 * @param ipID
+	 * @return
+	 * @author Reo
+	 * @date 2017. 8. 10.
+	 */
+	public ProcedureResult delete(Integer ipID) {
+		StoredProcedureQuery query = entityManager.createNamedStoredProcedureQuery("upWeb_RemoveAccessIP");
+		query.setParameter("IPID", ipID);
+
+		query.execute();
+
+		ProcedureResult procedureResult = new ProcedureResult();
+		procedureResult.setResultCode((Integer) query.getOutputParameterValue("ResultCode"));
+		procedureResult.setErrorMessage((String) query.getOutputParameterValue("ErrorMessage"));
+
+		return procedureResult;
 	}
 }

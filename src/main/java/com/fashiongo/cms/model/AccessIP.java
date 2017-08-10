@@ -9,7 +9,6 @@ import javax.persistence.NamedStoredProcedureQueries;
 import javax.persistence.NamedStoredProcedureQuery;
 import javax.persistence.ParameterMode;
 import javax.persistence.StoredProcedureParameter;
-import javax.persistence.Transient;
 
 @NamedStoredProcedureQueries({
 	@NamedStoredProcedureQuery(name = "upWeb_GetAccessIPList", procedureName = "dbo.upWeb_GetAccessIPList", parameters = {
@@ -21,8 +20,20 @@ import javax.persistence.Transient;
 			@StoredProcedureParameter(mode = ParameterMode.IN, name = "SearchDateType", type = String.class),
 			@StoredProcedureParameter(mode = ParameterMode.IN, name = "SearchStartDate", type = Date.class),
 			@StoredProcedureParameter(mode = ParameterMode.IN, name = "SearchEndDate", type = Date.class)
-			}, resultClasses = com.fashiongo.cms.model.AccessIP.class)
-})
+			}, resultClasses = com.fashiongo.cms.model.AccessIP.class),
+	@NamedStoredProcedureQuery(name = "upWeb_CreateModifyAccessIP", procedureName = "dbo.upWeb_CreateModifyAccessIP", parameters = {
+			@StoredProcedureParameter(mode = ParameterMode.IN, name = "IPID", type = Integer.class),
+			@StoredProcedureParameter(mode = ParameterMode.IN, name = "IPAddress", type = String.class),
+			@StoredProcedureParameter(mode = ParameterMode.IN, name = "Active", type = Boolean.class),
+			@StoredProcedureParameter(mode = ParameterMode.IN, name = "IPDescription", type = String.class),
+			@StoredProcedureParameter(mode = ParameterMode.IN, name = "WorkedOn", type = Date.class),
+			@StoredProcedureParameter(mode = ParameterMode.IN, name = "WorkedBy", type = Integer.class),
+			@StoredProcedureParameter(mode = ParameterMode.OUT, name = "ResultCode", type = Integer.class),
+			@StoredProcedureParameter(mode = ParameterMode.OUT, name = "ErrorMessage", type = String.class) }),
+	@NamedStoredProcedureQuery(name = "upWeb_RemoveAccessIP", procedureName = "dbo.upWeb_RemoveAccessIP", parameters = {
+			@StoredProcedureParameter(mode = ParameterMode.IN, name = "IPID", type = Integer.class),
+			@StoredProcedureParameter(mode = ParameterMode.OUT, name = "ResultCode", type = Integer.class),
+			@StoredProcedureParameter(mode = ParameterMode.OUT, name = "ErrorMessage", type = String.class)  }) })
 @Entity
 public class AccessIP{
     @Id

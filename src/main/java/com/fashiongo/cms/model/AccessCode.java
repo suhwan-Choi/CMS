@@ -9,7 +9,6 @@ import javax.persistence.NamedStoredProcedureQueries;
 import javax.persistence.NamedStoredProcedureQuery;
 import javax.persistence.ParameterMode;
 import javax.persistence.StoredProcedureParameter;
-import javax.persistence.Transient;
 
 @NamedStoredProcedureQueries({
 	@NamedStoredProcedureQuery(name = "upWeb_GetAccessCodeList", procedureName = "dbo.upWeb_GetAccessCodeList", parameters = {
@@ -19,8 +18,21 @@ import javax.persistence.Transient;
 			@StoredProcedureParameter(mode = ParameterMode.IN, name = "SearchDateType", type = String.class),
 			@StoredProcedureParameter(mode = ParameterMode.IN, name = "SearchStartDate", type = Date.class),
 			@StoredProcedureParameter(mode = ParameterMode.IN, name = "SearchEndDate", type = Date.class)
-			}, resultClasses = com.fashiongo.cms.model.AccessCode.class)
-})
+			}, resultClasses = com.fashiongo.cms.model.AccessCode.class),
+	@NamedStoredProcedureQuery(name = "upWeb_CreateModifyAccessCode", procedureName = "dbo.upWeb_CreateModifyAccessCode", parameters = {
+			@StoredProcedureParameter(mode = ParameterMode.IN, name = "CodeID", type = Integer.class),
+			@StoredProcedureParameter(mode = ParameterMode.IN, name = "Active", type = Boolean.class),
+			@StoredProcedureParameter(mode = ParameterMode.IN, name = "StartedOn", type = Date.class),
+			@StoredProcedureParameter(mode = ParameterMode.IN, name = "ExpiredOn", type = Date.class),
+			@StoredProcedureParameter(mode = ParameterMode.IN, name = "AccessCode", type = String.class),
+			@StoredProcedureParameter(mode = ParameterMode.IN, name = "WorkedOn", type = Date.class),
+			@StoredProcedureParameter(mode = ParameterMode.IN, name = "WorkedBy", type = Integer.class),
+			@StoredProcedureParameter(mode = ParameterMode.OUT, name = "ResultCode", type = Integer.class),
+			@StoredProcedureParameter(mode = ParameterMode.OUT, name = "ErrorMessage", type = String.class) }),
+	@NamedStoredProcedureQuery(name = "upWeb_RemoveAccessCode", procedureName = "dbo.upWeb_RemoveAccessCode", parameters = {
+			@StoredProcedureParameter(mode = ParameterMode.IN, name = "CodeID", type = Integer.class),
+			@StoredProcedureParameter(mode = ParameterMode.OUT, name = "ResultCode", type = Integer.class),
+			@StoredProcedureParameter(mode = ParameterMode.OUT, name = "ErrorMessage", type = String.class)  }) })
 @Entity
 public class AccessCode{
 	@Id

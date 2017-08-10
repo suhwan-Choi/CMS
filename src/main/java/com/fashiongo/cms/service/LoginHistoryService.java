@@ -20,6 +20,14 @@ import com.fashiongo.cms.param.LoginHistoryListParam;
 public class LoginHistoryService extends CommonService {
 	private static Logger logger = LoggerFactory.getLogger(LoginHistoryService.class);
 
+	/**
+	 * 
+	 * @param loginHistoryListParam
+	 * @return
+	 * @throws Exception
+	 * @author Reo
+	 * @date 2017. 8. 11.
+	 */
 	@SuppressWarnings("unchecked")
 	public List<LoginHistory> selectAccessLoginHistoryList(LoginHistoryListParam loginHistoryListParam) throws Exception{
 		List<LoginHistory> loginHistoryList = null;

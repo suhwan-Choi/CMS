@@ -21,6 +21,14 @@ public class LoginHistoryController {
 	@Autowired
 	private LoginHistoryService loginHistoryService;
 
+	/**
+	 * 
+	 * @param loginHistoryListParam
+	 * @return
+	 * @throws Exception
+	 * @author Reo
+	 * @date 2017. 8. 11.
+	 */
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public @ResponseBody JSONResponse<List<LoginHistory>> list(LoginHistoryListParam loginHistoryListParam) throws Exception {
 		JSONResponse<List<LoginHistory>> jsonResponse = new JSONResponse<>();

@@ -1,5 +1,6 @@
 package com.fashiongo.cms.service;
 
+import java.text.ParseException;
 import java.util.List;
 
 import javax.persistence.StoredProcedureQuery;
@@ -18,7 +19,7 @@ import com.fashiongo.cms.param.UserManagerSaveParam;
 public class UserManagerService extends CommonService {
 	private static Logger logger = LoggerFactory.getLogger(UserManagerService.class);
 
-	public List<UserManagerList> selectListUserManager(UserManagerListParam userManagerListParam) {
+	public List<UserManagerList> selectListUserManager(UserManagerListParam userManagerListParam) throws ParseException {
 
 		StoredProcedureQuery query = entityManager.createNamedStoredProcedureQuery("upWeb_GetAccessUserList");
 

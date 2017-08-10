@@ -34,7 +34,7 @@ public class UserManagerController {
 	}
 
 	@RequestMapping(value = "/detail/{userID}", method = RequestMethod.GET)
-	public JSONResponse<UserManager> detail(@PathVariable int userID) {
+	public JSONResponse<UserManager> detail(@PathVariable int userID) throws Exception {
 		JSONResponse<UserManager> jsonResponse = new JSONResponse<>();
 		UserManager userManager = userManagerService.selectDetailUserManager(userID);
 		jsonResponse.setData(userManager);

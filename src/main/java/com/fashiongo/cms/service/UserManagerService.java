@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import com.fashiongo.cms.model.UserManager;
 import com.fashiongo.cms.model.UserManagerList;
 import com.fashiongo.cms.param.UserManagerListParam;
 
@@ -31,6 +32,22 @@ public class UserManagerService extends CommonService {
 		@SuppressWarnings("unchecked")
 		List<UserManagerList> userManagerLists = (List<UserManagerList>) query.getResultList();
 		return userManagerLists;
+	}
+
+	/**
+	 * 
+	 * @param userID
+	 * @return
+	 * @author : Mason
+	 * @date : 2017. 8. 10.
+	 */
+	public UserManager selectDetailUserManager(int userID) {
+		StoredProcedureQuery query = entityManager.createNamedStoredProcedureQuery("upWeb_GetAccessUser");
+
+		query.setParameter("UserID", userID);
+
+		UserManager userManager = (UserManager) query.getSingleResult();
+		return userManager;
 	}
 
 }

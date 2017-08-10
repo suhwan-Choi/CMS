@@ -60,7 +60,7 @@ public class GroupManagerSaveParam {
 	}
 
 	public String getPermission() {
-		return permission;
+		return permission.replaceAll("\'", "\\\"");
 	}
 
 	public void setPermission(String permission) {

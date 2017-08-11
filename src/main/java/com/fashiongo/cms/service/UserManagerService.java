@@ -1,6 +1,5 @@
 package com.fashiongo.cms.service;
 
-import java.text.ParseException;
 import java.util.List;
 
 import javax.persistence.StoredProcedureQuery;
@@ -19,10 +18,11 @@ import com.fashiongo.cms.param.UserManagerSaveParam;
 public class UserManagerService extends CommonService {
 	private static Logger logger = LoggerFactory.getLogger(UserManagerService.class);
 
-	public List<UserManagerList> selectListUserManager(UserManagerListParam userManagerListParam) throws ParseException {
+	@SuppressWarnings("unchecked")
+	public List<UserManagerList> selectListUserManager(UserManagerListParam userManagerListParam) throws Exception {
 
 		StoredProcedureQuery query = entityManager.createNamedStoredProcedureQuery("upWeb_GetAccessUserList");
-
+		
 		query.setParameter("Page", userManagerListParam.getPn());
 		query.setParameter("PageSize", userManagerListParam.getPs());
 		query.setParameter("KeywordType", userManagerListParam.getKeywordType());
@@ -32,9 +32,7 @@ public class UserManagerService extends CommonService {
 		query.setParameter("SearchStartDate", userManagerListParam.getSearchStartDate());
 		query.setParameter("SearchEndDate", userManagerListParam.getSearchEndDate());
 
-		@SuppressWarnings("unchecked")
-		List<UserManagerList> userManagerLists = (List<UserManagerList>) query.getResultList();
-		return userManagerLists;
+		return (List<UserManagerList>) query.getResultList();
 	}
 
 	/**

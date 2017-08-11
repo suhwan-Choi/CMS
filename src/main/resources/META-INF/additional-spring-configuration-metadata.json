@@ -18,5 +18,10 @@
     "name": "cms.jwt.develop.check-token",
     "type": "java.lang.String",
     "description": "A description for 'cms.jwt.develop.check-token'"
+  },
+  {
+    "name": "cms.jwt.refresh-minute.value",
+    "type": "java.lang.String",
+    "description": "A description for 'cms.jwt.refresh-minute.value'"
   }
 ]}

@@ -1,5 +1,6 @@
 package com.fashiongo.cms.util;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -27,6 +28,9 @@ public class JWTTokenUtil {
 	
 	@Value("${cms.jwt.secret.value}")
 	private String secret;
+	
+	@Value("${cms.jwt.refresh-minute.value}")
+	private Integer refreshMinute;
 
 	public JWTTokenUtil() {
 		super();
@@ -85,6 +89,32 @@ public class JWTTokenUtil {
 		}
 		return expirationDate;
 	}
+	
+	/**
+	 * Checks if the token can refresh.
+	 * 
+	 * @param token
+	 *            to be analised.
+	 * @return the check result.
+	 */
+	public Boolean isTokenRefresh(String token) throws Exception {
+		Date expirationDate = getExpirationDateFromToken(token);
+		return expirationDate.before(new Date()) && getBaseRefreshDate(expirationDate).after(new Date());
+	}
+	
+	/**
+	 * Get token refresh date.
+	 * 
+	 * @param expirationDate
+	 *            to be expired date.
+	 * @return the refresh date.
+	 */
+	private Date getBaseRefreshDate(Date expirationDate) {
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(expirationDate);
+		cal.add(Calendar.MINUTE, refreshMinute);
+		return cal.getTime();
+	}
 
 	/**
 	 * Extracks the claims from token.
@@ -123,7 +153,7 @@ public class JWTTokenUtil {
 		final Date expirationDate = getExpirationDateFromToken(token);
 		return expirationDate.before(new Date());
 	}
-
+	
 	/**
 	 * Checks if the token was created before the last pass reset time.
 	 * 

@@ -67,7 +67,8 @@ public class GroupManagerController {
 	 * @date : 2017. 8. 9.
 	 */
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
-	public JSONResponse<ProcedureResult> save(@RequestBody GroupManagerSaveParam groupManagerSaveParam) throws Exception {
+	public @ResponseBody JSONResponse<ProcedureResult> save(@RequestBody GroupManagerSaveParam groupManagerSaveParam)
+			throws Exception {
 		JSONResponse<ProcedureResult> jsonResponse = new JSONResponse<>();
 		jsonResponse.setData(groupManagerService.mergeSaveGroupManager(groupManagerSaveParam));
 		return jsonResponse;
@@ -82,7 +83,7 @@ public class GroupManagerController {
 	 * @date : 2017. 8. 9.
 	 */
 	@RequestMapping(value = "/delete/{groupId}", method = RequestMethod.POST)
-	public JSONResponse<ProcedureResult> delete(@PathVariable Integer groupId) throws Exception {
+	public @ResponseBody JSONResponse<ProcedureResult> delete(@PathVariable Integer groupId) throws Exception {
 		JSONResponse<ProcedureResult> jsonResponse = new JSONResponse<>();
 		ProcedureResult result = groupManagerService.delete(groupId);
 		jsonResponse.setData(result);

@@ -1,8 +1,9 @@
 package com.fashiongo.cms.param;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
 
 public class UserManagerListParam {
 	private Integer pn;
@@ -11,8 +12,12 @@ public class UserManagerListParam {
 	private String keywordText;
 	private Boolean active;
 	private String searchDateType;
-	private String searchStartDate;
-	private String searchEndDate;
+	
+	@DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
+	private Date searchStartDate;
+	
+	@DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
+	private Date searchEndDate;
 
 	public Integer getPn() {
 		return pn;
@@ -62,7 +67,23 @@ public class UserManagerListParam {
 		this.searchDateType = searchDateType;
 	}
 
-	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+	public Date getSearchStartDate() {
+		return searchStartDate;
+	}
+
+	public void setSearchStartDate(Date searchStartDate) {
+		this.searchStartDate = searchStartDate;
+	}
+
+	public Date getSearchEndDate() {
+		return searchEndDate;
+	}
+
+	public void setSearchEndDate(Date searchEndDate) {
+		this.searchEndDate = searchEndDate;
+	}
+
+	/*SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
 	public Date getSearchStartDate() throws ParseException {
 		return sdf.parse(this.searchStartDate);
@@ -78,6 +99,6 @@ public class UserManagerListParam {
 
 	public void setSearchEndDate(String searchEndDate) {
 		this.searchEndDate = searchEndDate;
-	}
+	}*/
 
 }

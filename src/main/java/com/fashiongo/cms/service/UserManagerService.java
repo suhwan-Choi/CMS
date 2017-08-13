@@ -1,6 +1,5 @@
 package com.fashiongo.cms.service;
 
-import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
 
@@ -30,8 +29,8 @@ public class UserManagerService extends CommonService {
 	 * @author : Mason
 	 * @date : 2017. 8. 11.
 	 */
-	public List<UserManagerList> selectListUserManager(UserManagerListParam userManagerListParam)
-			throws ParseException {
+	@SuppressWarnings("unchecked")
+	public List<UserManagerList> selectListUserManager(UserManagerListParam userManagerListParam) throws Exception {
 
 		StoredProcedureQuery query = entityManager.createNamedStoredProcedureQuery("upWeb_GetAccessUserList");
 
@@ -44,9 +43,7 @@ public class UserManagerService extends CommonService {
 		query.setParameter("SearchStartDate", userManagerListParam.getSearchStartDate());
 		query.setParameter("SearchEndDate", userManagerListParam.getSearchEndDate());
 
-		@SuppressWarnings("unchecked")
-		List<UserManagerList> userManagerLists = (List<UserManagerList>) query.getResultList();
-		return userManagerLists;
+		return (List<UserManagerList>) query.getResultList();
 	}
 
 	/**
@@ -100,6 +97,7 @@ public class UserManagerService extends CommonService {
 
 	/**
 	 * Remove one user information.
+	 * 
 	 * @param userManagerDeleteParam
 	 * @return
 	 * @author : Mason
@@ -109,7 +107,7 @@ public class UserManagerService extends CommonService {
 		StoredProcedureQuery query = entityManager.createNamedStoredProcedureQuery("upWeb_RemoveAccessUser");
 		query.setParameter("UserID", userManagerDeleteParam.getUserID());
 		query.setParameter("WorkedBy", userManagerDeleteParam.getWorkedBy());
-		query.setParameter("WorkedOn",new Date());
+		query.setParameter("WorkedOn", new Date());
 
 		query.execute();
 

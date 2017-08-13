@@ -35,12 +35,9 @@ public class UserManagerController {
 	 * @date : 2017. 8. 11.
 	 */
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public @ResponseBody JSONResponse<List<UserManagerList>> list(UserManagerListParam userManagerParam)
-			throws Exception {
-		JSONResponse<List<UserManagerList>> jsonResponse = new JSONResponse<>();
-
-		List<UserManagerList> userManagerList = userManagerService.selectListUserManager(userManagerParam);
-		jsonResponse.setData(userManagerList);
+	public @ResponseBody JSONResponse<List<UserManagerList>> list(UserManagerListParam userManagerParam) throws Exception {
+		JSONResponse<List<UserManagerList>> jsonResponse = new JSONResponse<List<UserManagerList>>();
+		jsonResponse.setData(userManagerService.selectListUserManager(userManagerParam));
 
 		return jsonResponse;
 	}

@@ -4,7 +4,6 @@ import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-
 public class UserManagerListParam {
 	private Integer pn;
 	private Integer ps;
@@ -12,11 +11,11 @@ public class UserManagerListParam {
 	private String keywordText;
 	private Boolean active;
 	private String searchDateType;
-	
-	@DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
+
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private Date searchStartDate;
-	
-	@DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
+
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private Date searchEndDate;
 
 	public Integer getPn() {
@@ -82,23 +81,5 @@ public class UserManagerListParam {
 	public void setSearchEndDate(Date searchEndDate) {
 		this.searchEndDate = searchEndDate;
 	}
-
-	/*SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-
-	public Date getSearchStartDate() throws ParseException {
-		return sdf.parse(this.searchStartDate);
-	}
-
-	public void setSearchStartDate(String searchStartDate) {
-		this.searchStartDate = searchStartDate;
-	}
-
-	public Date getSearchEndDate() throws ParseException {
-		return sdf.parse(this.searchEndDate);
-	}
-
-	public void setSearchEndDate(String searchEndDate) {
-		this.searchEndDate = searchEndDate;
-	}*/
 
 }

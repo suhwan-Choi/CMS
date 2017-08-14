@@ -41,6 +41,9 @@ public class UserManager {
 
 	@Column(name = "active")
 	private Boolean active;
+	
+	@Column(name = "userdescription")
+	private String userDescription;
 
 	@Column(name = "useraccount")
 	private String userAccout;
@@ -80,12 +83,20 @@ public class UserManager {
 		this.userID = userID;
 	}
 
-	public Boolean getActive() {
-		return active;
+	public String getActive() {
+		return String.valueOf(active);
 	}
 
 	public void setActive(Boolean active) {
 		this.active = active;
+	}
+
+	public String getUserDescription() {
+		return userDescription;
+	}
+
+	public void setUserDescription(String userDescription) {
+		this.userDescription = userDescription;
 	}
 
 	public String getUserAccout() {

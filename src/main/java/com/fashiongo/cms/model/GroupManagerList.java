@@ -26,7 +26,7 @@ import javax.persistence.StoredProcedureParameter;
 				@StoredProcedureParameter(mode = ParameterMode.OUT, name = "ResultCode", type = Integer.class),
 				@StoredProcedureParameter(mode = ParameterMode.OUT, name = "ErrorMessage", type = String.class), }),
 		@NamedStoredProcedureQuery(name = "upWeb_ModifyAccessGroup", procedureName = "dbo.upWeb_ModifyAccessGroup", parameters = {
-				@StoredProcedureParameter(mode = ParameterMode.IN, name = "GroupId", type = Integer.class),
+				@StoredProcedureParameter(mode = ParameterMode.IN, name = "GroupID", type = Integer.class),
 				@StoredProcedureParameter(mode = ParameterMode.IN, name = "GroupName", type = String.class),
 				@StoredProcedureParameter(mode = ParameterMode.IN, name = "Active", type = Boolean.class),
 				@StoredProcedureParameter(mode = ParameterMode.IN, name = "GroupDescription", type = String.class),
@@ -36,7 +36,7 @@ import javax.persistence.StoredProcedureParameter;
 				@StoredProcedureParameter(mode = ParameterMode.OUT, name = "ResultCode", type = Integer.class),
 				@StoredProcedureParameter(mode = ParameterMode.OUT, name = "ErrorMessage", type = String.class) }),
 		@NamedStoredProcedureQuery(name = "upWeb_RemoveAccessGroup", procedureName = "dbo.upWeb_RemoveAccessGroup", parameters = {
-				@StoredProcedureParameter(mode = ParameterMode.IN, name = "GroupId", type = Integer.class),
+				@StoredProcedureParameter(mode = ParameterMode.IN, name = "GroupID", type = Integer.class),
 				@StoredProcedureParameter(mode = ParameterMode.OUT, name = "ResultCode", type = Integer.class),
 				@StoredProcedureParameter(mode = ParameterMode.OUT, name = "ErrorMessage", type = String.class) }) })
 @Entity

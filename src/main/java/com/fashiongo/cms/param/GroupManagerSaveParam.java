@@ -1,7 +1,7 @@
 package com.fashiongo.cms.param;
 
 public class GroupManagerSaveParam {
-	private Integer groupId;
+	private Integer groupID;
 	private String groupName;
 	private Boolean active;
 	private String groupDescription;
@@ -9,12 +9,12 @@ public class GroupManagerSaveParam {
 	private Integer workedBy;
 	private String permission;
 
-	public Integer getGroupId() {
-		return groupId;
+	public Integer getGroupID() {
+		return groupID;
 	}
 
-	public void setGroupId(Integer groupId) {
-		this.groupId = groupId;
+	public void setGroupID(Integer groupID) {
+		this.groupID = groupID;
 	}
 
 	public String getGroupName() {

@@ -8,17 +8,17 @@ import javax.persistence.ParameterMode;
 import javax.persistence.StoredProcedureParameter;
 
 @NamedStoredProcedureQuery(name = "upWeb_GetAccessGroup", procedureName = "dbo.upWeb_GetAccessGroup", parameters = {
-		@StoredProcedureParameter(mode = ParameterMode.IN, name = "GroupId", type = Integer.class) }, resultClasses = com.fashiongo.cms.model.GroupManager.class)
+		@StoredProcedureParameter(mode = ParameterMode.IN, name = "GroupID", type = Integer.class) }, resultClasses = com.fashiongo.cms.model.GroupManager.class)
 @Entity
 public class GroupManager {
 	@Id
 	@Column(name = "groupid")
 	protected Integer groupId;
 
-	@Column(name = "groupname", nullable = true)
+	@Column(name = "groupname")
 	protected String groupName;
 
-	@Column(name = "active", nullable = true)
+	@Column(name = "active")
 	protected Boolean groupActive;
 
 	@Column(name = "groupdescription")

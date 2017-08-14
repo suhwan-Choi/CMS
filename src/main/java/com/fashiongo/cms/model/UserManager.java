@@ -55,13 +55,13 @@ public class UserManager {
 	private Boolean groupActive;
 
 	@Column(name = "createdon")
-	private Date createdON;
+	private Date createdOn;
 
 	@Column(name = "createdbyaccount")
 	private String createdByAccount;
 
 	@Column(name = "modifiedon")
-	private String modifiedOn;
+	private Date modifiedOn;
 
 	@Column(name = "modifiedbyaccount")
 	private String modifiedByAccount;
@@ -130,12 +130,12 @@ public class UserManager {
 		this.groupActive = groupActive;
 	}
 
-	public Date getCreatedON() {
-		return createdON;
+	public Date getCreatedOn() {
+		return createdOn;
 	}
 
-	public void setCreatedON(Date createdON) {
-		this.createdON = createdON;
+	public void setCreatedOn(Date createdOn) {
+		this.createdOn = createdOn;
 	}
 
 	public String getCreatedByAccount() {
@@ -146,11 +146,11 @@ public class UserManager {
 		this.createdByAccount = createdByAccount;
 	}
 
-	public String getModifiedOn() {
+	public Date getModifiedOn() {
 		return modifiedOn;
 	}
 
-	public void setModifiedOn(String modifiedOn) {
+	public void setModifiedOn(Date modifiedOn) {
 		this.modifiedOn = modifiedOn;
 	}
 

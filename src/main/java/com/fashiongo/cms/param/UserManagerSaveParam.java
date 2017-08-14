@@ -1,7 +1,5 @@
 package com.fashiongo.cms.param;
 
-import java.util.Date;
-
 public class UserManagerSaveParam {
 	private Integer userID;
 	private Boolean active;

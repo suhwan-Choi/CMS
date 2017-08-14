@@ -22,15 +22,19 @@ import javax.persistence.StoredProcedureParameter;
 				@StoredProcedureParameter(mode = ParameterMode.IN, name = "SearchEndDate", type = Date.class) }, resultClasses = UserManagerList.class) })
 @Entity
 public class UserManagerList {
+	
 	@Id
 	@Column(name = "userid")
-	private Integer userId;
+	private Integer userID;
 
 	@Column(name = "useraccount")
 	private String userAccount;
 
 	@Column(name = "username")
 	private String userName;
+	
+	@Column(name = "userdescription")
+	private String userDescription;
 
 	@Column(name = "groupid")
 	private Integer groupID;
@@ -50,12 +54,12 @@ public class UserManagerList {
 	@Column(name = "totalcount")
 	private Integer totalCount;
 
-	public Integer getUserId() {
-		return userId;
+	public Integer getUserID() {
+		return userID;
 	}
 
-	public void setUserId(Integer userId) {
-		this.userId = userId;
+	public void setUserID(Integer userID) {
+		this.userID = userID;
 	}
 
 	public String getUserAccount() {
@@ -72,6 +76,14 @@ public class UserManagerList {
 
 	public void setUserName(String userName) {
 		this.userName = userName;
+	}
+
+	public String getUserDescription() {
+		return userDescription;
+	}
+
+	public void setUserDescription(String userDescription) {
+		this.userDescription = userDescription;
 	}
 
 	public Integer getGroupID() {

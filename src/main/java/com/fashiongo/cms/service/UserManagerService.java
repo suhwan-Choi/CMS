@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import com.fashiongo.cms.model.ComboAccessGroup;
 import com.fashiongo.cms.model.ProcedureResult;
 import com.fashiongo.cms.model.UserManager;
 import com.fashiongo.cms.model.UserManagerList;
@@ -55,12 +56,25 @@ public class UserManagerService extends CommonService {
 	 * @date : 2017. 8. 10.
 	 */
 	public UserManager selectDetailUserManager(int userID) {
+		
 		StoredProcedureQuery query = entityManager.createNamedStoredProcedureQuery("upWeb_GetAccessUser");
-
 		query.setParameter("UserID", userID);
 
-		UserManager userManager = (UserManager) query.getSingleResult();
-		return userManager;
+		return (UserManager) query.getSingleResult();
+	}
+	
+	/**
+	 * Combo Group List
+	 * @param
+	 * @return
+	 * @author 
+	 * @date : 2017. 8. 14
+	 */
+	@SuppressWarnings("unchecked")
+	public List<ComboAccessGroup> selectDetailComboAccessGroup() {
+		StoredProcedureQuery query = entityManager.createNamedStoredProcedureQuery("upWeb_ComboAccessGroup");
+		
+		return (List<ComboAccessGroup>) query.getResultList();
 	}
 
 	/**

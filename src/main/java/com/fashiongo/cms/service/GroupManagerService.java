@@ -31,16 +31,13 @@ public class GroupManagerService extends CommonService {
 	@SuppressWarnings("unchecked")
 	public List<GroupManagerList> selectListGroupManager(GroupManagerListParam groupManagerListParam) {
 
-		List<GroupManagerList> groupManagerList = null;
 		StoredProcedureQuery query = entityManager.createNamedStoredProcedureQuery("upWeb_GetAccessGroupList");
 		query.setParameter("Page", groupManagerListParam.getPn());
 		query.setParameter("PageSize", groupManagerListParam.getPs());
 		query.setParameter("GroupName", groupManagerListParam.getGroupName());
 		query.setParameter("Active", groupManagerListParam.getActive());
 
-		groupManagerList = (List<GroupManagerList>) query.getResultList();
-
-		return groupManagerList;
+		return (List<GroupManagerList>) query.getResultList();
 	}
 
 	/**

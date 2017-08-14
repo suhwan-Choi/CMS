@@ -55,7 +55,7 @@ public class GroupManagerList {
 	private String groupDescription;
 
 	@Column(name = "totalcount")
-	private Integer totalcount;
+	private Integer totalCount;
 
 	public Integer getGroupId() {
 		return groupId;
@@ -89,12 +89,12 @@ public class GroupManagerList {
 		this.groupDescription = groupDescription;
 	}
 
-	public Integer getTotalcount() {
-		return totalcount;
+	public Integer getTotalCount() {
+		return totalCount;
 	}
 
-	public void setTotalcount(Integer totalcount) {
-		this.totalcount = totalcount;
+	public void setTotalCount(Integer totalCount) {
+		this.totalCount = totalCount;
 	}
 
 }

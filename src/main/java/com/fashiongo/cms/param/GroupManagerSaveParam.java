@@ -1,7 +1,5 @@
 package com.fashiongo.cms.param;
 
-import java.util.Date;
-
 public class GroupManagerSaveParam {
 	private Integer groupId;
 	private String groupName;

@@ -10,7 +10,6 @@ public class UserManagerSaveParam {
 	private String userName;
 	private Integer groupID;
 	private String userDescription;
-	private Date workedOn;
 	private Integer workedBy;
 
 	public Integer getUserID() {
@@ -67,14 +66,6 @@ public class UserManagerSaveParam {
 
 	public void setUserDescription(String userDescription) {
 		this.userDescription = userDescription;
-	}
-
-	public Date getWorkedOn() {
-		return workedOn;
-	}
-
-	public void setWorkedOn(Date workedOn) {
-		this.workedOn = workedOn;
 	}
 
 	public Integer getWorkedBy() {

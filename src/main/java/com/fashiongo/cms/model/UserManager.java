@@ -26,7 +26,13 @@ import javax.persistence.StoredProcedureParameter;
 				@StoredProcedureParameter(mode = ParameterMode.OUT, name = "ResultCode", type = Integer.class),
 				@StoredProcedureParameter(mode = ParameterMode.OUT, name = "ErrorMessage", type = String.class)
 
-		}) })
+		}),
+		@NamedStoredProcedureQuery(name = "upWeb_RemoveAccessUser", procedureName = "dbo.upWeb_RemoveAccessUser", parameters = {
+				@StoredProcedureParameter(mode = ParameterMode.IN, name = "UserID", type = Integer.class),
+				@StoredProcedureParameter(mode = ParameterMode.IN, name = "WorkedOn", type = Date.class),
+				@StoredProcedureParameter(mode = ParameterMode.IN, name = "WorkedBy", type = Integer.class),
+				@StoredProcedureParameter(mode = ParameterMode.OUT, name = "ResultCode", type = Integer.class),
+				@StoredProcedureParameter(mode = ParameterMode.OUT, name = "ErrorMessage", type = String.class) }) })
 @Entity
 public class UserManager {
 	@Id

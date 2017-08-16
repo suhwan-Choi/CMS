@@ -91,25 +91,15 @@ public class JWTTokenUtil {
 	}
 	
 	/**
-	 * Checks if the token can refresh.
-	 * 
-	 * @param token
-	 *            to be analised.
-	 * @return the check result.
-	 */
-	public Boolean isTokenRefresh(String token) throws Exception {
-		Date expirationDate = getExpirationDateFromToken(token);
-		return expirationDate.before(new Date()) && getBaseRefreshDate(expirationDate).after(new Date());
-	}
-	
-	/**
 	 * Get token refresh date.
 	 * 
 	 * @param expirationDate
 	 *            to be expired date.
 	 * @return the refresh date.
 	 */
-	private Date getBaseRefreshDate(Date expirationDate) {
+	private Date getBaseRefreshDate(String token) throws Exception {
+		Date expirationDate = getExpirationDateFromToken(token);
+	
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(expirationDate);
 		cal.add(Calendar.MINUTE, refreshMinute);
@@ -207,8 +197,9 @@ public class JWTTokenUtil {
 	 *            date.
 	 * @return the result of the check.
 	 */
-	public Boolean canTokenBeRefreshed(String token, Date lastPasswordReset) throws Exception {
+	public Boolean canTokenBeRefreshed(String token) throws Exception {
 		final Date created = getCreatedDateFromToken(token);
+		final Date lastPasswordReset = getBaseRefreshDate(token);
 		return !isCreatedBeforeLastPasswordReset(created, lastPasswordReset) && (!isTokenExpired(token));
 	}
 

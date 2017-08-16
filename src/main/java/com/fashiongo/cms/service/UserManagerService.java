@@ -94,7 +94,6 @@ public class UserManagerService extends CommonService {
 		query.setParameter("UserName", userManagerSaveParam.getUserName());
 		query.setParameter("GroupID", userManagerSaveParam.getGroupID());
 		query.setParameter("UserDescription", userManagerSaveParam.getUserDescription());
-		query.setParameter("WorkedOn", userManagerSaveParam.getWorkedOn());
 		query.setParameter("WorkedBy", userManagerSaveParam.getWorkedBy());
 
 		query.execute();
@@ -117,7 +116,6 @@ public class UserManagerService extends CommonService {
 		StoredProcedureQuery query = entityManager.createNamedStoredProcedureQuery("upWeb_RemoveAccessUser");
 		query.setParameter("UserID", userManagerDeleteParam.getUserID());
 		query.setParameter("WorkedBy", userManagerDeleteParam.getWorkedBy());
-		query.setParameter("WorkedOn", userManagerDeleteParam.getWorkedOn());
 
 		query.execute();
 

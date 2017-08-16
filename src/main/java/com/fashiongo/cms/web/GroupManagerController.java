@@ -51,9 +51,9 @@ public class GroupManagerController {
 	 * @date : 2017. 8. 9.
 	 */
 	@RequestMapping(value = "/detail/{groupId}", method = RequestMethod.GET)
-	public @ResponseBody JSONResponse<GroupManager> detailGroupManager(@PathVariable Integer groupId) throws Exception {
-		JSONResponse<GroupManager> jsonResponse = new JSONResponse<>();
-		GroupManager groupManager = groupManagerService.selectDetailGroupManager(groupId);
+	public @ResponseBody JSONResponse<List<GroupManager>> detailGroupManager(@PathVariable Integer groupId) throws Exception {
+		JSONResponse<List<GroupManager>> jsonResponse = new JSONResponse<>();
+		List<GroupManager> groupManager = groupManagerService.selectDetailGroupManager(groupId);
 		jsonResponse.setData(groupManager);
 		return jsonResponse;
 	}

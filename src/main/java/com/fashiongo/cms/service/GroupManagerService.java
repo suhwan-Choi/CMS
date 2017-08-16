@@ -48,14 +48,12 @@ public class GroupManagerService extends CommonService {
 	 * @author : Mason
 	 * @date : 2017. 8. 9.
 	 */
-	public GroupManager selectDetailGroupManager(int groupID) {
-		GroupManager groupManager = null;
+	@SuppressWarnings("unchecked")
+	public List<GroupManager> selectDetailGroupManager(int groupID) {
 		StoredProcedureQuery query = entityManager.createNamedStoredProcedureQuery("upWeb_GetAccessGroup");
 		query.setParameter("GroupID", groupID);
 
-		groupManager = (GroupManager) query.getSingleResult();
-
-		return groupManager;
+		return (List<GroupManager>) query.getResultList();
 	}
 
 	/**
@@ -69,12 +67,10 @@ public class GroupManagerService extends CommonService {
 		StoredProcedureQuery query;
 		if (groupManagerSaveParam.getGroupID() == null) {
 			query = entityManager.createNamedStoredProcedureQuery("upWeb_CreateAccessGroup");
-			query.setParameter("WorkedOn", new Date());
 			query.setParameter("WorkedBy", groupManagerSaveParam.getCreatedBy());
 		} else {
 			query = entityManager.createNamedStoredProcedureQuery("upWeb_ModifyAccessGroup");
 			query.setParameter("GroupID", groupManagerSaveParam.getGroupID());
-			query.setParameter("WorkedOn", new Date());
 			query.setParameter("WorkedBy", groupManagerSaveParam.getWorkedBy());
 		}
 
@@ -111,5 +107,6 @@ public class GroupManagerService extends CommonService {
 
 		return procedureResult;
 	}
+
 
 }

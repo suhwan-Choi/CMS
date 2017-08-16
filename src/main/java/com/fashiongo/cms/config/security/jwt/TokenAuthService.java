@@ -34,7 +34,7 @@ public class TokenAuthService {
 		try {
 			String jwtToken = jwtTokenUtil.generateToken(adminUser);
 			
-			logger.info("jwtToken :: " + jwtToken);
+			logger.info("addAuthentication jwtToken :: " + jwtToken);
 			
 			response.addHeader(headerString, jwtToken);
 			
@@ -55,16 +55,17 @@ public class TokenAuthService {
 		try {
 			String jwtToken = request.getHeader(headerString);
 			
+			logger.info("getAuthentication jwtToken :: " + jwtToken);
+			
 			if(jwtTokenUtil.validateToken(jwtToken)) {
 				String username = jwtTokenUtil.getUsernameFromToken(jwtToken);
 				CMSAdminUser adminUser = jwtTokenUtil.getAdminUserFromToken(jwtToken);
 				
 				if(jwtTokenUtil.canTokenBeRefreshed(jwtToken)) {
-					System.out.println("==============================================================================================================================================");
 					String refreshToken = jwtTokenUtil.generateToken(adminUser);
 					request.setAttribute(attrubute, refreshToken);
-					System.out.println(attrubute + " ::: " + refreshToken);
-					System.out.println("==============================================================================================================================================");
+					
+					logger.info("refresh jwtToken :: " + refreshToken);
 				}
 				
 				return new AuthenticatedUser(username, adminUser);

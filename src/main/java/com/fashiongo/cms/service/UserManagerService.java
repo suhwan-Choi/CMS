@@ -1,6 +1,5 @@
 package com.fashiongo.cms.service;
 
-import java.util.Date;
 import java.util.List;
 
 import javax.persistence.StoredProcedureQuery;
@@ -87,18 +86,15 @@ public class UserManagerService extends CommonService {
 	 */
 	public ProcedureResult mergeSaveUserManager(UserManagerSaveParam userManagerSaveParam) {
 		StoredProcedureQuery query = entityManager.createNamedStoredProcedureQuery("upWeb_CreateModifyAccessUser");
-		if (userManagerSaveParam.getUserID() == null) {
-			query.setParameter("UserID", 0);
-		} else {
-			query.setParameter("UserID", userManagerSaveParam.getUserID());
-		}
+		
+		query.setParameter("UserID", userManagerSaveParam.getUserID());
 		query.setParameter("Active", userManagerSaveParam.getActive());
 		query.setParameter("UserAccount", userManagerSaveParam.getUserAccount());
 		query.setParameter("UserPassword", userManagerSaveParam.getUserPassword());
 		query.setParameter("UserName", userManagerSaveParam.getUserName());
 		query.setParameter("GroupID", userManagerSaveParam.getGroupID());
 		query.setParameter("UserDescription", userManagerSaveParam.getUserDescription());
-		query.setParameter("WorkedOn", new Date());
+		query.setParameter("WorkedOn", userManagerSaveParam.getWorkedOn());
 		query.setParameter("WorkedBy", userManagerSaveParam.getWorkedBy());
 
 		query.execute();
@@ -121,7 +117,7 @@ public class UserManagerService extends CommonService {
 		StoredProcedureQuery query = entityManager.createNamedStoredProcedureQuery("upWeb_RemoveAccessUser");
 		query.setParameter("UserID", userManagerDeleteParam.getUserID());
 		query.setParameter("WorkedBy", userManagerDeleteParam.getWorkedBy());
-		query.setParameter("WorkedOn", new Date());
+		query.setParameter("WorkedOn", userManagerDeleteParam.getWorkedOn());
 
 		query.execute();
 

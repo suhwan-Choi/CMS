@@ -8,6 +8,7 @@ package com.fashiongo.cms.common;
 public class JSONResponse<T> {
 	private boolean success;
 	private String reason;
+	private String token;
 	private T data;
 	
 	public JSONResponse() {
@@ -35,6 +36,14 @@ public class JSONResponse<T> {
 	
 	public void setReason(String reason) {
 		this.reason = reason;
+	}
+	
+	public String getToken() {
+		return token;
+	}
+	
+	public void setToken(String token) {
+		this.token = token;
 	}
 	
 	public T getData() {

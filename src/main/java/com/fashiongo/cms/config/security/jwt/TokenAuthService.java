@@ -22,6 +22,9 @@ public class TokenAuthService {
     
     @Value("${cms.jwt.header.value}")
 	private String headerString;
+    
+    @Value("${cms.jwt.refersh-attribute.value}")
+	private String attrubute;
 	
 	@Autowired
 	private JWTTokenUtil jwtTokenUtil;
@@ -31,7 +34,7 @@ public class TokenAuthService {
 		try {
 			String jwtToken = jwtTokenUtil.generateToken(adminUser);
 			
-			logger.info("addAuthentication :: " + jwtToken);
+			logger.info("jwtToken :: " + jwtToken);
 			
 			response.addHeader(headerString, jwtToken);
 			
@@ -45,30 +48,29 @@ public class TokenAuthService {
 
 			ostr.write(returnStr.getBytes());
 			
-		}catch(Exception e) {
-			e.printStackTrace();
-		}
+		}catch(Exception e) {}
 	}
 	
 	public AuthenticatedUser getAuthentication(HttpServletRequest request) {
 		try {
 			String jwtToken = request.getHeader(headerString);
-			logger.info("getAuthentication :: jwtToken = " +jwtToken);
 			
-			boolean isValid = jwtTokenUtil.validateToken(jwtToken);
-			
-			logger.info("getAuthentication :: isValid = " + isValid);
-			
-			if(isValid) {
+			if(jwtTokenUtil.validateToken(jwtToken)) {
 				String username = jwtTokenUtil.getUsernameFromToken(jwtToken);
 				CMSAdminUser adminUser = jwtTokenUtil.getAdminUserFromToken(jwtToken);
+				
+				if(jwtTokenUtil.canTokenBeRefreshed(jwtToken)) {
+					System.out.println("==============================================================================================================================================");
+					String refreshToken = jwtTokenUtil.generateToken(adminUser);
+					request.setAttribute(attrubute, refreshToken);
+					System.out.println(attrubute + " ::: " + refreshToken);
+					System.out.println("==============================================================================================================================================");
+				}
 				
 				return new AuthenticatedUser(username, adminUser);
 			}
 			
-		}catch(Exception e) {
-			e.printStackTrace();
-		}
+		}catch(Exception e) {}
 		
 		return null;
 	}

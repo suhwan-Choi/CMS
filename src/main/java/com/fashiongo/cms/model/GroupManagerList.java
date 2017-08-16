@@ -43,12 +43,12 @@ import javax.persistence.StoredProcedureParameter;
 public class GroupManagerList {
 	@Id
 	@Column(name = "groupid")
-	private Integer groupId;
+	private Integer groupID;
 
-	@Column(name = "groupname", nullable = true)
+	@Column(name = "groupname")
 	private String groupName;
 
-	@Column(name = "active", nullable = true)
+	@Column(name = "active")
 	private Boolean groupActive;
 
 	@Column(name = "groupdescription")
@@ -57,12 +57,12 @@ public class GroupManagerList {
 	@Column(name = "totalcount")
 	private Integer totalCount;
 
-	public Integer getGroupId() {
-		return groupId;
+	public Integer getGroupID() {
+		return groupID;
 	}
 
-	public void setGroupId(Integer groupId) {
-		this.groupId = groupId;
+	public void setGroupID(Integer groupId) {
+		this.groupID = groupId;
 	}
 
 	public String getGroupName() {

@@ -13,7 +13,7 @@ import javax.persistence.StoredProcedureParameter;
 public class GroupManager {
 	@Id
 	@Column(name = "groupid")
-	protected Integer groupId;
+	protected Integer groupID;
 
 	@Column(name = "groupname")
 	protected String groupName;
@@ -24,12 +24,12 @@ public class GroupManager {
 	@Column(name = "groupdescription")
 	protected String groupDescription;
 
-	public Integer getGroupId() {
-		return groupId;
+	public Integer getGroupID() {
+		return groupID;
 	}
 
-	public void setGroupId(Integer groupId) {
-		this.groupId = groupId;
+	public void setGroupID(Integer groupId) {
+		this.groupID = groupId;
 	}
 
 	public String getGroupName() {

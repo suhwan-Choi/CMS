@@ -13,6 +13,7 @@ import javax.persistence.StoredProcedureParameter;
 @NamedStoredProcedureQueries({
 		@NamedStoredProcedureQuery(name = "upWeb_GetAccessUser", procedureName = "dbo.upWeb_GetAccessUser", parameters = {
 				@StoredProcedureParameter(mode = ParameterMode.IN, name = "UserID", type = Integer.class) }, resultClasses = UserManager.class),
+		
 		@NamedStoredProcedureQuery(name = "upWeb_CreateModifyAccessUser", procedureName = "dbo.upWeb_CreateModifyAccessUser", parameters = {
 				@StoredProcedureParameter(mode = ParameterMode.IN, name = "UserID", type = Integer.class),
 				@StoredProcedureParameter(mode = ParameterMode.IN, name = "Active", type = Boolean.class),
@@ -27,12 +28,14 @@ import javax.persistence.StoredProcedureParameter;
 				@StoredProcedureParameter(mode = ParameterMode.OUT, name = "ErrorMessage", type = String.class)
 
 		}),
+		
 		@NamedStoredProcedureQuery(name = "upWeb_RemoveAccessUser", procedureName = "dbo.upWeb_RemoveAccessUser", parameters = {
 				@StoredProcedureParameter(mode = ParameterMode.IN, name = "UserID", type = Integer.class),
 				@StoredProcedureParameter(mode = ParameterMode.IN, name = "WorkedOn", type = Date.class),
 				@StoredProcedureParameter(mode = ParameterMode.IN, name = "WorkedBy", type = Integer.class),
 				@StoredProcedureParameter(mode = ParameterMode.OUT, name = "ResultCode", type = Integer.class),
-				@StoredProcedureParameter(mode = ParameterMode.OUT, name = "ErrorMessage", type = String.class) }) })
+				@StoredProcedureParameter(mode = ParameterMode.OUT, name = "ErrorMessage", type = String.class) }) 
+		})
 @Entity
 public class UserManager {
 	@Id
@@ -46,7 +49,7 @@ public class UserManager {
 	private String userDescription;
 
 	@Column(name = "useraccount")
-	private String userAccout;
+	private String userAccount;
 
 	@Column(name = "userpassword")
 	private String userPassword;
@@ -99,12 +102,12 @@ public class UserManager {
 		this.userDescription = userDescription;
 	}
 
-	public String getUserAccout() {
-		return userAccout;
+	public String getUserAccount() {
+		return userAccount;
 	}
 
-	public void setUserAccout(String userAccoutn) {
-		this.userAccout = userAccoutn;
+	public void setUserAccount(String userAccount) {
+		this.userAccount = userAccount;
 	}
 
 	public String getUserPassword() {

@@ -31,34 +31,29 @@ public class GroupManagerService extends CommonService {
 	@SuppressWarnings("unchecked")
 	public List<GroupManagerList> selectListGroupManager(GroupManagerListParam groupManagerListParam) {
 
-		List<GroupManagerList> groupManagerList = null;
 		StoredProcedureQuery query = entityManager.createNamedStoredProcedureQuery("upWeb_GetAccessGroupList");
 		query.setParameter("Page", groupManagerListParam.getPn());
 		query.setParameter("PageSize", groupManagerListParam.getPs());
 		query.setParameter("GroupName", groupManagerListParam.getGroupName());
 		query.setParameter("Active", groupManagerListParam.getActive());
 
-		groupManagerList = (List<GroupManagerList>) query.getResultList();
-
-		return groupManagerList;
+		return (List<GroupManagerList>) query.getResultList();
 	}
 
 	/**
 	 * Obtain 1 group information
 	 * 
-	 * @param groupId
+	 * @param groupID
 	 * @return group information
 	 * @author : Mason
 	 * @date : 2017. 8. 9.
 	 */
-	public GroupManager selectDetailGroupManager(int groupId) {
-		GroupManager groupManager = null;
+	@SuppressWarnings("unchecked")
+	public List<GroupManager> selectDetailGroupManager(int groupID) {
 		StoredProcedureQuery query = entityManager.createNamedStoredProcedureQuery("upWeb_GetAccessGroup");
-		query.setParameter("GroupId", groupId);
+		query.setParameter("GroupID", groupID);
 
-		groupManager = (GroupManager) query.getSingleResult();
-
-		return groupManager;
+		return (List<GroupManager>) query.getResultList();
 	}
 
 	/**
@@ -70,14 +65,12 @@ public class GroupManagerService extends CommonService {
 	 */
 	public ProcedureResult mergeSaveGroupManager(GroupManagerSaveParam groupManagerSaveParam) {
 		StoredProcedureQuery query;
-		if (groupManagerSaveParam.getGroupId() == null) {
+		if (groupManagerSaveParam.getGroupID() == null) {
 			query = entityManager.createNamedStoredProcedureQuery("upWeb_CreateAccessGroup");
-			query.setParameter("WorkedOn", new Date());
 			query.setParameter("WorkedBy", groupManagerSaveParam.getCreatedBy());
 		} else {
 			query = entityManager.createNamedStoredProcedureQuery("upWeb_ModifyAccessGroup");
-			query.setParameter("GroupId", groupManagerSaveParam.getGroupId());
-			query.setParameter("WorkedOn", new Date());
+			query.setParameter("GroupID", groupManagerSaveParam.getGroupID());
 			query.setParameter("WorkedBy", groupManagerSaveParam.getWorkedBy());
 		}
 
@@ -97,14 +90,14 @@ public class GroupManagerService extends CommonService {
 
 	/**
 	 * 
-	 * @param groupId
+	 * @param groupID
 	 * @return
 	 * @author : Mason
 	 * @date : 2017. 8. 9.
 	 */
-	public ProcedureResult delete(Integer groupId) {
+	public ProcedureResult delete(Integer groupID) {
 		StoredProcedureQuery query = entityManager.createNamedStoredProcedureQuery("upWeb_RemoveAccessGroup");
-		query.setParameter("GroupId", groupId);
+		query.setParameter("GroupID", groupID);
 
 		query.execute();
 
@@ -114,5 +107,6 @@ public class GroupManagerService extends CommonService {
 
 		return procedureResult;
 	}
+
 
 }

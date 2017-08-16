@@ -1,6 +1,6 @@
 package com.fashiongo.cms.param;
 
-public class MyAccountListParam{
+public class MyAccountSaveParam{
 	private Integer userID;
 	private String userPassword;
 	private Integer workedBy;
@@ -20,7 +20,7 @@ public class MyAccountListParam{
 	public void setUserID(Integer userID) {
 		this.userID = userID;
 	}
-	
+
 	public String getUserPassword() {
 		return userPassword;
 	}

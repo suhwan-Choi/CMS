@@ -26,7 +26,7 @@ import javax.persistence.StoredProcedureParameter;
 				@StoredProcedureParameter(mode = ParameterMode.OUT, name = "ResultCode", type = Integer.class),
 				@StoredProcedureParameter(mode = ParameterMode.OUT, name = "ErrorMessage", type = String.class), }),
 		@NamedStoredProcedureQuery(name = "upWeb_ModifyAccessGroup", procedureName = "dbo.upWeb_ModifyAccessGroup", parameters = {
-				@StoredProcedureParameter(mode = ParameterMode.IN, name = "GroupId", type = Integer.class),
+				@StoredProcedureParameter(mode = ParameterMode.IN, name = "GroupID", type = Integer.class),
 				@StoredProcedureParameter(mode = ParameterMode.IN, name = "GroupName", type = String.class),
 				@StoredProcedureParameter(mode = ParameterMode.IN, name = "Active", type = Boolean.class),
 				@StoredProcedureParameter(mode = ParameterMode.IN, name = "GroupDescription", type = String.class),
@@ -36,33 +36,33 @@ import javax.persistence.StoredProcedureParameter;
 				@StoredProcedureParameter(mode = ParameterMode.OUT, name = "ResultCode", type = Integer.class),
 				@StoredProcedureParameter(mode = ParameterMode.OUT, name = "ErrorMessage", type = String.class) }),
 		@NamedStoredProcedureQuery(name = "upWeb_RemoveAccessGroup", procedureName = "dbo.upWeb_RemoveAccessGroup", parameters = {
-				@StoredProcedureParameter(mode = ParameterMode.IN, name = "GroupId", type = Integer.class),
+				@StoredProcedureParameter(mode = ParameterMode.IN, name = "GroupID", type = Integer.class),
 				@StoredProcedureParameter(mode = ParameterMode.OUT, name = "ResultCode", type = Integer.class),
 				@StoredProcedureParameter(mode = ParameterMode.OUT, name = "ErrorMessage", type = String.class) }) })
 @Entity
 public class GroupManagerList {
 	@Id
 	@Column(name = "groupid")
-	private Integer groupId;
+	private Integer groupID;
 
-	@Column(name = "groupname", nullable = true)
+	@Column(name = "groupname")
 	private String groupName;
 
-	@Column(name = "active", nullable = true)
+	@Column(name = "active")
 	private Boolean groupActive;
 
 	@Column(name = "groupdescription")
 	private String groupDescription;
 
 	@Column(name = "totalcount")
-	private Integer totalcount;
+	private Integer totalCount;
 
-	public Integer getGroupId() {
-		return groupId;
+	public Integer getGroupID() {
+		return groupID;
 	}
 
-	public void setGroupId(Integer groupId) {
-		this.groupId = groupId;
+	public void setGroupID(Integer groupId) {
+		this.groupID = groupId;
 	}
 
 	public String getGroupName() {
@@ -89,12 +89,12 @@ public class GroupManagerList {
 		this.groupDescription = groupDescription;
 	}
 
-	public Integer getTotalcount() {
-		return totalcount;
+	public Integer getTotalCount() {
+		return totalCount;
 	}
 
-	public void setTotalcount(Integer totalcount) {
-		this.totalcount = totalcount;
+	public void setTotalCount(Integer totalCount) {
+		this.totalCount = totalCount;
 	}
 
 }

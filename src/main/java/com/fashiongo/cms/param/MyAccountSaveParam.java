@@ -1,8 +1,7 @@
 package com.fashiongo.cms.param;
 
-import java.util.Date;
 
-public class MyAccountListParam{
+public class MyAccountSaveParam{
 	private Integer userID;
 	private String userAccount;
 	private String userName;

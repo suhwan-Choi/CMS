@@ -25,7 +25,6 @@ import javax.persistence.StoredProcedureParameter;
 				@StoredProcedureParameter(mode = ParameterMode.IN, name = "WorkedBy", type = Integer.class),
 				@StoredProcedureParameter(mode = ParameterMode.OUT, name = "ResultCode", type = Integer.class),
 				@StoredProcedureParameter(mode = ParameterMode.OUT, name = "ErrorMessage", type = String.class)
-
 		}),
 		
 		@NamedStoredProcedureQuery(name = "upWeb_RemoveAccessUser", procedureName = "dbo.upWeb_RemoveAccessUser", parameters = {

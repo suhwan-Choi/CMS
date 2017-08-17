@@ -17,6 +17,10 @@ import javax.persistence.StoredProcedureParameter;
 			@StoredProcedureParameter(mode=ParameterMode.IN, name="Password", type=String.class)
 	}, resultClasses=com.fashiongo.cms.model.CMSAdminUser.class),
 	
+	@NamedStoredProcedureQuery(name="upWeb_GetLoginUserForID", procedureName="dbo.upWeb_GetLoginUserForID", parameters= {
+			@StoredProcedureParameter(mode=ParameterMode.IN, name="UserID", type=Integer.class)
+	}, resultClasses=com.fashiongo.cms.model.CMSAdminUser.class),
+	
 	@NamedStoredProcedureQuery(name="upWeb_GetLoginUserCheck", procedureName="dbo.upWeb_GetLoginUserCheck", parameters= {
 			@StoredProcedureParameter(mode=ParameterMode.IN, name="UserAccount", type=String.class),
 			@StoredProcedureParameter(mode=ParameterMode.IN, name="Password", type=String.class),

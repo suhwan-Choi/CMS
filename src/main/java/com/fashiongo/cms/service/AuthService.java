@@ -56,4 +56,18 @@ public class AuthService extends CommonService {
 		
 		return (CMSAdminUser)query.getSingleResult();
 	}
+	
+	/**
+	 * Get UserInfo(UserID)
+	 * @author Ian Lee
+	 * @param username
+	 * @param password
+	 * @return
+	 */
+	public CMSAdminUser selectAdminUser(Integer userId) {
+		StoredProcedureQuery query = entityManager.createNamedStoredProcedureQuery("upWeb_GetLoginUserForID");
+		query.setParameter("UserID", userId);
+		
+		return (CMSAdminUser)query.getSingleResult();
+	}
 }

@@ -23,7 +23,6 @@ public class MyAccountController {
 
 		JSONResponse<ProcedureResult> jsonResponse = new JSONResponse<ProcedureResult>();
 		jsonResponse.setData(myAccountService.modifyUserPassword(myAccounSaveParam));
-		
 
 		return jsonResponse;
 	}

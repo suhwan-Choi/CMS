@@ -2,7 +2,10 @@ package com.fashiongo.cms.web;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,20 +14,32 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fashiongo.cms.common.JSONResponse;
+import com.fashiongo.cms.model.CMSAdminUser;
 import com.fashiongo.cms.model.ProcedureResult;
 import com.fashiongo.cms.model.UserManagerDetail;
 import com.fashiongo.cms.model.UserManagerList;
 import com.fashiongo.cms.param.UserManagerDeleteParam;
 import com.fashiongo.cms.param.UserManagerListParam;
 import com.fashiongo.cms.param.UserManagerSaveParam;
+import com.fashiongo.cms.service.AuthService;
 import com.fashiongo.cms.service.UserManagerService;
+import com.fashiongo.cms.util.JWTTokenUtil;
 
 @RestController
 @RequestMapping("/user_manager")
 public class UserManagerController {
+	
+	@Value("${cms.jwt.refersh-attribute.value}")
+	private String attrubute;
 
 	@Autowired
 	private UserManagerService userManagerService;
+	
+	@Autowired
+	private AuthService authService;
+	
+	@Autowired
+	private JWTTokenUtil jwtTokenUtil;
 
 	/**
 	 * Select UserManager List
@@ -77,11 +92,18 @@ public class UserManagerController {
 	 * @date : 2017. 8. 11.
 	 */
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
-	public @ResponseBody JSONResponse<ProcedureResult> save(@RequestBody UserManagerSaveParam userManagerSaveParam) {
+	public @ResponseBody JSONResponse<ProcedureResult> save(HttpServletRequest request, @RequestBody UserManagerSaveParam userManagerSaveParam) throws Exception  {
 		
 		JSONResponse<ProcedureResult> jsonResponse = new JSONResponse<ProcedureResult>();
 		
 		ProcedureResult procedureResult = userManagerService.mergeSaveUserManager(userManagerSaveParam);
+		
+		if(procedureResult.getResultCode() == 0 && userManagerSaveParam.getUserID() == userManagerSaveParam.getWorkedBy()) {
+			CMSAdminUser userInfo = authService.selectAdminUser(userManagerSaveParam.getUserID());
+			String refreshToken = jwtTokenUtil.generateToken(userInfo);
+			request.setAttribute(attrubute, refreshToken);
+		}
+		
 		jsonResponse.setData(procedureResult);
 		
 		return jsonResponse;
@@ -95,7 +117,7 @@ public class UserManagerController {
 	 * @date : 2017. 8. 11.
 	 */
 	@RequestMapping(value = "/delete", method = RequestMethod.POST)
-	public @ResponseBody JSONResponse<ProcedureResult> delete(@RequestBody UserManagerDeleteParam userManagerDeleteParam) {
+	public @ResponseBody JSONResponse<ProcedureResult> delete(@RequestBody UserManagerDeleteParam userManagerDeleteParam) throws Exception {
 		
 		JSONResponse<ProcedureResult> jsonResponse = new JSONResponse<ProcedureResult>();
 		

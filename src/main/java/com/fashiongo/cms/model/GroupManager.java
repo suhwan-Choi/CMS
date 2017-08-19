@@ -139,19 +139,19 @@ public class GroupManager {
 		this.allowDelete = allowDelete;
 	}
 
-	public String getAllowView() {
-		return String.valueOf(allowView);
+	public Boolean getAllowView() {
+		return allowView;
 	}
 
-	public String getAllowEdit() {
-		return String.valueOf(allowEdit);
+	public Boolean getAllowEdit() {
+		return allowEdit;
 	}
 
-	public String getAllowAdd() {
-		return String.valueOf(allowAdd);
+	public Boolean getAllowAdd() {
+		return allowAdd;
 	}
 
-	public String getAllowDelete() {
-		return String.valueOf(allowDelete);
+	public Boolean getAllowDelete() {
+		return allowDelete;
 	}
 }

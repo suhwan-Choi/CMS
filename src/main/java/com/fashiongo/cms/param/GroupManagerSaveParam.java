@@ -5,7 +5,6 @@ public class GroupManagerSaveParam {
 	private String groupName;
 	private Boolean active;
 	private String groupDescription;
-	private Integer createdBy;
 	private Integer workedBy;
 	private String permission;
 
@@ -39,14 +38,6 @@ public class GroupManagerSaveParam {
 
 	public void setGroupDescription(String groupDescription) {
 		this.groupDescription = groupDescription;
-	}
-
-	public Integer getCreatedBy() {
-		return createdBy;
-	}
-
-	public void setCreatedBy(Integer createdBy) {
-		this.createdBy = createdBy;
 	}
 
 	public Integer getWorkedBy() {

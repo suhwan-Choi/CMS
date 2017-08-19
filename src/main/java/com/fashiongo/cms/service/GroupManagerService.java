@@ -67,7 +67,7 @@ public class GroupManagerService extends CommonService {
 		StoredProcedureQuery query;
 		if (groupManagerSaveParam.getGroupID() == null) {
 			query = entityManager.createNamedStoredProcedureQuery("upWeb_CreateAccessGroup");
-			query.setParameter("WorkedBy", groupManagerSaveParam.getCreatedBy());
+			query.setParameter("WorkedBy", groupManagerSaveParam.getWorkedBy());
 		} else {
 			query = entityManager.createNamedStoredProcedureQuery("upWeb_ModifyAccessGroup");
 			query.setParameter("GroupID", groupManagerSaveParam.getGroupID());

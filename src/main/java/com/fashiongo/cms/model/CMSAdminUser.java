@@ -10,6 +10,7 @@ import javax.persistence.NamedStoredProcedureQueries;
 import javax.persistence.NamedStoredProcedureQuery;
 import javax.persistence.ParameterMode;
 import javax.persistence.StoredProcedureParameter;
+import javax.persistence.Transient;
 
 @NamedStoredProcedureQueries({
 	@NamedStoredProcedureQuery(name="upWeb_GetLoginUser", procedureName="dbo.upWeb_GetLoginUser", parameters= {
@@ -27,6 +28,19 @@ import javax.persistence.StoredProcedureParameter;
 			@StoredProcedureParameter(mode=ParameterMode.IN, name="IpAddress", type=String.class),
 			@StoredProcedureParameter(mode=ParameterMode.IN, name="AccessCode", type=String.class),
 			@StoredProcedureParameter(mode=ParameterMode.IN, name="NowOn", type=Date.class),
+			@StoredProcedureParameter(mode=ParameterMode.OUT, name="ResultCode", type=Integer.class),
+			@StoredProcedureParameter(mode=ParameterMode.OUT, name="ErrorMessage", type=String.class)
+	}),
+	
+	@NamedStoredProcedureQuery(name="upWeb_CreateLogLogin", procedureName="dbo.upWeb_CreateLogLogin", parameters= {
+			@StoredProcedureParameter(mode=ParameterMode.IN, name="SessionKey", type=String.class),
+			@StoredProcedureParameter(mode=ParameterMode.IN, name="UserID", type=Integer.class),
+			@StoredProcedureParameter(mode=ParameterMode.IN, name="UserAccount", type=String.class),
+			@StoredProcedureParameter(mode=ParameterMode.IN, name="UserName", type=String.class),
+			@StoredProcedureParameter(mode=ParameterMode.IN, name="GroupID", type=Integer.class),
+			@StoredProcedureParameter(mode=ParameterMode.IN, name="GroupName", type=String.class),
+			@StoredProcedureParameter(mode=ParameterMode.IN, name="IPAddress", type=String.class),
+			@StoredProcedureParameter(mode=ParameterMode.IN, name="AccessCode", type=String.class),
 			@StoredProcedureParameter(mode=ParameterMode.OUT, name="ResultCode", type=Integer.class),
 			@StoredProcedureParameter(mode=ParameterMode.OUT, name="ErrorMessage", type=String.class)
 	})
@@ -50,6 +64,9 @@ public class CMSAdminUser implements Serializable{
 	
 	@Column(name="groupname")
 	private String groupName;
+	
+	@Transient
+	private String sessionId;
 	
 	public Integer getUserId() {
 		return userId;
@@ -89,5 +106,13 @@ public class CMSAdminUser implements Serializable{
 
 	public void setGroupName(String groupName) {
 		this.groupName = groupName;
+	}
+
+	public String getSessionId() {
+		return sessionId;
+	}
+
+	public void setSessionId(String sessionId) {
+		this.sessionId = sessionId;
 	}
 }

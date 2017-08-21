@@ -1,62 +1,66 @@
 package com.fashiongo.cms.param;
 
 import java.util.Date;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 public class LoginHistoryListParam{
-	private Integer page;
-	private Integer pageSize;
-	
+	private Integer pn;
+	private Integer ps;
 	private String keywordType;
 	private String keywordText;
-	private String loginStartDate;
-	private String loginEndDate;
-	private Integer totalCount;
 	
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	private Date searchStartDate;
+
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	private Date searchEndDate;
+
+	public Integer getPn() {
+		return pn;
+	}
+
+	public void setPn(Integer pn) {
+		this.pn = pn;
+	}
+
+	public Integer getPs() {
+		return ps;
+	}
+
+	public void setPs(Integer ps) {
+		this.ps = ps;
+	}
+
 	public String getKeywordType() {
 		return keywordType;
 	}
+
 	public void setKeywordType(String keywordType) {
 		this.keywordType = keywordType;
 	}
+
 	public String getKeywordText() {
 		return keywordText;
 	}
+
 	public void setKeywordText(String keywordText) {
 		this.keywordText = keywordText;
 	}
-	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-	public Date getLoginStartDate() throws ParseException {
-		return sdf.parse(this.loginStartDate);
-	}
-	public void setLoginStartDate(String loginStartDate) {
-		this.loginStartDate = loginStartDate;
-	}
-	
-	public Date getLoginEndDate() throws ParseException {
-		return sdf.parse(this.loginEndDate);
-	}
-	public void setLoginEndDate(String loginEndDate) {
-		this.loginEndDate = loginEndDate;
+
+	public Date getSearchStartDate() {
+		return searchStartDate;
 	}
 
-	public Integer getTotalCount() {
-		return totalCount;
+	public void setSearchStartDate(Date searchStartDate) {
+		this.searchStartDate = searchStartDate;
 	}
-	public void setTotalCount(Integer totalCount) {
-		this.totalCount = totalCount;
+
+	public Date getSearchEndDate() {
+		return searchEndDate;
 	}
-	public void setPageSize(Integer pageSize) {
-		this.pageSize = pageSize;
-	}
-	public Integer getPage() {
-		return page;
-	}
-	public void setPage(Integer page) {
-		this.page = page;
-	}
-	public Integer getPageSize() {
-		return pageSize;
+
+	public void setSearchEndDate(Date searchEndDate) {
+		this.searchEndDate = searchEndDate;
 	}
 }

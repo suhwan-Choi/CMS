@@ -13,6 +13,7 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Component;
+import org.springframework.web.context.request.RequestContextHolder;
 
 import com.fashiongo.cms.model.CMSAdminUser;
 import com.fashiongo.cms.model.ProcedureResult;
@@ -47,6 +48,9 @@ public class CMSAuthenticationProvider implements AuthenticationProvider{
 		userInfo.setUserAccount(adminUser.getUserAccount());
 		userInfo.setGroupId(adminUser.getGroupId());
 		userInfo.setGroupName(adminUser.getGroupName());
+		userInfo.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());
+		
+		authService.insertLoginHistory(authentication, userInfo);
 		
 		CMSAdminAuthenticationToken authToken = new CMSAdminAuthenticationToken(username, password, grantedAuths);
 		authToken.setUserInfo(userInfo);

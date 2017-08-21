@@ -1,6 +1,5 @@
 package com.fashiongo.cms.web;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +21,7 @@ public class LoginHistoryController {
 	private LoginHistoryService loginHistoryService;
 
 	/**
-	 * 
+	 * Login History List
 	 * @param loginHistoryListParam
 	 * @return
 	 * @throws Exception
@@ -31,10 +30,10 @@ public class LoginHistoryController {
 	 */
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public @ResponseBody JSONResponse<List<LoginHistory>> list(LoginHistoryListParam loginHistoryListParam) throws Exception {
-		JSONResponse<List<LoginHistory>> jsonResponse = new JSONResponse<>();
-		List<LoginHistory> loginHistoryList = new ArrayList<>();
-		loginHistoryList = loginHistoryService.selectAccessLoginHistoryList(loginHistoryListParam);
-		jsonResponse.setData(loginHistoryList);
+		
+		JSONResponse<List<LoginHistory>> jsonResponse = new JSONResponse<List<LoginHistory>>();
+		jsonResponse.setData(loginHistoryService.selectAccessLoginHistoryList(loginHistoryListParam));
+		
 		return jsonResponse;
 	}
 }

@@ -22,6 +22,7 @@ public class JWTTokenUtil {
 	private static final String CLAIM_KEY_GROUP_ID 		= "groupId";
 	private static final String CLAIM_KEY_GROUP_NAME 	= "groupName";
 	private static final String CLAIM_KEY_CREATED 		= "created";
+	private static final String CLAIM_KEY_SESSION_ID	= "sessionId";
 	
 	@Value("${cms.jwt.expiration.value}")
 	private long expiration;
@@ -171,6 +172,7 @@ public class JWTTokenUtil {
 		claims.put(CLAIM_KEY_USER_ACCOUNT, adminUser.getUserAccount());
 		claims.put(CLAIM_KEY_GROUP_ID, adminUser.getGroupId());
 		claims.put(CLAIM_KEY_GROUP_NAME, adminUser.getGroupName());
+		claims.put(CLAIM_KEY_SESSION_ID, adminUser.getSessionId());
 		claims.put(CLAIM_KEY_CREATED, new Date());
 
 		return generateToken(claims);
@@ -249,6 +251,7 @@ public class JWTTokenUtil {
 		adminUser.setGroupId((Integer)claims.get(CLAIM_KEY_GROUP_ID));
 		adminUser.setGroupName((String)claims.get(CLAIM_KEY_GROUP_NAME));
 		adminUser.setUserAccount((String)claims.get(CLAIM_KEY_USER_ACCOUNT));
+		adminUser.setSessionId((String)claims.get(CLAIM_KEY_SESSION_ID));
 		
 		return adminUser;
 	}

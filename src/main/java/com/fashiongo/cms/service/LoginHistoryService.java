@@ -11,17 +11,17 @@ import org.springframework.stereotype.Service;
 import com.fashiongo.cms.model.LoginHistory;
 import com.fashiongo.cms.param.LoginHistoryListParam;
 
-@Service
+
 /**
- * 
+ * LoginHistoryService
  * @author KimMH
- *
  */
+@Service
 public class LoginHistoryService extends CommonService {
 	private static Logger logger = LoggerFactory.getLogger(LoginHistoryService.class);
 
 	/**
-	 * 
+	 * Select Access Login History List
 	 * @param loginHistoryListParam
 	 * @return
 	 * @throws Exception
@@ -29,18 +29,16 @@ public class LoginHistoryService extends CommonService {
 	 * @date 2017. 8. 11.
 	 */
 	@SuppressWarnings("unchecked")
-	public List<LoginHistory> selectAccessLoginHistoryList(LoginHistoryListParam loginHistoryListParam) throws Exception{
-		List<LoginHistory> loginHistoryList = null;
+	public List<LoginHistory> selectAccessLoginHistoryList(LoginHistoryListParam loginHistoryListParam) {
+		
 		Query query = entityManager.createNamedStoredProcedureQuery("upWeb_GetLogLoginList");
-		query.setParameter("Page", loginHistoryListParam.getPage());
-		query.setParameter("PageSize", loginHistoryListParam.getPageSize());
+		query.setParameter("Page", loginHistoryListParam.getPn());
+		query.setParameter("PageSize", loginHistoryListParam.getPs());
 		query.setParameter("KeywordType", loginHistoryListParam.getKeywordType());
 		query.setParameter("KeywordText", loginHistoryListParam.getKeywordText());
-		query.setParameter("LoginStartDate", loginHistoryListParam.getLoginStartDate());
-		query.setParameter("LoginEndDate", loginHistoryListParam.getLoginEndDate());
-		
-		loginHistoryList = (List<LoginHistory>) query.getResultList();
+		query.setParameter("LoginStartDate", loginHistoryListParam.getSearchStartDate());
+		query.setParameter("LoginEndDate", loginHistoryListParam.getSearchEndDate());
 
-		return loginHistoryList;
+		return (List<LoginHistory>) query.getResultList();
 	}
 }

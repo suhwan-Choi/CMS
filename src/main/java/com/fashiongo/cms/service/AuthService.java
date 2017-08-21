@@ -2,6 +2,8 @@ package com.fashiongo.cms.service;
 
 import java.util.Date;
 
+import javax.persistence.ParameterMode;
+import javax.persistence.StoredProcedureParameter;
 import javax.persistence.StoredProcedureQuery;
 
 import org.slf4j.Logger;
@@ -69,5 +71,33 @@ public class AuthService extends CommonService {
 		query.setParameter("UserID", userId);
 		
 		return (CMSAdminUser)query.getSingleResult();
+	}
+
+	/**
+	 * Insert Login History
+	 * @param authentication
+	 * @param userInfo
+	 * @return
+	 */
+	public ProcedureResult insertLoginHistory(Authentication authentication, CMSAdminUser userInfo) {
+		AccountDetails details = (AccountDetails)authentication.getDetails();
+		
+		StoredProcedureQuery query = entityManager.createNamedStoredProcedureQuery("upWeb_CreateLogLogin");
+		query.setParameter("SessionKey", userInfo.getSessionId());
+		query.setParameter("UserID", userInfo.getUserId());
+		query.setParameter("UserAccount", userInfo.getUserAccount());
+		query.setParameter("UserName", userInfo.getUserName());
+		query.setParameter("GroupID", userInfo.getGroupId());
+		query.setParameter("GroupName", userInfo.getGroupName());
+		query.setParameter("IPAddress", details.getIp());
+		query.setParameter("AccessCode", details.getAccesscode());
+		
+		query.execute();
+		
+		ProcedureResult result = new ProcedureResult();
+		result.setResultCode((Integer)query.getOutputParameterValue("ResultCode"));
+		result.setErrorMessage((String)query.getOutputParameterValue("ErrorMessage"));
+		
+		return result;
 	}
 }

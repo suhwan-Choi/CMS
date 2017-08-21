@@ -20,7 +20,11 @@ import javax.persistence.StoredProcedureParameter;
 				@StoredProcedureParameter(mode = ParameterMode.IN, name = "LoginEndDate", type = Date.class) }, resultClasses = com.fashiongo.cms.model.LoginHistory.class) })
 @Entity
 public class LoginHistory {
+	
 	@Id
+	@Column(name = "seq")
+	private Integer seq;
+	
 	@Column(name = "useraccount")
 	private String userAccount;
 
@@ -38,6 +42,14 @@ public class LoginHistory {
 
 	@Column(name = "totalcount")
 	private Integer totalCount;
+
+	public Integer getSeq() {
+		return seq;
+	}
+
+	public void setSeq(Integer seq) {
+		this.seq = seq;
+	}
 
 	public String getUserAccount() {
 		return userAccount;
@@ -86,5 +98,4 @@ public class LoginHistory {
 	public void setTotalCount(Integer totalCount) {
 		this.totalCount = totalCount;
 	}
-
 }

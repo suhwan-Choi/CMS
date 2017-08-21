@@ -24,6 +24,9 @@ import javax.persistence.StoredProcedureParameter;
 public class UserManagerList {
 	
 	@Id
+	@Column(name = "seq")
+	private Integer seq;
+	
 	@Column(name = "userid")
 	private Integer userID;
 
@@ -53,6 +56,14 @@ public class UserManagerList {
 	
 	@Column(name = "totalcount")
 	private Integer totalCount;
+
+	public Integer getSeq() {
+		return seq;
+	}
+
+	public void setSeq(Integer seq) {
+		this.seq = seq;
+	}
 
 	public Integer getUserID() {
 		return userID;

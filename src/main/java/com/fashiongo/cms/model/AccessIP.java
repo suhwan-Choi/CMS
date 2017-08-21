@@ -59,7 +59,7 @@ public class AccessIP{
     private Date modifiedOn;
     
     @Column(name = "modifiedbyaccount")
-    private Integer modifedByAccount;
+    private String modifiedByAccount;
     
     @Column(name = "totalcount")
     private Integer totalCount;
@@ -120,12 +120,12 @@ public class AccessIP{
 		this.modifiedOn = modifiedOn;
 	}
 
-	public Integer getModifedByAccount() {
-		return modifedByAccount;
+	public String getModifiedByAccount() {
+		return modifiedByAccount;
 	}
 
-	public void setModifedByAccount(Integer modifedByAccount) {
-		this.modifedByAccount = modifedByAccount;
+	public void setModifiedByAccount(String modifedByAccount) {
+		this.modifiedByAccount = modifedByAccount;
 	}
 
 	public Integer getTotalCount() {

@@ -8,14 +8,8 @@ public class AccessCodeSaveParam{
 	private Date startedOn;
 	private Date expiredOn;
 	private String accessCode;
-	private Date createdOn;
 	private Integer createdBy;
-	public Date getCreatedOn() {
-		return createdOn;
-	}
-	public void setCreatedOn(Date createdOn) {
-		this.createdOn = createdOn;
-	}
+
 	public Integer getCreatedBy() {
 		return createdBy;
 	}

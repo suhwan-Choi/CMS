@@ -25,7 +25,6 @@ import javax.persistence.StoredProcedureParameter;
 			@StoredProcedureParameter(mode = ParameterMode.IN, name = "StartedOn", type = Date.class),
 			@StoredProcedureParameter(mode = ParameterMode.IN, name = "ExpiredOn", type = Date.class),
 			@StoredProcedureParameter(mode = ParameterMode.IN, name = "AccessCode", type = String.class),
-			@StoredProcedureParameter(mode = ParameterMode.IN, name = "WorkedOn", type = Date.class),
 			@StoredProcedureParameter(mode = ParameterMode.IN, name = "WorkedBy", type = Integer.class),
 			@StoredProcedureParameter(mode = ParameterMode.OUT, name = "ResultCode", type = Integer.class),
 			@StoredProcedureParameter(mode = ParameterMode.OUT, name = "ErrorMessage", type = String.class) }),
@@ -35,7 +34,11 @@ import javax.persistence.StoredProcedureParameter;
 			@StoredProcedureParameter(mode = ParameterMode.OUT, name = "ErrorMessage", type = String.class)  }) })
 @Entity
 public class AccessCode{
+
 	@Id
+	@Column(name="seq")
+	private Integer seq;
+
     @Column(name = "codeid")
     private Integer codeID;
 	
@@ -66,7 +69,16 @@ public class AccessCode{
     @Column(name = "totalcount")
     private Integer totalCount;
     
-    public Integer getCodeID() {
+    
+    public Integer getSeq() {
+		return seq;
+	}
+
+	public void setSeq(Integer seq) {
+		this.seq = seq;
+	}
+
+	public Integer getCodeID() {
 		return codeID;
 	}
 

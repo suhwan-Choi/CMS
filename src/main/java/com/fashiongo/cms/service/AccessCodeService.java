@@ -28,21 +28,21 @@ public class AccessCodeService extends CommonService {
 	 * @date 2017. 8. 10.
 	 */
 	@SuppressWarnings("unchecked")
-	public List<AccessCode> selectAccessCodeList(AccessCodeListParam accessCodeListParam) throws Exception{
+	public List<AccessCode> selectAccessCodeList(AccessCodeListParam accessCodeListParam) throws Exception {
 		List<AccessCode> accessCodeList = null;
 		Query query = entityManager.createNamedStoredProcedureQuery("upWeb_GetAccessCodeList");
-		query.setParameter("Page", accessCodeListParam.getPage());
-		query.setParameter("PageSize", accessCodeListParam.getPageSize());
+		query.setParameter("Page", accessCodeListParam.getPn());
+		query.setParameter("PageSize", accessCodeListParam.getPs());
 		query.setParameter("AccessCode", accessCodeListParam.getAccessCode());
 		query.setParameter("SearchDateType", accessCodeListParam.getSearchDateType());
 		query.setParameter("SearchStartDate", accessCodeListParam.getSearchStartDate());
 		query.setParameter("SearchEndDate", accessCodeListParam.getSearchEndDate());
-		
+
 		accessCodeList = (List<AccessCode>) query.getResultList();
 
 		return accessCodeList;
 	}
-	
+
 	/**
 	 * 
 	 * @param accessCodeSaveParam
@@ -54,7 +54,6 @@ public class AccessCodeService extends CommonService {
 		StoredProcedureQuery query;
 		query = entityManager.createNamedStoredProcedureQuery("upWeb_CreateModifyAccessCode");
 		query.setParameter("CodeID", accessCodeSaveParam.getCodeID());
-		query.setParameter("WorkedOn", new Date());
 		query.setParameter("WorkedBy", accessCodeSaveParam.getWorkedBy());
 
 		query.setParameter("Active", accessCodeSaveParam.getActive());
@@ -70,7 +69,7 @@ public class AccessCodeService extends CommonService {
 
 		return procedureResult;
 	}
-	
+
 	/**
 	 * 
 	 * @param codeID

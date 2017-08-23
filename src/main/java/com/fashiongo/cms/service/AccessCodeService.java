@@ -1,16 +1,16 @@
 package com.fashiongo.cms.service;
 
-import java.util.Date;
 import java.util.List;
-import javax.persistence.StoredProcedureQuery;
 
 import javax.persistence.Query;
+import javax.persistence.StoredProcedureQuery;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import com.fashiongo.cms.model.AccessCode;
+import com.fashiongo.cms.model.AccessCodeList;
 import com.fashiongo.cms.model.ProcedureResult;
 import com.fashiongo.cms.param.AccessCodeListParam;
 import com.fashiongo.cms.param.AccessCodeSaveParam;
@@ -28,8 +28,8 @@ public class AccessCodeService extends CommonService {
 	 * @date 2017. 8. 10.
 	 */
 	@SuppressWarnings("unchecked")
-	public List<AccessCode> selectAccessCodeList(AccessCodeListParam accessCodeListParam) throws Exception {
-		List<AccessCode> accessCodeList = null;
+	public List<AccessCodeList> selectAccessCodeList(AccessCodeListParam accessCodeListParam) throws Exception {
+		List<AccessCodeList> accessCodeList = null;
 		Query query = entityManager.createNamedStoredProcedureQuery("upWeb_GetAccessCodeList");
 		query.setParameter("Page", accessCodeListParam.getPn());
 		query.setParameter("PageSize", accessCodeListParam.getPs());
@@ -38,7 +38,7 @@ public class AccessCodeService extends CommonService {
 		query.setParameter("SearchStartDate", accessCodeListParam.getSearchStartDate());
 		query.setParameter("SearchEndDate", accessCodeListParam.getSearchEndDate());
 
-		accessCodeList = (List<AccessCode>) query.getResultList();
+		accessCodeList = (List<AccessCodeList>) query.getResultList();
 
 		return accessCodeList;
 	}
@@ -88,5 +88,19 @@ public class AccessCodeService extends CommonService {
 		procedureResult.setErrorMessage((String) query.getOutputParameterValue("ErrorMessage"));
 
 		return procedureResult;
+	}
+
+	/**
+	 * 
+	 * @param codeID
+	 * @return
+	 * @author : Mason
+	 * @date : 2017. 8. 23.
+	 */
+	public AccessCode selectDetailAccessCode(Integer codeID) {
+		StoredProcedureQuery query = entityManager.createNamedStoredProcedureQuery("upWeb_GetAccessCode");
+		query.setParameter("CodeID", codeID);
+
+		return (AccessCode) query.getSingleResult();
 	}
 }

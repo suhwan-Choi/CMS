@@ -15,6 +15,7 @@ import com.fashiongo.cms.common.JSONResponse;
 import com.fashiongo.cms.param.AccessCodeListParam;
 import com.fashiongo.cms.param.AccessCodeSaveParam;
 import com.fashiongo.cms.model.AccessCode;
+import com.fashiongo.cms.model.AccessCodeList;
 import com.fashiongo.cms.model.ProcedureResult;
 
 import com.fashiongo.cms.service.AccessCodeService;
@@ -22,10 +23,10 @@ import com.fashiongo.cms.service.AccessCodeService;
 @RestController
 @RequestMapping("/access_code")
 public class AccessCodeController {
-	
+
 	@Autowired
 	private AccessCodeService accessCodeService;
-	
+
 	/**
 	 * 
 	 * @param accessCodeListParam
@@ -35,14 +36,15 @@ public class AccessCodeController {
 	 * @date 2017. 8. 9.
 	 */
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public @ResponseBody JSONResponse<List<AccessCode>> list(AccessCodeListParam accessCodeListParam) throws Exception {
-		JSONResponse<List<AccessCode>> jsonResponse = new JSONResponse<>();
-		List<AccessCode> accessCodeList = new ArrayList<>();
+	public @ResponseBody JSONResponse<List<AccessCodeList>> list(AccessCodeListParam accessCodeListParam)
+			throws Exception {
+		JSONResponse<List<AccessCodeList>> jsonResponse = new JSONResponse<>();
+		List<AccessCodeList> accessCodeList = new ArrayList<>();
 		accessCodeList = accessCodeService.selectAccessCodeList(accessCodeListParam);
 		jsonResponse.setData(accessCodeList);
 		return jsonResponse;
 	}
-	
+
 	/**
 	 * 
 	 * @param accessCodeSaveParam
@@ -57,7 +59,7 @@ public class AccessCodeController {
 		jsonResponse.setData(accessCodeService.mergeSaveAccessCode(accessCodeSaveParam));
 		return jsonResponse;
 	}
-	
+
 	/**
 	 * 
 	 * @param codeID
@@ -71,6 +73,21 @@ public class AccessCodeController {
 		JSONResponse<ProcedureResult> jsonResponse = new JSONResponse<>();
 		ProcedureResult result = accessCodeService.delete(codeID);
 		jsonResponse.setData(result);
+		return jsonResponse;
+	}
+
+	/**
+	 * 
+	 * @param codeID
+	 * @return
+	 * @throws Exception
+	 * @author : Mason
+	 * @date : 2017. 8. 23.
+	 */
+	@RequestMapping(value = "/detail/{codeID}", method = RequestMethod.GET)
+	public JSONResponse<AccessCode> detail(@PathVariable Integer codeID) throws Exception {
+		JSONResponse<AccessCode> jsonResponse = new JSONResponse<>();
+		jsonResponse.setData(accessCodeService.selectDetailAccessCode(codeID));
 		return jsonResponse;
 	}
 }

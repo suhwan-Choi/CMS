@@ -1,6 +1,7 @@
 package com.fashiongo.cms.config.security.jwt;
 
 import java.io.OutputStream;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -14,6 +15,8 @@ import org.springframework.stereotype.Component;
 
 import com.fashiongo.cms.common.JSONResponse;
 import com.fashiongo.cms.model.CMSAdminUser;
+import com.fashiongo.cms.model.GroupManager;
+import com.fashiongo.cms.service.GroupManagerService;
 import com.fashiongo.cms.util.JWTTokenUtil;
 
 @Component("tokenAuthService")
@@ -29,6 +32,9 @@ public class TokenAuthService {
 	@Autowired
 	private JWTTokenUtil jwtTokenUtil;
 	
+	@Autowired
+	private GroupManagerService groupManagerService;
+	
 	@SuppressWarnings("deprecation")
 	public void addAuthentication(HttpServletResponse response, String userName, CMSAdminUser adminUser)  {
 		try {
@@ -39,9 +45,11 @@ public class TokenAuthService {
 			response.addHeader(headerString, jwtToken);
 			
 			OutputStream ostr = response.getOutputStream();
-			JSONResponse<String> res = new JSONResponse<String>();
+			
+			JSONResponse<List<GroupManager>> res = new JSONResponse<List<GroupManager>>();
 			res.setSuccess(true);
-			res.setData(jwtToken);
+			res.setToken(jwtToken);
+			res.setData(groupManagerService.selectDetailGroupManager(adminUser.getGroupId()));
 			
 			ObjectMapper om = new ObjectMapper();
 			String returnStr = om.defaultPrettyPrintingWriter().writeValueAsString(res);

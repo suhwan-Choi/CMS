@@ -95,15 +95,8 @@ public class UserManagerController {
 	public @ResponseBody JSONResponse<ProcedureResult> save(HttpServletRequest request, @RequestBody UserManagerSaveParam userManagerSaveParam) throws Exception  {
 		
 		JSONResponse<ProcedureResult> jsonResponse = new JSONResponse<ProcedureResult>();
-		
+	
 		ProcedureResult procedureResult = userManagerService.mergeSaveUserManager(userManagerSaveParam);
-		
-		if(procedureResult.getResultCode() == 0 && userManagerSaveParam.getUserID() == userManagerSaveParam.getWorkedBy()) {
-			CMSAdminUser userInfo = authService.selectAdminUser(userManagerSaveParam.getUserID());
-			String refreshToken = jwtTokenUtil.generateToken(userInfo);
-			request.setAttribute(attrubute, refreshToken);
-		}
-		
 		jsonResponse.setData(procedureResult);
 		
 		return jsonResponse;

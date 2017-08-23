@@ -1,7 +1,5 @@
 package com.fashiongo.cms.model;
 
-import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -40,6 +38,9 @@ import javax.persistence.StoredProcedureParameter;
 @Entity
 public class GroupManagerList {
 	@Id
+	@Column(name = "seq")
+	private Integer seq;
+
 	@Column(name = "groupid")
 	private Integer groupID;
 
@@ -54,6 +55,14 @@ public class GroupManagerList {
 
 	@Column(name = "totalcount")
 	private Integer totalCount;
+
+	public Integer getSeq() {
+		return seq;
+	}
+
+	public void setSeq(Integer seq) {
+		this.seq = seq;
+	}
 
 	public Integer getGroupID() {
 		return groupID;

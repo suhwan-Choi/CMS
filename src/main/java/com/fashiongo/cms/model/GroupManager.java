@@ -11,6 +11,7 @@ import javax.persistence.StoredProcedureParameter;
 		@StoredProcedureParameter(mode = ParameterMode.IN, name = "GroupID", type = Integer.class) }, resultClasses = com.fashiongo.cms.model.GroupManager.class)
 @Entity
 public class GroupManager {
+	
 	@Column(name = "groupid")
 	protected Integer groupID;
 
@@ -26,6 +27,7 @@ public class GroupManager {
 	@Id
 	@Column(name = "menuid")
 	private Integer menuID;
+	
 	@Column(name = "menuname")
 	private String menuName;
 
@@ -37,6 +39,9 @@ public class GroupManager {
 
 	@Column(name = "listorder")
 	private Integer listOrder;
+	
+	@Column(name = "routepath")
+	private String routePath;
 
 	@Column(name = "allowview")
 	private Boolean allowView;
@@ -82,7 +87,6 @@ public class GroupManager {
 		this.groupDescription = groupDescription;
 	}
 
-
 	public Integer getMenuID() {
 		return menuID;
 	}
@@ -121,6 +125,14 @@ public class GroupManager {
 
 	public void setListOrder(Integer listOrder) {
 		this.listOrder = listOrder;
+	}
+
+	public String getRoutePath() {
+		return routePath;
+	}
+
+	public void setRoutePath(String routePath) {
+		this.routePath = routePath;
 	}
 
 	public void setAllowEdit(Boolean allowEdit) {

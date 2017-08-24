@@ -16,7 +16,6 @@ import javax.persistence.StoredProcedureParameter;
 	})
 @Entity
 public class AccessIP{
-	
 	@Id
     @Column(name = "ipid")
     private Integer ipId;

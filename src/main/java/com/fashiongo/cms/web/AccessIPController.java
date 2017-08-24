@@ -16,6 +16,8 @@ import com.fashiongo.cms.service.AccessIPService;
 import com.fashiongo.cms.param.AccessIPListParam;
 import com.fashiongo.cms.param.AccessIPSaveParam;
 import com.fashiongo.cms.model.AccessIP;
+import com.fashiongo.cms.model.AccessIPList;
+import com.fashiongo.cms.model.GroupManager;
 import com.fashiongo.cms.model.ProcedureResult;
 
 @RestController
@@ -34,11 +36,27 @@ public class AccessIPController {
 	 * @date 2017. 8. 10.
 	 */
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public @ResponseBody JSONResponse<List<AccessIP>> list(AccessIPListParam accessIPListParam) throws Exception {
-		JSONResponse<List<AccessIP>> jsonResponse = new JSONResponse<>();
-		List<AccessIP> accessIPList = new ArrayList<>();
+	public @ResponseBody JSONResponse<List<AccessIPList>> list(AccessIPListParam accessIPListParam) throws Exception {
+		JSONResponse<List<AccessIPList>> jsonResponse = new JSONResponse<>();
+		List<AccessIPList> accessIPList = new ArrayList<>();
 		accessIPList = accessIPService.selectAccessIPList(accessIPListParam);
 		jsonResponse.setData(accessIPList);
+		return jsonResponse;
+	}
+	
+	/**
+	 * 
+	 * @param ipId
+	 * @return
+	 * @throws Exception
+	 * @author Reo
+	 * @date 2017. 8. 22.
+	 */
+	@RequestMapping(value = "/detail/{ipId}", method = RequestMethod.GET)
+	public @ResponseBody JSONResponse<List<AccessIP>> detailAccessIP(@PathVariable Integer ipId) throws Exception {
+		JSONResponse<List<AccessIP>> jsonResponse = new JSONResponse<>();
+		List<AccessIP> accessIP = accessIPService.selectDetailAccessIP(ipId);
+		jsonResponse.setData(accessIP);
 		return jsonResponse;
 	}
 	

@@ -2,6 +2,8 @@ package com.fashiongo.cms.param;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 public class AccessIPListParam{
 	private Integer page;
 	private Integer pageSize;
@@ -10,7 +12,10 @@ public class AccessIPListParam{
 	private String keywordText;
 	private Boolean active;
 	private String SearchDateType;
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private Date searchStartDate;
+
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private Date searchEndDate;
 
 	public Integer getPage() {

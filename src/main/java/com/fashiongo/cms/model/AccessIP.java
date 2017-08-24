@@ -11,39 +11,19 @@ import javax.persistence.ParameterMode;
 import javax.persistence.StoredProcedureParameter;
 
 @NamedStoredProcedureQueries({
-	@NamedStoredProcedureQuery(name = "upWeb_GetAccessIPList", procedureName = "dbo.upWeb_GetAccessIPList", parameters = {
-			@StoredProcedureParameter(mode = ParameterMode.IN, name = "Page", type = Integer.class),
-			@StoredProcedureParameter(mode = ParameterMode.IN, name = "PageSize", type = Integer.class),
-			@StoredProcedureParameter(mode = ParameterMode.IN, name = "KeywordType", type = String.class),
-			@StoredProcedureParameter(mode = ParameterMode.IN, name = "KeywordText", type = String.class),
-			@StoredProcedureParameter(mode = ParameterMode.IN, name = "Active", type = Boolean.class),
-			@StoredProcedureParameter(mode = ParameterMode.IN, name = "SearchDateType", type = String.class),
-			@StoredProcedureParameter(mode = ParameterMode.IN, name = "SearchStartDate", type = Date.class),
-			@StoredProcedureParameter(mode = ParameterMode.IN, name = "SearchEndDate", type = Date.class)
-			}, resultClasses = com.fashiongo.cms.model.AccessIP.class),
-	@NamedStoredProcedureQuery(name = "upWeb_CreateModifyAccessIP", procedureName = "dbo.upWeb_CreateModifyAccessIP", parameters = {
-			@StoredProcedureParameter(mode = ParameterMode.IN, name = "IPID", type = Integer.class),
-			@StoredProcedureParameter(mode = ParameterMode.IN, name = "IPAddress", type = String.class),
-			@StoredProcedureParameter(mode = ParameterMode.IN, name = "Active", type = Boolean.class),
-			@StoredProcedureParameter(mode = ParameterMode.IN, name = "IPDescription", type = String.class),
-			@StoredProcedureParameter(mode = ParameterMode.IN, name = "WorkedOn", type = Date.class),
-			@StoredProcedureParameter(mode = ParameterMode.IN, name = "WorkedBy", type = Integer.class),
-			@StoredProcedureParameter(mode = ParameterMode.OUT, name = "ResultCode", type = Integer.class),
-			@StoredProcedureParameter(mode = ParameterMode.OUT, name = "ErrorMessage", type = String.class) }),
-	@NamedStoredProcedureQuery(name = "upWeb_RemoveAccessIP", procedureName = "dbo.upWeb_RemoveAccessIP", parameters = {
-			@StoredProcedureParameter(mode = ParameterMode.IN, name = "IPID", type = Integer.class),
-			@StoredProcedureParameter(mode = ParameterMode.OUT, name = "ResultCode", type = Integer.class),
-			@StoredProcedureParameter(mode = ParameterMode.OUT, name = "ErrorMessage", type = String.class)  }) })
+	@NamedStoredProcedureQuery(name = "upWeb_GetAccessIP", procedureName = "dbo.upWeb_GetAccessIP", parameters = {
+			@StoredProcedureParameter(mode = ParameterMode.IN, name = "IPID", type = Integer.class) }, resultClasses = AccessIP.class)  
+	})
 @Entity
 public class AccessIP{
-    @Id
+	@Id
     @Column(name = "ipid")
     private Integer ipId;
-    
-    @Column(name = "ipaddress")
-    private String ipAddress;
-    
-    @Column(name = "active")
+	
+	@Column(name = "ipaddress")
+	private String ipAddress;
+	
+	 @Column(name = "active")
     private Boolean active;
     
     @Column(name = "ipdescription")
@@ -52,19 +32,7 @@ public class AccessIP{
     @Column(name = "createdon")
     private Date createdOn;
     
-    @Column(name = "createdbyaccount")
-    private String createdByAccount;
-    
-    @Column(name = "modifiedon")
-    private Date modifiedOn;
-    
-    @Column(name = "modifiedbyaccount")
-    private String modifiedByAccount;
-    
-    @Column(name = "totalcount")
-    private Integer totalCount;
-
-	public Integer getIpId() {
+    public Integer getIpId() {
 		return ipId;
 	}
 
@@ -124,17 +92,16 @@ public class AccessIP{
 		return modifiedByAccount;
 	}
 
-	public void setModifiedByAccount(String modifedByAccount) {
-		this.modifiedByAccount = modifedByAccount;
+	public void setModifiedByAccount(String modifiedByAccount) {
+		this.modifiedByAccount = modifiedByAccount;
 	}
 
-	public Integer getTotalCount() {
-		return totalCount;
-	}
-
-	public void setTotalCount(Integer totalCount) {
-		this.totalCount = totalCount;
-	}
+	@Column(name = "createdbyaccount")
+    private String createdByAccount;
     
+    @Column(name = "modifiedon")
+    private Date modifiedOn;
     
+    @Column(name = "modifiedbyaccount")
+    private String modifiedByAccount;
 }

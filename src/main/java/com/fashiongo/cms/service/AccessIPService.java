@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import com.fashiongo.cms.model.AccessIP;
+import com.fashiongo.cms.model.AccessIPList;
 import com.fashiongo.cms.model.ProcedureResult;
 import com.fashiongo.cms.param.AccessIPListParam;
 import com.fashiongo.cms.param.AccessIPSaveParam;
@@ -27,8 +28,8 @@ public class AccessIPService extends CommonService {
 	 * @date 2017. 8. 10.
 	 */
 	@SuppressWarnings("unchecked")
-	public List<AccessIP> selectAccessIPList(AccessIPListParam accessIPListParam) throws Exception{
-		List<AccessIP> accessIPList = null;
+	public List<AccessIPList> selectAccessIPList(AccessIPListParam accessIPListParam) throws Exception{
+		List<AccessIPList> accessIPList = null;
 		Query query = entityManager.createNamedStoredProcedureQuery("upWeb_GetAccessIPList");
 		query.setParameter("Page", accessIPListParam.getPage());
 		query.setParameter("PageSize", accessIPListParam.getPageSize());
@@ -39,9 +40,24 @@ public class AccessIPService extends CommonService {
 		query.setParameter("SearchStartDate", accessIPListParam.getSearchStartDate());
 		query.setParameter("SearchEndDate", accessIPListParam.getSearchEndDate());
 		
-		accessIPList = (List<AccessIP>) query.getResultList();
+		accessIPList = (List<AccessIPList>) query.getResultList();
 
 		return accessIPList;
+	}
+	
+	/**
+	 * 
+	 * @param ipID
+	 * @return
+	 * @author Reo
+	 * @date 2017. 8. 22.
+	 */
+	@SuppressWarnings("unchecked")
+	public List<AccessIP> selectDetailAccessIP(Integer ipId) {
+		StoredProcedureQuery query = entityManager.createNamedStoredProcedureQuery("upWeb_GetAccessIP");
+		query.setParameter("IPID", ipId);
+
+		return (List<AccessIP>) query.getResultList();
 	}
 	
 	/**
@@ -58,7 +74,6 @@ public class AccessIPService extends CommonService {
 		query.setParameter("IPAddress", accessIPSaveParam.getIpAddress());
 		query.setParameter("Active", accessIPSaveParam.getActive());
 		query.setParameter("IPDescription", accessIPSaveParam.getIpDescription());
-		query.setParameter("WorkedOn", accessIPSaveParam.getWorkedOn());
 		query.setParameter("WorkedBy", accessIPSaveParam.getWorkedBy());
 
 		query.execute();

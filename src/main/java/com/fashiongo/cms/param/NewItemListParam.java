@@ -2,68 +2,99 @@ package com.fashiongo.cms.param;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 public class NewItemListParam {
-	private Integer keywordType;
-	private String keyword;
-	private Integer	categoryId;
-	private Date startDate;
-	private Date endDate;
-	private Integer ps;
-	private Integer pn;
+	private Integer page;
+	private Integer pageSize;
+	private String keywordType;
+	private String keywordText;
+	private Integer categoryID1;
+	private Integer categoryID2;
+	private Integer categoryID3;
+	private String SearchDateType;
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	private Date searchStartDate;
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	private Date searchEndDate;
 	
-	public Integer getKeywordType() {
+	public Integer getPage() {
+		return page;
+	}
+
+	public void setPage(Integer page) {
+		this.page = page;
+	}
+
+	public Integer getPageSize() {
+		return pageSize;
+	}
+
+	public void setPageSize(Integer pageSize) {
+		this.pageSize = pageSize;
+	}
+
+	public String getKeywordType() {
 		return keywordType;
 	}
-	
-	public void setKeywordType(Integer keywordType) {
+
+	public void setKeywordType(String keywordType) {
 		this.keywordType = keywordType;
 	}
-	
-	public String getKeyword() {
-		return keyword;
-	}
-	
-	public void setKeyword(String keyword) {
-		this.keyword = keyword;
-	}
-	
-	public Integer getCategoryId() {
-		return categoryId;
-	}
-	
-	public void setCategoryId(Integer categoryId) {
-		this.categoryId = categoryId;
-	}
-	
-	public Date getStartDate() {
-		return startDate;
-	}
-	
-	public void setStartDate(Date startDate) {
-		this.startDate = startDate;
-	}
-	
-	public Date getEndDate() {
-		return endDate;
-	}
-	
-	public void setEndDate(Date endDate) {
-		this.endDate = endDate;
+
+	public String getKeywordText() {
+		return keywordText;
 	}
 
-	public Integer getPs() {
-		return ps;
+	public void setKeywordText(String keywordText) {
+		this.keywordText = keywordText;
 	}
 
-	public void setPs(Integer ps) {
-		this.ps = ps;
+	public Integer getCategoryID1() {
+		return categoryID1;
 	}
 
-	public Integer getPn() {
-		return pn;
+	public void setCategoryID1(Integer categoryID1) {
+		this.categoryID1 = categoryID1;
 	}
 
-	public void setPn(Integer pn) {
-		this.pn = pn;
+	public Integer getCategoryID2() {
+		return categoryID2;
+	}
+
+	public void setCategoryID2(Integer categoryID2) {
+		this.categoryID2 = categoryID2;
+	}
+
+	public Integer getCategoryID3() {
+		return categoryID3;
+	}
+
+	public void setCategoryID3(Integer categoryID3) {
+		this.categoryID3 = categoryID3;
+	}
+
+	public String getSearchDateType() {
+		return SearchDateType;
+	}
+
+	public void setSearchDateType(String searchDateType) {
+		SearchDateType = searchDateType;
+	}
+
+	public Date getSearchStartDate() {
+		return searchStartDate;
+	}
+
+	public void setSearchStartDate(Date searchStartDate) {
+		this.searchStartDate = searchStartDate;
+	}
+
+	public Date getSearchEndDate() {
+		return searchEndDate;
+	}
+
+	public void setSearchEndDate(Date searchEndDate) {
+		this.searchEndDate = searchEndDate;
 	}
 }

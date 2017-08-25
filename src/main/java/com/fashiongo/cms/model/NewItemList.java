@@ -36,6 +36,17 @@ public class NewItemList{
     @Column(name = "imageurlroot")
     private String imageUrlRoot;
     
+    public String getDirName() {
+		return dirName;
+	}
+
+	public void setDirName(String dirName) {
+		this.dirName = dirName;
+	}
+
+	@Column(name = "dirname")
+    private String dirName;
+    
     @Column(name = "imagename")
     private String imageName;
     
@@ -175,7 +186,18 @@ public class NewItemList{
     @Column(name = "categoryname3")
     private String categoryName3;
     
-    @Column(name = "activatedon")
+    @Column(name = "vendorcategoryname")
+    private String vendorCategoryName;
+    
+    public String getVendorCategoryName() {
+		return vendorCategoryName;
+	}
+
+	public void setVendorCategoryName(String vendorCategoryName) {
+		this.vendorCategoryName = vendorCategoryName;
+	}
+
+	@Column(name = "activatedon")
     private Date activatedOn;
 
     @Column(name = "totalcount")

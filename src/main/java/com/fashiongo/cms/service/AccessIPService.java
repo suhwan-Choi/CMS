@@ -8,6 +8,7 @@ import javax.persistence.Query;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.fashiongo.cms.model.AccessIP;
 import com.fashiongo.cms.model.AccessIPList;
@@ -27,6 +28,7 @@ public class AccessIPService extends CommonService {
 	 * @author Reo
 	 * @date 2017. 8. 10.
 	 */
+	@Transactional(readOnly = true)
 	@SuppressWarnings("unchecked")
 	public List<AccessIPList> selectAccessIPList(AccessIPListParam accessIPListParam) throws Exception{
 		List<AccessIPList> accessIPList = null;
@@ -52,6 +54,7 @@ public class AccessIPService extends CommonService {
 	 * @author Reo
 	 * @date 2017. 8. 22.
 	 */
+	@Transactional(readOnly = true)
 	@SuppressWarnings("unchecked")
 	public List<AccessIP> selectDetailAccessIP(Integer ipId) {
 		StoredProcedureQuery query = entityManager.createNamedStoredProcedureQuery("upWeb_GetAccessIP");
@@ -67,6 +70,7 @@ public class AccessIPService extends CommonService {
 	 * @author Reo
 	 * @date 2017. 8. 10.
 	 */
+	@Transactional
 	public ProcedureResult mergeSaveAccessIP(AccessIPSaveParam accessIPSaveParam) {
 		StoredProcedureQuery query;
 		query = entityManager.createNamedStoredProcedureQuery("upWeb_CreateModifyAccessIP");
@@ -92,6 +96,7 @@ public class AccessIPService extends CommonService {
 	 * @author Reo
 	 * @date 2017. 8. 10.
 	 */
+	@Transactional
 	public ProcedureResult delete(Integer ipID) {
 		StoredProcedureQuery query = entityManager.createNamedStoredProcedureQuery("upWeb_RemoveAccessIP");
 		query.setParameter("IPID", ipID);

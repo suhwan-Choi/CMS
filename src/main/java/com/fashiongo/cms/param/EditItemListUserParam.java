@@ -2,32 +2,38 @@ package com.fashiongo.cms.param;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 public class EditItemListUserParam {
-	private Integer dateType;
-	private Date startDate;
-	private Date endDate;
+	private String searchDateType;
 	
-	public Integer getDateType() {
-		return dateType;
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	private Date searchStartDate;
+	
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	private Date searchEndDate;
+
+	public String getSearchDateType() {
+		return searchDateType;
 	}
-	
-	public void setDateType(Integer dateType) {
-		this.dateType = dateType;
+
+	public void setSearchDateType(String searchDateType) {
+		this.searchDateType = searchDateType;
 	}
-	
-	public Date getStartDate() {
-		return startDate;
+
+	public Date getSearchStartDate() {
+		return searchStartDate;
 	}
-	
-	public void setStartDate(Date startDate) {
-		this.startDate = startDate;
+
+	public void setSearchStartDate(Date searchStartDate) {
+		this.searchStartDate = searchStartDate;
 	}
-	
-	public Date getEndDate() {
-		return endDate;
+
+	public Date getSearchEndDate() {
+		return searchEndDate;
 	}
-	
-	public void setEndDate(Date endDate) {
-		this.endDate = endDate;
+
+	public void setSearchEndDate(Date searchEndDate) {
+		this.searchEndDate = searchEndDate;
 	}
 }

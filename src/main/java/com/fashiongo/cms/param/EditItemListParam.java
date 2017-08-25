@@ -2,17 +2,75 @@ package com.fashiongo.cms.param;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 public class EditItemListParam {
-	private Integer keywordType;
-	private String keyword;
-	private Integer modifiedType;
-	private Integer	categoryId;
-	private Integer userId;
-	private Integer dateType;
-	private Date startDate;
-	private Date endDate;
-	private Integer ps;
 	private Integer pn;
+	private Integer ps;
+	private Integer userID;
+	private String searchDateType;
+	
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	private Date searchStartDate;
+	
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	private Date searchEndDate;
+	
+	private Integer keywordType;
+	private String KeywordText;
+	private String status;
+	
+	private Integer categoryID1;
+	private Integer	categoryID2;
+	private Integer categoryID3;
+	
+	public Integer getPn() {
+		return pn;
+	}
+	
+	public void setPn(Integer pn) {
+		this.pn = pn;
+	}
+	
+	public Integer getPs() {
+		return ps;
+	}
+	
+	public void setPs(Integer ps) {
+		this.ps = ps;
+	}
+	
+	public Integer getUserID() {
+		return userID;
+	}
+	
+	public void setUserID(Integer userID) {
+		this.userID = userID;
+	}
+	
+	public String getSearchDateType() {
+		return searchDateType;
+	}
+	
+	public void setSearchDateType(String searchDateType) {
+		this.searchDateType = searchDateType;
+	}
+	
+	public Date getSearchStartDate() {
+		return searchStartDate;
+	}
+	
+	public void setSearchStartDate(Date searchStartDate) {
+		this.searchStartDate = searchStartDate;
+	}
+	
+	public Date getSearchEndDate() {
+		return searchEndDate;
+	}
+	
+	public void setSearchEndDate(Date searchEndDate) {
+		this.searchEndDate = searchEndDate;
+	}
 	
 	public Integer getKeywordType() {
 		return keywordType;
@@ -22,75 +80,43 @@ public class EditItemListParam {
 		this.keywordType = keywordType;
 	}
 	
-	public String getKeyword() {
-		return keyword;
+	public String getKeywordText() {
+		return KeywordText;
 	}
 	
-	public void setKeyword(String keyword) {
-		this.keyword = keyword;
-	}
-
-	public Integer getModifiedType() {
-		return modifiedType;
-	}
-
-	public void setModifiedType(Integer modifiedType) {
-		this.modifiedType = modifiedType;
-	}
-
-	public Integer getCategoryId() {
-		return categoryId;
+	public void setKeywordText(String keywordText) {
+		KeywordText = keywordText;
 	}
 	
-	public void setCategoryId(Integer categoryId) {
-		this.categoryId = categoryId;
+	public String getStatus() {
+		return status;
 	}
 	
-	public Integer getUserId() {
-		return userId;
-	}
-
-	public void setUserId(Integer userId) {
-		this.userId = userId;
-	}
-
-	public Integer getDateType() {
-		return dateType;
-	}
-
-	public void setDateType(Integer dateType) {
-		this.dateType = dateType;
-	}
-
-	public Date getStartDate() {
-		return startDate;
+	public void setStatus(String status) {
+		this.status = status;
 	}
 	
-	public void setStartDate(Date startDate) {
-		this.startDate = startDate;
+	public Integer getCategoryID1() {
+		return categoryID1;
 	}
 	
-	public Date getEndDate() {
-		return endDate;
+	public void setCategoryID1(Integer categoryID1) {
+		this.categoryID1 = categoryID1;
 	}
 	
-	public void setEndDate(Date endDate) {
-		this.endDate = endDate;
+	public Integer getCategoryID2() {
+		return categoryID2;
 	}
-
-	public Integer getPs() {
-		return ps;
+	
+	public void setCategoryID2(Integer categoryID2) {
+		this.categoryID2 = categoryID2;
 	}
-
-	public void setPs(Integer ps) {
-		this.ps = ps;
+	
+	public Integer getCategoryID3() {
+		return categoryID3;
 	}
-
-	public Integer getPn() {
-		return pn;
-	}
-
-	public void setPn(Integer pn) {
-		this.pn = pn;
+	
+	public void setCategoryID3(Integer categoryID3) {
+		this.categoryID3 = categoryID3;
 	}
 }

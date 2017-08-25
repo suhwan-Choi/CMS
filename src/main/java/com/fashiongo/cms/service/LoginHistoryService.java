@@ -7,6 +7,7 @@ import javax.persistence.Query;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.fashiongo.cms.model.LoginHistory;
 import com.fashiongo.cms.param.LoginHistoryListParam;
@@ -28,6 +29,7 @@ public class LoginHistoryService extends CommonService {
 	 * @author Reo
 	 * @date 2017. 8. 11.
 	 */
+	@Transactional(readOnly = true)
 	@SuppressWarnings("unchecked")
 	public List<LoginHistory> selectAccessLoginHistoryList(LoginHistoryListParam loginHistoryListParam) {
 		

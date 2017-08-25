@@ -7,6 +7,7 @@ import javax.persistence.StoredProcedureQuery;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.fashiongo.cms.model.ComboAccessGroup;
 import com.fashiongo.cms.model.ProcedureResult;
@@ -29,6 +30,7 @@ public class UserManagerService extends CommonService {
 	 * @author : Mason
 	 * @date : 2017. 8. 11.
 	 */
+	@Transactional(readOnly = true)
 	@SuppressWarnings("unchecked")
 	public List<UserManagerList> selectListUserManager(UserManagerListParam userManagerListParam) throws Exception {
 
@@ -54,6 +56,7 @@ public class UserManagerService extends CommonService {
 	 * @author : Mason
 	 * @date : 2017. 8. 10.
 	 */
+	@Transactional(readOnly = true)
 	public UserManager selectDetailUserManager(int userID) {
 		
 		StoredProcedureQuery query = entityManager.createNamedStoredProcedureQuery("upWeb_GetAccessUser");
@@ -69,6 +72,7 @@ public class UserManagerService extends CommonService {
 	 * @author 
 	 * @date : 2017. 8. 14
 	 */
+	@Transactional(readOnly = true)
 	@SuppressWarnings("unchecked")
 	public List<ComboAccessGroup> selectDetailComboAccessGroup() {
 		StoredProcedureQuery query = entityManager.createNamedStoredProcedureQuery("upWeb_ComboAccessGroup");
@@ -84,6 +88,7 @@ public class UserManagerService extends CommonService {
 	 * @author : Mason
 	 * @date : 2017. 8. 11.
 	 */
+	@Transactional
 	public ProcedureResult mergeSaveUserManager(UserManagerSaveParam userManagerSaveParam) {
 		StoredProcedureQuery query = entityManager.createNamedStoredProcedureQuery("upWeb_CreateModifyAccessUser");
 		
@@ -112,6 +117,7 @@ public class UserManagerService extends CommonService {
 	 * @author : Mason
 	 * @date : 2017. 8. 11.
 	 */
+	@Transactional
 	public ProcedureResult delete(UserManagerDeleteParam userManagerDeleteParam) {
 		StoredProcedureQuery query = entityManager.createNamedStoredProcedureQuery("upWeb_RemoveAccessUser");
 		query.setParameter("UserID", userManagerDeleteParam.getUserID());

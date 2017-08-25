@@ -7,6 +7,7 @@ import javax.persistence.StoredProcedureQuery;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.fashiongo.cms.model.GroupManager;
 import com.fashiongo.cms.model.GroupManagerList;
@@ -27,6 +28,7 @@ public class GroupManagerService extends CommonService {
 	 * @author : Mason
 	 * @date : 2017. 8. 9.
 	 */
+	@Transactional(readOnly = true)
 	@SuppressWarnings("unchecked")
 	public List<GroupManagerList> selectListGroupManager(GroupManagerListParam groupManagerListParam) {
 
@@ -47,6 +49,7 @@ public class GroupManagerService extends CommonService {
 	 * @author : Mason
 	 * @date : 2017. 8. 9.
 	 */
+	@Transactional(readOnly = true)
 	@SuppressWarnings("unchecked")
 	public List<GroupManager> selectDetailGroupManager(int groupID) {
 		StoredProcedureQuery query = entityManager.createNamedStoredProcedureQuery("upWeb_GetAccessGroup");
@@ -62,6 +65,7 @@ public class GroupManagerService extends CommonService {
 	 * @author : Mason
 	 * @date : 2017. 8. 9.
 	 */
+	@Transactional
 	public ProcedureResult mergeSaveGroupManager(GroupManagerSaveParam groupManagerSaveParam) {
 		StoredProcedureQuery query;
 		if (groupManagerSaveParam.getGroupID() == null) {
@@ -94,6 +98,7 @@ public class GroupManagerService extends CommonService {
 	 * @author : Mason
 	 * @date : 2017. 8. 9.
 	 */
+	@Transactional
 	public ProcedureResult delete(Integer groupID) {
 		StoredProcedureQuery query = entityManager.createNamedStoredProcedureQuery("upWeb_RemoveAccessGroup");
 		query.setParameter("GroupID", groupID);

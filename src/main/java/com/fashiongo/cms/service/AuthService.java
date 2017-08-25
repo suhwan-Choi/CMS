@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.fashiongo.cms.config.security.jwt.AccountDetails;
 import com.fashiongo.cms.model.CMSAdminUser;
@@ -25,6 +26,7 @@ public class AuthService extends CommonService {
 	 * @param authentication
 	 * @return
 	 */
+	@Transactional(readOnly = true)
 	public ProcedureResult selectAdminLoginCheck(Authentication authentication) {
 		AccountDetails details = (AccountDetails)authentication.getDetails();
 		
@@ -51,6 +53,7 @@ public class AuthService extends CommonService {
 	 * @param password
 	 * @return
 	 */
+	@Transactional(readOnly = true)
 	public CMSAdminUser selectAdminUser(String username, String password) {
 		StoredProcedureQuery query = entityManager.createNamedStoredProcedureQuery("upWeb_GetLoginUser");
 		query.setParameter("UserAccount", username);
@@ -66,6 +69,7 @@ public class AuthService extends CommonService {
 	 * @param password
 	 * @return
 	 */
+	@Transactional(readOnly = true)
 	public CMSAdminUser selectAdminUser(Integer userId) {
 		StoredProcedureQuery query = entityManager.createNamedStoredProcedureQuery("upWeb_GetLoginUserForID");
 		query.setParameter("UserID", userId);
@@ -79,6 +83,7 @@ public class AuthService extends CommonService {
 	 * @param userInfo
 	 * @return
 	 */
+	@Transactional
 	public ProcedureResult insertLoginHistory(Authentication authentication, CMSAdminUser userInfo) {
 		AccountDetails details = (AccountDetails)authentication.getDetails();
 		

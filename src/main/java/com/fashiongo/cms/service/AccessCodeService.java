@@ -8,6 +8,7 @@ import javax.persistence.StoredProcedureQuery;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.fashiongo.cms.model.AccessCode;
 import com.fashiongo.cms.model.AccessCodeList;
@@ -27,6 +28,7 @@ public class AccessCodeService extends CommonService {
 	 * @author Reo
 	 * @date 2017. 8. 10.
 	 */
+	@Transactional(readOnly = true)
 	@SuppressWarnings("unchecked")
 	public List<AccessCodeList> selectAccessCodeList(AccessCodeListParam accessCodeListParam) throws Exception {
 		List<AccessCodeList> accessCodeList = null;
@@ -50,6 +52,7 @@ public class AccessCodeService extends CommonService {
 	 * @author Reo
 	 * @date 2017. 8. 9.
 	 */
+	@Transactional
 	public ProcedureResult mergeSaveAccessCode(AccessCodeSaveParam accessCodeSaveParam) {
 		StoredProcedureQuery query;
 		query = entityManager.createNamedStoredProcedureQuery("upWeb_CreateModifyAccessCode");
@@ -77,6 +80,7 @@ public class AccessCodeService extends CommonService {
 	 * @author Reo
 	 * @date 2017. 8. 10.
 	 */
+	@Transactional
 	public ProcedureResult delete(Integer codeID) {
 		StoredProcedureQuery query = entityManager.createNamedStoredProcedureQuery("upWeb_RemoveAccessCode");
 		query.setParameter("CodeID", codeID);
@@ -97,6 +101,7 @@ public class AccessCodeService extends CommonService {
 	 * @author : Mason
 	 * @date : 2017. 8. 23.
 	 */
+	@Transactional(readOnly = true)
 	public AccessCode selectDetailAccessCode(Integer codeID) {
 		StoredProcedureQuery query = entityManager.createNamedStoredProcedureQuery("upWeb_GetAccessCode");
 		query.setParameter("CodeID", codeID);

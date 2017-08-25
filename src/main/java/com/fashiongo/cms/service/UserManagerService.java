@@ -7,6 +7,7 @@ import javax.persistence.StoredProcedureQuery;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.fashiongo.cms.model.ComboAccessGroup;
@@ -88,7 +89,7 @@ public class UserManagerService extends CommonService {
 	 * @author : Mason
 	 * @date : 2017. 8. 11.
 	 */
-	@Transactional
+	@Transactional(propagation=Propagation.SUPPORTS)
 	public ProcedureResult mergeSaveUserManager(UserManagerSaveParam userManagerSaveParam) {
 		StoredProcedureQuery query = entityManager.createNamedStoredProcedureQuery("upWeb_CreateModifyAccessUser");
 		
@@ -117,7 +118,7 @@ public class UserManagerService extends CommonService {
 	 * @author : Mason
 	 * @date : 2017. 8. 11.
 	 */
-	@Transactional
+	@Transactional(propagation=Propagation.SUPPORTS)
 	public ProcedureResult delete(UserManagerDeleteParam userManagerDeleteParam) {
 		StoredProcedureQuery query = entityManager.createNamedStoredProcedureQuery("upWeb_RemoveAccessUser");
 		query.setParameter("UserID", userManagerDeleteParam.getUserID());

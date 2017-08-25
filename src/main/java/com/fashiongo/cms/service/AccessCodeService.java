@@ -8,6 +8,7 @@ import javax.persistence.StoredProcedureQuery;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.fashiongo.cms.model.AccessCode;
@@ -52,7 +53,7 @@ public class AccessCodeService extends CommonService {
 	 * @author Reo
 	 * @date 2017. 8. 9.
 	 */
-	@Transactional
+	@Transactional(propagation=Propagation.SUPPORTS)
 	public ProcedureResult mergeSaveAccessCode(AccessCodeSaveParam accessCodeSaveParam) {
 		StoredProcedureQuery query;
 		query = entityManager.createNamedStoredProcedureQuery("upWeb_CreateModifyAccessCode");
@@ -80,7 +81,7 @@ public class AccessCodeService extends CommonService {
 	 * @author Reo
 	 * @date 2017. 8. 10.
 	 */
-	@Transactional
+	@Transactional(propagation=Propagation.SUPPORTS)
 	public ProcedureResult delete(Integer codeID) {
 		StoredProcedureQuery query = entityManager.createNamedStoredProcedureQuery("upWeb_RemoveAccessCode");
 		query.setParameter("CodeID", codeID);

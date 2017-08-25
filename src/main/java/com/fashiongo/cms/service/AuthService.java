@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.fashiongo.cms.config.security.jwt.AccountDetails;
@@ -83,7 +84,7 @@ public class AuthService extends CommonService {
 	 * @param userInfo
 	 * @return
 	 */
-	@Transactional
+	@Transactional(propagation=Propagation.SUPPORTS)
 	public ProcedureResult insertLoginHistory(Authentication authentication, CMSAdminUser userInfo) {
 		AccountDetails details = (AccountDetails)authentication.getDetails();
 		

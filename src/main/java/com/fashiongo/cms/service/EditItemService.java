@@ -7,6 +7,8 @@ import javax.persistence.StoredProcedureQuery;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.fashiongo.cms.model.EditItem;
 import com.fashiongo.cms.model.EditItemUser;
@@ -19,6 +21,7 @@ import com.fashiongo.cms.param.EditItmSaveRollBackParam;
 public class EditItemService extends CommonService {
 	private static Logger logger = LoggerFactory.getLogger(EditItemService.class);
 	
+	@Transactional(readOnly=true)
 	@SuppressWarnings("unchecked")
 	public List<EditItem> selectList(EditItemListParam editItemListParam) {
 		
@@ -40,6 +43,7 @@ public class EditItemService extends CommonService {
 		return (List<EditItem>) query.getResultList();
 	}
 	
+	@Transactional(readOnly=true)
 	@SuppressWarnings("unchecked")
 	public List<EditItemUser> selectListUser(EditItemListUserParam editItemListUserParam) {
 		

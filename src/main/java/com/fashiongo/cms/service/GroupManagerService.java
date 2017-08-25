@@ -7,6 +7,7 @@ import javax.persistence.StoredProcedureQuery;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.fashiongo.cms.model.GroupManager;
@@ -65,7 +66,7 @@ public class GroupManagerService extends CommonService {
 	 * @author : Mason
 	 * @date : 2017. 8. 9.
 	 */
-	@Transactional
+	@Transactional(propagation=Propagation.SUPPORTS)
 	public ProcedureResult mergeSaveGroupManager(GroupManagerSaveParam groupManagerSaveParam) {
 		StoredProcedureQuery query;
 		if (groupManagerSaveParam.getGroupID() == null) {
@@ -98,7 +99,7 @@ public class GroupManagerService extends CommonService {
 	 * @author : Mason
 	 * @date : 2017. 8. 9.
 	 */
-	@Transactional
+	@Transactional(propagation=Propagation.SUPPORTS)
 	public ProcedureResult delete(Integer groupID) {
 		StoredProcedureQuery query = entityManager.createNamedStoredProcedureQuery("upWeb_RemoveAccessGroup");
 		query.setParameter("GroupID", groupID);

@@ -8,6 +8,7 @@ import javax.persistence.Query;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.fashiongo.cms.model.AccessIP;
@@ -70,7 +71,7 @@ public class AccessIPService extends CommonService {
 	 * @author Reo
 	 * @date 2017. 8. 10.
 	 */
-	@Transactional
+	@Transactional(propagation=Propagation.SUPPORTS)
 	public ProcedureResult mergeSaveAccessIP(AccessIPSaveParam accessIPSaveParam) {
 		StoredProcedureQuery query;
 		query = entityManager.createNamedStoredProcedureQuery("upWeb_CreateModifyAccessIP");
@@ -96,7 +97,7 @@ public class AccessIPService extends CommonService {
 	 * @author Reo
 	 * @date 2017. 8. 10.
 	 */
-	@Transactional
+	@Transactional(propagation=Propagation.SUPPORTS)
 	public ProcedureResult delete(Integer ipID) {
 		StoredProcedureQuery query = entityManager.createNamedStoredProcedureQuery("upWeb_RemoveAccessIP");
 		query.setParameter("IPID", ipID);

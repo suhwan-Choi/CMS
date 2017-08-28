@@ -22,6 +22,28 @@ public class CategoryList{
 	@Column(name = "categoryname")
 	private String categoryName;
 	
+	@Column(name = "parentcategoryid")
+	private Integer parentCategoryID;
+	
+	@Column(name = "parentparentcategoryid")
+	private Integer parentParentCategoryID;
+	
+	public Integer getParentCategoryID() {
+		return parentCategoryID;
+	}
+
+	public void setParentCategoryID(Integer parentCategoryID) {
+		this.parentCategoryID = parentCategoryID;
+	}
+
+	public Integer getParentParentCategoryID() {
+		return parentParentCategoryID;
+	}
+
+	public void setParentParentCategoryID(Integer parentParentCategoryID) {
+		this.parentParentCategoryID = parentParentCategoryID;
+	}
+
 	@Column(name = "lvl")
 	private Integer lvl;
 	

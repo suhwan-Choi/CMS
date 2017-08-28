@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.fashiongo.cms.model.AccessIP;
+import com.fashiongo.cms.model.ImageList;
 import com.fashiongo.cms.model.NewItem;
 import com.fashiongo.cms.model.NewItemList;
 import com.fashiongo.cms.param.NewItemListParam;
@@ -33,6 +34,13 @@ public class NewItemService extends CommonService {
 		StoredProcedureQuery query = entityManager.createNamedStoredProcedureQuery("");
 	}
 	
+	/**
+	 * 
+	 * @param productID
+	 * @return
+	 * @author Reo
+	 * @date 2017. 8. 28.
+	 */
 	@Transactional(readOnly = true)
 	@SuppressWarnings("unchecked")
 	public List<NewItem> selectDetailNewItem(Integer productID) {
@@ -67,6 +75,26 @@ public class NewItemService extends CommonService {
 		query.setParameter("SearchEndDate", NewItemListParam.getSearchEndDate());
 		
 		newItemList = (List<NewItemList>) query.getResultList();
+
+		return newItemList;
+	}
+	
+	/**
+	 * 
+	 * @param productID
+	 * @return
+	 * @throws Exception
+	 * @author Reo
+	 * @date 2017. 8. 28.
+	 */
+	@Transactional(readOnly = true)
+	@SuppressWarnings("unchecked")
+	public List<ImageList> selectImageList(Integer productID) throws Exception{
+		List<ImageList> newItemList = null;
+		Query query = entityManager.createNamedStoredProcedureQuery("upWeb_GetImage");
+		query.setParameter("ProductID", productID);
+		
+		newItemList = (List<ImageList>) query.getResultList();
 
 		return newItemList;
 	}

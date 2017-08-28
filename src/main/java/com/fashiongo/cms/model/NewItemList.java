@@ -22,8 +22,8 @@ import javax.persistence.StoredProcedureParameter;
 			@StoredProcedureParameter(mode = ParameterMode.IN, name = "SearchDateType", type = String.class),
 			@StoredProcedureParameter(mode = ParameterMode.IN, name = "SearchStartDate", type = Date.class),
 			@StoredProcedureParameter(mode = ParameterMode.IN, name = "SearchEndDate", type = Date.class)
-			}, resultClasses = com.fashiongo.cms.model.NewItemList.class), 
-	})
+			}, resultClasses = com.fashiongo.cms.model.NewItemList.class)
+})
 @Entity
 public class NewItemList{
 	@Id

@@ -52,8 +52,8 @@ public class EditItem {
 	@Column(name = "seq")
 	private Integer seq;
 	
-	@Column(name = "shardproductseq")
-	private Integer shardProductSeq;
+	@Column(name = "sharedproductseq")
+	private Integer sharedProductSeq;
 	
 	@Column(name = "productid")
 	private Integer productID;
@@ -249,12 +249,12 @@ public class EditItem {
 		this.seq = seq;
 	}
 
-	public Integer getShardProductSeq() {
-		return shardProductSeq;
+	public Integer getSharedProductSeq() {
+		return sharedProductSeq;
 	}
 
-	public void setShardProductSeq(Integer shardProductSeq) {
-		this.shardProductSeq = shardProductSeq;
+	public void setSharedProductSeq(Integer sharedProductSeq) {
+		this.sharedProductSeq = sharedProductSeq;
 	}
 
 	public Integer getProductID() {

@@ -14,8 +14,10 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import com.fashiongo.cms.common.JSONResponse;
+import com.fashiongo.cms.model.BaseInfo;
 import com.fashiongo.cms.model.CMSAdminUser;
 import com.fashiongo.cms.model.GroupManager;
+import com.fashiongo.cms.service.CategoryService;
 import com.fashiongo.cms.service.GroupManagerService;
 import com.fashiongo.cms.util.JWTTokenUtil;
 
@@ -35,6 +37,9 @@ public class TokenAuthService {
 	@Autowired
 	private GroupManagerService groupManagerService;
 	
+	@Autowired
+	private CategoryService categoryService;
+	
 	@SuppressWarnings("deprecation")
 	public void addAuthentication(HttpServletResponse response, String userName, CMSAdminUser adminUser)  {
 		try {
@@ -46,10 +51,14 @@ public class TokenAuthService {
 			
 			OutputStream ostr = response.getOutputStream();
 			
-			JSONResponse<List<GroupManager>> res = new JSONResponse<List<GroupManager>>();
+			JSONResponse<BaseInfo> res = new JSONResponse<BaseInfo>();
 			res.setSuccess(true);
 			res.setToken(jwtToken);
-			res.setData(groupManagerService.selectDetailGroupManager(adminUser.getGroupId()));
+			
+			BaseInfo baseInfo = new BaseInfo();
+			baseInfo.setMenuList(groupManagerService.selectDetailGroupManager(adminUser.getGroupId()));
+			baseInfo.setCategoryList(categoryService.selectCategoryList());
+			res.setData(baseInfo);
 			
 			ObjectMapper om = new ObjectMapper();
 			String returnStr = om.defaultPrettyPrintingWriter().writeValueAsString(res);

@@ -61,6 +61,9 @@ public class EditItem {
 	@Column(name = "imageurlroot")
 	private String imageUrlRoot;
 	
+	@Column(name = "dirname")
+	private String dirName;
+	
 	@Column(name = "imagename")
 	private String imageName;
 	
@@ -220,11 +223,11 @@ public class EditItem {
 	@Column(name = "edit_hashtag5")
 	private String edit_Hashtag5;
 	
-	@Column(name = "assignon")
-	private Date assignOn;
+	@Column(name = "sharedon")
+	private Date sharedOn;
 	
-	@Column(name = "assigntoname")
-	private String assignToName;
+	@Column(name = "sharedbyname")
+	private String sharedByName;
 	
 	@Column(name = "lasteditedon")
 	private Date lastEditedOn;
@@ -271,6 +274,14 @@ public class EditItem {
 
 	public void setImageUrlRoot(String imageUrlRoot) {
 		this.imageUrlRoot = imageUrlRoot;
+	}
+
+	public String getDirName() {
+		return dirName;
+	}
+
+	public void setDirName(String dirName) {
+		this.dirName = dirName;
 	}
 
 	public String getImageName() {
@@ -697,20 +708,20 @@ public class EditItem {
 		this.edit_Hashtag5 = edit_Hashtag5;
 	}
 
-	public Date getAssignOn() {
-		return assignOn;
+	public Date getSharedOn() {
+		return sharedOn;
 	}
 
-	public void setAssignOn(Date assignOn) {
-		this.assignOn = assignOn;
+	public void setSharedOn(Date sharedOn) {
+		this.sharedOn = sharedOn;
 	}
 
-	public String getAssignToName() {
-		return assignToName;
+	public String getSharedByName() {
+		return sharedByName;
 	}
 
-	public void setAssignToName(String assignToName) {
-		this.assignToName = assignToName;
+	public void setSharedByName(String sharedByName) {
+		this.sharedByName = sharedByName;
 	}
 
 	public Date getLastEditedOn() {

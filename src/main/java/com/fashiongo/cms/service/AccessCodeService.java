@@ -59,7 +59,6 @@ public class AccessCodeService extends CommonService {
 		query = entityManager.createNamedStoredProcedureQuery("upWeb_CreateModifyAccessCode");
 		query.setParameter("CodeID", accessCodeSaveParam.getCodeID());
 		query.setParameter("WorkedBy", accessCodeSaveParam.getWorkedBy());
-
 		query.setParameter("Active", accessCodeSaveParam.getActive());
 		query.setParameter("StartedOn", accessCodeSaveParam.getStartedOn());
 		query.setParameter("ExpiredOn", accessCodeSaveParam.getExpiredOn());

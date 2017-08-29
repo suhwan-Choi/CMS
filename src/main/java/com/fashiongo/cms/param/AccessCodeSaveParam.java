@@ -2,29 +2,18 @@ package com.fashiongo.cms.param;
 
 import java.util.Date;
 
-import org.springframework.format.annotation.DateTimeFormat;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class AccessCodeSaveParam {
 	private Integer codeID;
 	private Boolean active;
 
-	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone="America/Los_Angeles")
 	private Date startedOn;
 
-	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone="America/Los_Angeles")
 	private Date expiredOn;
 	private String accessCode;
-	private Integer createdBy;
-
-	public Integer getCreatedBy() {
-		return createdBy;
-	}
-
-	public void setCreatedBy(Integer createdBy) {
-		this.createdBy = createdBy;
-	}
-
-	private Date workedOn;
 	private Integer workedBy;
 
 	public Integer getCodeID() {
@@ -65,14 +54,6 @@ public class AccessCodeSaveParam {
 
 	public void setAccessCode(String accessCode) {
 		this.accessCode = accessCode;
-	}
-
-	public Date getWorkedOn() {
-		return workedOn;
-	}
-
-	public void setWorkedOn(Date workedOn) {
-		this.workedOn = workedOn;
 	}
 
 	public Integer getWorkedBy() {

@@ -23,10 +23,21 @@ public class NewItem{
     @Column(name = "imageurlroot")
     private String imageUrlRoot;
     
+    @Column(name = "dirname")
+    private String dirName;
+    
     @Column(name = "imagename")
     private String imageName;
     
-    @Column(name = "active")
+    public String getDirName() {
+		return dirName;
+	}
+
+	public void setDirName(String dirName) {
+		this.dirName = dirName;
+	}
+
+	@Column(name = "active")
     private String active;
     
     @Column(name = "activatedon")
@@ -58,6 +69,94 @@ public class NewItem{
     
     @Column(name = "categoryid3")
     private String categoryID3;
+    
+    @Column(name = "lengthname")
+    private String lengthName;
+    
+    @Column(name = "stylename")
+    private String styleName;
+    
+    public String getFabricName() {
+		return fabricName;
+	}
+
+	public void setFabricName(String fabricName) {
+		this.fabricName = fabricName;
+	}
+
+	@Column(name = "fabricname")
+    private String fabricName;
+    
+    @Column(name = "hashtag1")
+    private String hashTag1;
+    
+    @Column(name = "hashtag2")
+    private String hashTag2;
+    
+    public String getLengthName() {
+		return lengthName;
+	}
+
+	public void setLengthName(String lengthName) {
+		this.lengthName = lengthName;
+	}
+
+	public String getStyleName() {
+		return styleName;
+	}
+
+	public void setStyleName(String styleName) {
+		this.styleName = styleName;
+	}
+
+	public String getHashTag1() {
+		return hashTag1;
+	}
+
+	public void setHashTag1(String hashTag1) {
+		this.hashTag1 = hashTag1;
+	}
+
+	public String getHashTag2() {
+		return hashTag2;
+	}
+
+	public void setHashTag2(String hashTag2) {
+		this.hashTag2 = hashTag2;
+	}
+
+	public String getHashTag3() {
+		return hashTag3;
+	}
+
+	public void setHashTag3(String hashTag3) {
+		this.hashTag3 = hashTag3;
+	}
+
+	public String getHashTag4() {
+		return hashTag4;
+	}
+
+	public void setHashTag4(String hashTag4) {
+		this.hashTag4 = hashTag4;
+	}
+
+	public String getHashTag5() {
+		return hashTag5;
+	}
+
+	public void setHashTag5(String hashTag5) {
+		this.hashTag5 = hashTag5;
+	}
+
+	@Column(name = "hashtag3")
+    private String hashTag3;
+    
+    @Column(name = "hashtag4")
+    private String hashTag4;
+    
+    @Column(name = "hashtag5")
+    private String hashTag5;
     
     public Integer getProductID() {
 		return productID;
@@ -259,14 +358,6 @@ public class NewItem{
 		this.labelTypeName = labelTypeName;
 	}
 
-	public String getStockAvailableity() {
-		return stockAvailableity;
-	}
-
-	public void setStockAvailableity(String stockAvailableity) {
-		this.stockAvailableity = stockAvailableity;
-	}
-
 	public String getProductDescription() {
 		return productDescription;
 	}
@@ -342,14 +433,22 @@ public class NewItem{
     @Column(name = "madein")
     private String madeIn;
     
-    @Column(name = "labeltypeid")
+    public String getStockAvailability() {
+		return stockAvailability;
+	}
+
+	public void setStockAvailability(String stockAvailability) {
+		this.stockAvailability = stockAvailability;
+	}
+
+	@Column(name = "labeltypeid")
     private String labelTypeID;
     
     @Column(name = "labeltypename")
     private String labelTypeName;
     
     @Column(name = "stockavailability")
-    private String stockAvailableity;
+    private String stockAvailability;
     
     @Column(name = "productdescription")
     private String productDescription;
@@ -360,11 +459,22 @@ public class NewItem{
     @Column(name = "lengthid")
     private String lengthID;
     
-    @Column(name = "styleid")
+    public String getPatternName() {
+		return patternName;
+	}
+
+	public void setPatternName(String patternName) {
+		this.patternName = patternName;
+	}
+
+	@Column(name = "styleid")
     private String styleID;
     
     @Column(name = "patternid")
     private String patternID;
+    
+    @Column(name = "patternname")
+    private String patternName;
     
     @Column(name = "fabricid")
     private String fabricID;

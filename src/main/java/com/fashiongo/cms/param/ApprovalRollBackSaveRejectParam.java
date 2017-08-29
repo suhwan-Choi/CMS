@@ -1,6 +1,6 @@
 package com.fashiongo.cms.param;
 
-public class AssignRollBackSaveRejectParam {
+public class ApprovalRollBackSaveRejectParam {
 	private Integer itemId;
 	
 	

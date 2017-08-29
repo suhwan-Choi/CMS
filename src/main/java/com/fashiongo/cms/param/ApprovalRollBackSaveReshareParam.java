@@ -1,6 +1,6 @@
 package com.fashiongo.cms.param;
 
-public class AssignRollBackSaveReshareParam {
+public class ApprovalRollBackSaveReshareParam {
 	private Integer[] userId;
 	private Integer[] shareCount;
 	

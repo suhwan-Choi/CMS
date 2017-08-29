@@ -2,7 +2,7 @@ package com.fashiongo.cms.param;
 
 import java.util.Date;
 
-public class AssignRollBackListAssignParam {
+public class ApprovalRollBackListRollBackParam {
 	private Integer keywordType;
 	private String keyword;
 	private Integer assignType;

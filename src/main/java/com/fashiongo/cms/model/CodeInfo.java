@@ -1,7 +1,10 @@
 package com.fashiongo.cms.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.NamedStoredProcedureQueries;
 import javax.persistence.NamedStoredProcedureQuery;
 
@@ -10,11 +13,14 @@ import javax.persistence.NamedStoredProcedureQuery;
 })
 
 @Entity
-public class CodeInfo {
-	
+public class CodeInfo implements Serializable{
+	private static final long serialVersionUID = 3727844723131632254L;
+
+	@Id
 	@Column(name = "codetype")
 	private String codeType;
 	
+	@Id
 	@Column(name = "codeid")
 	private Integer codeID;
 	

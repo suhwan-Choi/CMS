@@ -8,10 +8,10 @@ public class AccessCodeSaveParam {
 	private Integer codeID;
 	private Boolean active;
 
-	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone="America/Los_Angeles")
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private Date startedOn;
 
-	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone="America/Los_Angeles")
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private Date expiredOn;
 	private String accessCode;
 	private Integer workedBy;

@@ -17,7 +17,7 @@ import com.fashiongo.cms.param.ApprovalRollBackSaveReshareParam;
 import com.fashiongo.cms.service.ApprovalRollBackService;
 
 @RestController
-@RequestMapping("/assign_rollback")
+@RequestMapping("/approval_rollback")
 public class ApprovalRollBackController {
 	private static Logger logger = LoggerFactory.getLogger(ApprovalRollBackController.class);
 	

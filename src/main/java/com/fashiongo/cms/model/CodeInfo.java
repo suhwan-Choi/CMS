@@ -2,7 +2,6 @@ package com.fashiongo.cms.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.Id;
 import javax.persistence.NamedStoredProcedureQueries;
 import javax.persistence.NamedStoredProcedureQuery;
 
@@ -13,10 +12,6 @@ import javax.persistence.NamedStoredProcedureQuery;
 @Entity
 public class CodeInfo {
 	
-	@Id
-	@Column(name = "seq")
-	private Integer seq;
-	
 	@Column(name = "codetype")
 	private String codeType;
 	
@@ -25,14 +20,6 @@ public class CodeInfo {
 	
 	@Column(name = "codename")
 	private String codeName;
-
-	public Integer getSeq() {
-		return seq;
-	}
-
-	public void setSeq(Integer seq) {
-		this.seq = seq;
-	}
 
 	public String getCodeType() {
 		return codeType;

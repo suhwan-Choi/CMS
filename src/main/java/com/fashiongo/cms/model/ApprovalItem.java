@@ -465,15 +465,15 @@ public class ApprovalItem {
 	@Column(name = "edit_hashtag5")
 	private String edit_Hashtag5;
 	@Column(name = "assignon")
-	private Integer assignOn;
+	private Date assignOn;
 	@Column(name = "assigntoname")
 	private String assignToName;
 	@Column(name = "lasteditedon")
-	private String lastEditedOn;
+	private Date lastEditedOn;
 	@Column(name = "editedbyname")
 	private String editedByName;
 	@Column(name = "approvalon")
-	private Integer approvalOn;
+	private Date approvalOn;
 	@Column(name = "approvalbyname")
 	private String approvalByName;
 
@@ -605,11 +605,11 @@ public class ApprovalItem {
 		this.edit_Hashtag5 = edit_Hashtag5;
 	}
 
-	public Integer getAssignOn() {
+	public Date getAssignOn() {
 		return assignOn;
 	}
 
-	public void setAssignOn(Integer assignOn) {
+	public void setAssignOn(Date assignOn) {
 		this.assignOn = assignOn;
 	}
 
@@ -621,11 +621,11 @@ public class ApprovalItem {
 		this.assignToName = assignToName;
 	}
 
-	public String getLastEditedOn() {
+	public Date getLastEditedOn() {
 		return lastEditedOn;
 	}
 
-	public void setLastEditedOn(String lastEditedOn) {
+	public void setLastEditedOn(Date lastEditedOn) {
 		this.lastEditedOn = lastEditedOn;
 	}
 
@@ -637,11 +637,11 @@ public class ApprovalItem {
 		this.editedByName = editedByName;
 	}
 
-	public Integer getApprovalOn() {
+	public Date getApprovalOn() {
 		return approvalOn;
 	}
 
-	public void setApprovalOn(Integer approvalOn) {
+	public void setApprovalOn(Date approvalOn) {
 		this.approvalOn = approvalOn;
 	}
 
@@ -653,4 +653,13 @@ public class ApprovalItem {
 		this.approvalByName = approvalByName;
 	}
 
+	public Integer getTotalCount() {
+		return totalCount;
+	}
+
+	public void setTotalCount(Integer totalCount) {
+		this.totalCount = totalCount;
+	}
+
+	
 }

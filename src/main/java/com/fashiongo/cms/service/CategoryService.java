@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.fashiongo.cms.model.CategoryList;
+import com.fashiongo.cms.model.CodeInfo;
 
 @Service
 public class CategoryService extends CommonService {
@@ -18,11 +19,18 @@ public class CategoryService extends CommonService {
 	@Transactional(readOnly = true)
 	@SuppressWarnings("unchecked")
 	public List<CategoryList> selectCategoryList() throws Exception{
-		List<CategoryList> categoryList = null;
-		Query query = entityManager.createNamedStoredProcedureQuery("upWeb_ComboCategory");
 		
-		categoryList = (List<CategoryList>) query.getResultList();
+		Query query = entityManager.createNamedStoredProcedureQuery("upWeb_ComboCategory");
 
-		return categoryList;
+		return (List<CategoryList>) query.getResultList();
+	}
+	
+	@Transactional(readOnly = true)
+	@SuppressWarnings("unchecked")
+	public List<CodeInfo> selectCodeList() throws Exception{
+
+		Query query = entityManager.createNamedStoredProcedureQuery("upWeb_ComboBaseCode");
+
+		return (List<CodeInfo>) query.getResultList();
 	}
 }

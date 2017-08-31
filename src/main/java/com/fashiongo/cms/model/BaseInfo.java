@@ -5,6 +5,7 @@ import java.util.List;
 public class BaseInfo {
 	private List<GroupManager> menuList;
 	private List<CategoryList> categoryList;
+	private List<CodeInfo> codeList;
 	
 	public List<GroupManager> getMenuList() {
 		return menuList;
@@ -20,5 +21,13 @@ public class BaseInfo {
 	
 	public void setCategoryList(List<CategoryList> categoryList) {
 		this.categoryList = categoryList;
+	}
+
+	public List<CodeInfo> getCodeList() {
+		return codeList;
+	}
+
+	public void setCodeList(List<CodeInfo> codeList) {
+		this.codeList = codeList;
 	}
 }

@@ -58,6 +58,7 @@ public class TokenAuthService {
 			BaseInfo baseInfo = new BaseInfo();
 			baseInfo.setMenuList(groupManagerService.selectDetailGroupManager(adminUser.getGroupId()));
 			baseInfo.setCategoryList(categoryService.selectCategoryList());
+			baseInfo.setCodeList(categoryService.selectCodeList());
 			res.setData(baseInfo);
 			
 			ObjectMapper om = new ObjectMapper();

@@ -1,6 +1,6 @@
 package com.fashiongo.cms.param;
 
-public class EditItmSaveRollBackParam {
+public class EditItemSaveRollBackParam {
 	private Integer itemId;
 	private Integer userId;
 	private String reason;

@@ -28,7 +28,7 @@ public class ApprovalRollBackService extends CommonService {
 		query.setParameter("SearchStartDate", approvalRollBackListApprovalParam.getSearchStartDate());
 		query.setParameter("SearchEndDate", approvalRollBackListApprovalParam.getSearchEndDate());
 		query.setParameter("KeywordType", approvalRollBackListApprovalParam.getKeywordType());
-		query.setParameter("KeywordText", approvalRollBackListApprovalParam.getKeyword());
+		query.setParameter("KeywordText", approvalRollBackListApprovalParam.getKeywordText());
 		query.setParameter("Status", approvalRollBackListApprovalParam.getStatus());
 		query.setParameter("CategoryID1", approvalRollBackListApprovalParam.getCategoryID1());
 		query.setParameter("CategoryID2", approvalRollBackListApprovalParam.getCategoryID2());

@@ -2,38 +2,44 @@ package com.fashiongo.cms.param;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 public class ApprovalRollBackListApprovalParam {
-	private Integer keywordType;
-	private String keyword;
+	private String keywordType;
+	private String keywordText;
 	private Integer assignType;
 	private Integer categoryID1;
 	private Integer categoryID2;
 	private Integer categoryID3;
 	private Integer dateType;
+
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private Date searchStartDate;
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private Date searchEndDate;
 	private String status;
 	private Integer ps;
 	private Integer pn;
 
-	public Integer getKeywordType() {
+
+	public String getKeywordType() {
 		return keywordType;
 	}
 
-	public void setKeywordType(Integer keywordType) {
+	public void setKeywordType(String keywordType) {
 		this.keywordType = keywordType;
-	}
-
-	public String getKeyword() {
-		return keyword;
-	}
-
-	public void setKeyword(String keyword) {
-		this.keyword = keyword;
 	}
 
 	public Integer getAssignType() {
 		return assignType;
+	}
+
+	public String getKeywordText() {
+		return keywordText;
+	}
+
+	public void setKeywordText(String keywordText) {
+		this.keywordText = keywordText;
 	}
 
 	public void setAssignType(Integer assignType) {

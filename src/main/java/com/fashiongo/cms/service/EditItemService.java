@@ -12,10 +12,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.fashiongo.cms.model.EditItem;
 import com.fashiongo.cms.model.EditItemUser;
+import com.fashiongo.cms.model.ProcedureResult;
 import com.fashiongo.cms.param.EditItemListParam;
 import com.fashiongo.cms.param.EditItemListUserParam;
-import com.fashiongo.cms.param.EditItmSaveItemParam;
-import com.fashiongo.cms.param.EditItmSaveRollBackParam;
+import com.fashiongo.cms.param.EditItemSaveItemParam;
+import com.fashiongo.cms.param.EditItemSaveRollBackParam;
 
 @Service
 public class EditItemService extends CommonService {
@@ -44,6 +45,16 @@ public class EditItemService extends CommonService {
 	}
 	
 	@Transactional(readOnly=true)
+	public EditItem selectEditItem(int sharedProductSeq) {
+		
+		StoredProcedureQuery query = entityManager.createNamedStoredProcedureQuery("upWeb_GetEditItem");
+		
+		query.setParameter("SharedProductSeq", sharedProductSeq);
+		
+		return (EditItem) query.getSingleResult();
+	}
+	
+	@Transactional(readOnly=true)
 	@SuppressWarnings("unchecked")
 	public List<EditItemUser> selectListUser(EditItemListUserParam editItemListUserParam) {
 		
@@ -56,11 +67,36 @@ public class EditItemService extends CommonService {
 		return (List<EditItemUser>) query.getResultList();
 	}
 	
-	public void updateSaveRollback(EditItmSaveRollBackParam editItmSaveRollBackParam) {
-		StoredProcedureQuery query = entityManager.createNamedStoredProcedureQuery("");
+	@Transactional(propagation=Propagation.SUPPORTS)
+	public void mergeSaveRollback(EditItemSaveRollBackParam editItemSaveRollBackParam) {
+		
 	}
 	
-	public void mergeSaveRollback(EditItmSaveItemParam editItmSaveItemParam) {
-		StoredProcedureQuery query = entityManager.createNamedStoredProcedureQuery("");
+	@Transactional(propagation=Propagation.SUPPORTS)
+	public ProcedureResult mergeSaveItem(EditItemSaveItemParam editItemSaveItemParam) {
+		
+		StoredProcedureQuery query = entityManager.createNamedStoredProcedureQuery("upWeb_CreateModifyEditedProduct");
+		
+		query.setParameter("WorkedBy", editItemSaveItemParam.getWorkedBy());
+		query.setParameter("SessionKey", editItemSaveItemParam.getSessionKey());
+		query.setParameter("SharedProductSeq", editItemSaveItemParam.getSharedProductSeq());
+		query.setParameter("ItemName", editItemSaveItemParam.getItemName());
+		query.setParameter("CategoryID", editItemSaveItemParam.getCategoryID());
+		query.setParameter("ParentCategoryID", editItemSaveItemParam.getParentCategoryID());
+		query.setParameter("ParentParentCategoryID", editItemSaveItemParam.getParentParentCategoryID());
+		query.setParameter("LengthID", editItemSaveItemParam.getLengthID());
+		query.setParameter("StyleID", editItemSaveItemParam.getStyleID());
+		query.setParameter("PatternID", editItemSaveItemParam.getPatternID());
+		query.setParameter("FabricID", editItemSaveItemParam.getFabricID());
+		query.setParameter("SearchKeyword", editItemSaveItemParam.getSearchKeyword());
+		query.setParameter("HashTag", editItemSaveItemParam.getHashTag());
+
+		query.execute();
+
+		ProcedureResult procedureResult = new ProcedureResult();
+		procedureResult.setResultCode((Integer) query.getOutputParameterValue("ResultCode"));
+		procedureResult.setErrorMessage((String) query.getOutputParameterValue("ErrorMessage"));
+		
+		return procedureResult;
 	}
 }

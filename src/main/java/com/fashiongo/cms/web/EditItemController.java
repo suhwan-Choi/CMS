@@ -3,6 +3,7 @@ package com.fashiongo.cms.web;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -10,11 +11,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fashiongo.cms.common.JSONResponse;
 import com.fashiongo.cms.model.EditItem;
+import com.fashiongo.cms.model.EditItemSaveResult;
 import com.fashiongo.cms.model.EditItemUser;
+import com.fashiongo.cms.model.ProcedureResult;
 import com.fashiongo.cms.param.EditItemListParam;
 import com.fashiongo.cms.param.EditItemListUserParam;
-import com.fashiongo.cms.param.EditItmSaveItemParam;
-import com.fashiongo.cms.param.EditItmSaveRollBackParam;
+import com.fashiongo.cms.param.EditItemSaveItemParam;
+import com.fashiongo.cms.param.EditItemSaveRollBackParam;
 import com.fashiongo.cms.service.EditItemService;
 
 @RestController
@@ -43,17 +46,28 @@ public class EditItemController {
 	}
 	
 	@RequestMapping(value = "/save_rollback", method = RequestMethod.POST)
- 	public @ResponseBody JSONResponse<String> saveRollback(EditItmSaveRollBackParam editItmSaveRollBackParam) throws Exception{
- 		JSONResponse<String> response = new JSONResponse<String>();
- 		editItemService.updateSaveRollback(editItmSaveRollBackParam);
+ 	public @ResponseBody JSONResponse<String> saveRollback(@RequestBody EditItemSaveRollBackParam editItmSaveRollBackParam) throws Exception{
+ 		
+		JSONResponse<String> response = new JSONResponse<String>();
+ 		editItemService.mergeSaveRollback(editItmSaveRollBackParam);
  		
 		return response;
 	}
 	
 	@RequestMapping(value = "/save_item", method = RequestMethod.POST)
- 	public @ResponseBody JSONResponse<String> saveItem(EditItmSaveItemParam editItmSaveItemParam) throws Exception{
- 		JSONResponse<String> response = new JSONResponse<String>();
- 		editItemService.mergeSaveRollback(editItmSaveItemParam);
+ 	public @ResponseBody JSONResponse<EditItemSaveResult> saveItem(@RequestBody EditItemSaveItemParam editItemSaveItemParam) throws Exception{
+ 		
+		JSONResponse<EditItemSaveResult> response = new JSONResponse<EditItemSaveResult>();
+		EditItemSaveResult editItemSaveResult = new EditItemSaveResult();
+		
+		ProcedureResult procedureResult = editItemService.mergeSaveItem(editItemSaveItemParam);
+		editItemSaveResult.setProcedureResult(procedureResult);
+		
+		if (procedureResult.getResultCode() == 0) {
+			editItemSaveResult.setEditItem(editItemService.selectEditItem(editItemSaveItemParam.getSharedProductSeq()));
+		}
+		
+		response.setData(editItemSaveResult);
  		
 		return response;
 	}

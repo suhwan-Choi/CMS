@@ -26,6 +26,10 @@ import javax.persistence.StoredProcedureParameter;
 			@StoredProcedureParameter(mode = ParameterMode.IN, name = "CategoryID3", type = Integer.class)
 	}, resultClasses = com.fashiongo.cms.model.EditItem.class),
 	
+	@NamedStoredProcedureQuery(name = "upWeb_GetEditItem", procedureName = "dbo.upWeb_GetEditItem", parameters = {
+			@StoredProcedureParameter(mode = ParameterMode.IN, name = "SharedProductSeq", type = Integer.class)
+	}, resultClasses = com.fashiongo.cms.model.EditItem.class),
+	
 	@NamedStoredProcedureQuery(name = "upWeb_CreateModifyEditedProduct", procedureName = "dbo.upWeb_CreateModifyEditedProduct", parameters = {
 			@StoredProcedureParameter(mode = ParameterMode.IN, name = "WorkedBy", type = Integer.class),
 			@StoredProcedureParameter(mode = ParameterMode.IN, name = "SessionKey", type = String.class),

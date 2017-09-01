@@ -14,7 +14,6 @@ import com.fashiongo.cms.model.EditItem;
 import com.fashiongo.cms.model.EditItemUser;
 import com.fashiongo.cms.model.ProcedureResult;
 import com.fashiongo.cms.param.EditItemListParam;
-import com.fashiongo.cms.param.EditItemListUserParam;
 import com.fashiongo.cms.param.EditItemSaveItemParam;
 import com.fashiongo.cms.param.EditItemSaveRollBackParam;
 
@@ -56,13 +55,19 @@ public class EditItemService extends CommonService {
 	
 	@Transactional(readOnly=true)
 	@SuppressWarnings("unchecked")
-	public List<EditItemUser> selectListUser(EditItemListUserParam editItemListUserParam) {
+	public List<EditItemUser> selectListUser(EditItemListParam editItemListParam) {
 		
 		StoredProcedureQuery query = entityManager.createNamedStoredProcedureQuery("upWeb_GetEditItemUser");
 		
-		query.setParameter("SearchDateType", editItemListUserParam.getSearchDateType());
-		query.setParameter("SearchStartDate", editItemListUserParam.getSearchStartDate());
-		query.setParameter("SearchEndDate", editItemListUserParam.getSearchEndDate());
+		query.setParameter("SearchDateType", editItemListParam.getSearchDateType());
+		query.setParameter("SearchStartDate", editItemListParam.getSearchStartDate());
+		query.setParameter("SearchEndDate", editItemListParam.getSearchEndDate());
+		query.setParameter("KeywordType", editItemListParam.getKeywordType());
+		query.setParameter("KeywordText", editItemListParam.getKeywordText());
+		query.setParameter("Status", editItemListParam.getStatus());
+		query.setParameter("CategoryID1", editItemListParam.getCategoryID1());
+		query.setParameter("CategoryID2", editItemListParam.getCategoryID2());
+		query.setParameter("CategoryID3", editItemListParam.getCategoryID3());
 		
 		return (List<EditItemUser>) query.getResultList();
 	}

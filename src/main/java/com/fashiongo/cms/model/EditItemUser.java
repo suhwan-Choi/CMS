@@ -14,7 +14,13 @@ import javax.persistence.StoredProcedureParameter;
 	@NamedStoredProcedureQuery(name = "upWeb_GetEditItemUser", procedureName = "dbo.upWeb_GetEditItemUser", parameters = {
 			@StoredProcedureParameter(mode = ParameterMode.IN, name = "SearchDateType", type = String.class),
 			@StoredProcedureParameter(mode = ParameterMode.IN, name = "SearchStartDate", type = Date.class),
-			@StoredProcedureParameter(mode = ParameterMode.IN, name = "SearchEndDate", type = Date.class)
+			@StoredProcedureParameter(mode = ParameterMode.IN, name = "SearchEndDate", type = Date.class),
+			@StoredProcedureParameter(mode = ParameterMode.IN, name = "KeywordType", type = String.class),
+			@StoredProcedureParameter(mode = ParameterMode.IN, name = "KeywordText", type = String.class),
+			@StoredProcedureParameter(mode = ParameterMode.IN, name = "Status", type = String.class),
+			@StoredProcedureParameter(mode = ParameterMode.IN, name = "CategoryID1", type = Integer.class),
+			@StoredProcedureParameter(mode = ParameterMode.IN, name = "CategoryID2", type = Integer.class),
+			@StoredProcedureParameter(mode = ParameterMode.IN, name = "CategoryID3", type = Integer.class)
 	}, resultClasses = com.fashiongo.cms.model.EditItemUser.class)
 })
 

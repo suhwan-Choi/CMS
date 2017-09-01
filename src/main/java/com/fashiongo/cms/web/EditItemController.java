@@ -15,7 +15,6 @@ import com.fashiongo.cms.model.EditItemSaveResult;
 import com.fashiongo.cms.model.EditItemUser;
 import com.fashiongo.cms.model.ProcedureResult;
 import com.fashiongo.cms.param.EditItemListParam;
-import com.fashiongo.cms.param.EditItemListUserParam;
 import com.fashiongo.cms.param.EditItemSaveItemParam;
 import com.fashiongo.cms.param.EditItemSaveRollBackParam;
 import com.fashiongo.cms.service.EditItemService;
@@ -37,10 +36,10 @@ public class EditItemController {
 	}
 	
 	@RequestMapping(value = "/list_user", method = RequestMethod.GET)
- 	public @ResponseBody JSONResponse<List<EditItemUser>> listUser(EditItemListUserParam editItemListUserParam) throws Exception{
+ 	public @ResponseBody JSONResponse<List<EditItemUser>> listUser(EditItemListParam editItemListParam) throws Exception{
 		
  		JSONResponse<List<EditItemUser>> response = new JSONResponse<List<EditItemUser>>();
- 		response.setData(editItemService.selectListUser(editItemListUserParam));
+ 		response.setData(editItemService.selectListUser(editItemListParam));
  		
 		return response;
 	}

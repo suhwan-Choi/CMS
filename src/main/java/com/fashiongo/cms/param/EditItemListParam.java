@@ -16,7 +16,7 @@ public class EditItemListParam {
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private Date searchEndDate;
 	
-	private Integer keywordType;
+	private String keywordType;
 	private String KeywordText;
 	private String status;
 	
@@ -71,15 +71,15 @@ public class EditItemListParam {
 	public void setSearchEndDate(Date searchEndDate) {
 		this.searchEndDate = searchEndDate;
 	}
-	
-	public Integer getKeywordType() {
+
+	public String getKeywordType() {
 		return keywordType;
 	}
-	
-	public void setKeywordType(Integer keywordType) {
+
+	public void setKeywordType(String keywordType) {
 		this.keywordType = keywordType;
 	}
-	
+
 	public String getKeywordText() {
 		return KeywordText;
 	}

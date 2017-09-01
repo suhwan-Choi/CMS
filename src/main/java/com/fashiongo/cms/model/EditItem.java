@@ -46,6 +46,15 @@ import javax.persistence.StoredProcedureParameter;
 			@StoredProcedureParameter(mode = ParameterMode.IN, name = "HashTag", type = String.class),
 			@StoredProcedureParameter(mode = ParameterMode.OUT, name = "ResultCode", type = Integer.class),
 			@StoredProcedureParameter(mode = ParameterMode.OUT, name = "ErrorMessage", type = String.class)
+	}),
+	
+	@NamedStoredProcedureQuery(name = "upWeb_CreateRollbackRequest", procedureName = "dbo.upWeb_CreateRollbackRequest", parameters = {
+			@StoredProcedureParameter(mode = ParameterMode.IN, name = "WorkedBy", type = Integer.class),
+			@StoredProcedureParameter(mode = ParameterMode.IN, name = "SessionKey", type = String.class),
+			@StoredProcedureParameter(mode = ParameterMode.IN, name = "Reason", type = String.class),
+			@StoredProcedureParameter(mode = ParameterMode.IN, name = "RollbackList", type = String.class),
+			@StoredProcedureParameter(mode = ParameterMode.OUT, name = "ResultCode", type = Integer.class),
+			@StoredProcedureParameter(mode = ParameterMode.OUT, name = "ErrorMessage", type = String.class)
 	})
 })
 

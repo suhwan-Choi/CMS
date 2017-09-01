@@ -73,7 +73,22 @@ public class EditItemService extends CommonService {
 	}
 	
 	@Transactional(propagation=Propagation.SUPPORTS)
-	public void mergeSaveRollback(EditItemSaveRollBackParam editItemSaveRollBackParam) {
+	public ProcedureResult insertSaveRollback(EditItemSaveRollBackParam editItemSaveRollBackParam) {
+		
+		StoredProcedureQuery query = entityManager.createNamedStoredProcedureQuery("upWeb_CreateRollbackRequest");
+		
+		query.setParameter("WorkedBy", editItemSaveRollBackParam.getWorkedBy());
+		query.setParameter("SessionKey", editItemSaveRollBackParam.getSessionKey());
+		query.setParameter("Reason", editItemSaveRollBackParam.getReason());
+		query.setParameter("RollbackList", editItemSaveRollBackParam.getRollbackList());
+
+		query.execute();
+
+		ProcedureResult procedureResult = new ProcedureResult();
+		procedureResult.setResultCode((Integer) query.getOutputParameterValue("ResultCode"));
+		procedureResult.setErrorMessage((String) query.getOutputParameterValue("ErrorMessage"));
+		
+		return procedureResult;
 		
 	}
 	

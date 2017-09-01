@@ -1,24 +1,25 @@
 package com.fashiongo.cms.param;
 
 public class EditItemSaveRollBackParam {
-	private Integer itemId;
-	private Integer userId;
+	private Integer workedBy;
+	private String sessionKey;
 	private String reason;
+	private String rollbackList;
 	
-	public Integer getItemId() {
-		return itemId;
+	public Integer getWorkedBy() {
+		return workedBy;
 	}
 	
-	public void setItemId(Integer itemId) {
-		this.itemId = itemId;
+	public void setWorkedBy(Integer workedBy) {
+		this.workedBy = workedBy;
 	}
 	
-	public Integer getUserId() {
-		return userId;
+	public String getSessionKey() {
+		return sessionKey;
 	}
 	
-	public void setUserId(Integer userId) {
-		this.userId = userId;
+	public void setSessionKey(String sessionKey) {
+		this.sessionKey = sessionKey;
 	}
 	
 	public String getReason() {
@@ -27,5 +28,13 @@ public class EditItemSaveRollBackParam {
 	
 	public void setReason(String reason) {
 		this.reason = reason;
+	}
+	
+	public String getRollbackList() {
+		return rollbackList;
+	}
+	
+	public void setRollbackList(String rollbackList) {
+		this.rollbackList = rollbackList;
 	}
 }

@@ -45,10 +45,10 @@ public class EditItemController {
 	}
 	
 	@RequestMapping(value = "/save_rollback", method = RequestMethod.POST)
- 	public @ResponseBody JSONResponse<String> saveRollback(@RequestBody EditItemSaveRollBackParam editItmSaveRollBackParam) throws Exception{
+ 	public @ResponseBody JSONResponse<ProcedureResult> saveRollback(@RequestBody EditItemSaveRollBackParam editItmSaveRollBackParam) throws Exception{
  		
-		JSONResponse<String> response = new JSONResponse<String>();
- 		editItemService.mergeSaveRollback(editItmSaveRollBackParam);
+		JSONResponse<ProcedureResult> response = new JSONResponse<ProcedureResult>();
+		response.setData(editItemService.insertSaveRollback(editItmSaveRollBackParam));
  		
 		return response;
 	}

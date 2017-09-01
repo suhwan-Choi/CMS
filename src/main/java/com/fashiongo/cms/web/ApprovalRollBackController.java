@@ -35,25 +35,25 @@ public class ApprovalRollBackController {
 	 * @author : Mason
 	 * @date : 2017. 8. 30.
 	 */
-	@RequestMapping(value = "/list_assign", method = RequestMethod.GET)
+	@RequestMapping(value = "/list_approval", method = RequestMethod.GET)
 	public @ResponseBody JSONResponse<List<ApprovalItem>> listAssign(
-			ApprovalRollBackListApprovalParam assignRollBackListAssignParam) throws Exception {
+			ApprovalRollBackListApprovalParam approvalRollBackListapprovalParam) throws Exception {
 		JSONResponse<List<ApprovalItem>> response = new JSONResponse<>();
-		response.setData(approvalRollBackService.selectApprovalList(assignRollBackListAssignParam));
+		response.setData(approvalRollBackService.selectApprovalList(approvalRollBackListapprovalParam));
 
 		return response;
 	}
 
 	@RequestMapping(value = "/list_rollback", method = RequestMethod.GET)
-	public @ResponseBody JSONResponse<?> listRollback(ApprovalRollBackListRollBackParam assignRollBackListRollBackParam)
+	public @ResponseBody JSONResponse<?> listRollback(ApprovalRollBackListRollBackParam approvalRollBackListRollBackParam)
 			throws Exception {
 		JSONResponse<?> response = new JSONResponse<>();
-		approvalRollBackService.selectRollbackList(assignRollBackListRollBackParam);
+		approvalRollBackService.selectRollbackList(approvalRollBackListRollBackParam);
 
 		return response;
 	}
 
-	@RequestMapping(value = "/save_assign", method = RequestMethod.POST)
+	@RequestMapping(value = "/save_approval", method = RequestMethod.POST)
 	public @ResponseBody JSONResponse<?> saveApproval(ApprovalRollBackSaveAssignParam approvalRollBackSaveAssignParam)
 			throws Exception {
 		JSONResponse<?> response = new JSONResponse<>();

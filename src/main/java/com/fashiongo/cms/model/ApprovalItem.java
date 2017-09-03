@@ -35,6 +35,15 @@ public class ApprovalItem {
 	private Integer sharedProductSeq;
 	@Column(name = "productid")
 	private Integer productID;
+	
+	@Column(name="imageurlroot")
+	private String imageUrlRoot;
+
+	@Column(name="dirname")
+	private String dirName;
+
+	@Column(name="imagename")
+	private String imageName;
 
 	@Column(name = "active")
 	private Boolean active;
@@ -141,6 +150,30 @@ public class ApprovalItem {
 
 	public void setProductID(Integer productID) {
 		this.productID = productID;
+	}
+	
+	public String getImageUrlRoot() {
+		return imageUrlRoot;
+	}
+
+	public void setImageUrlRoot(String imageUrlRoot) {
+		this.imageUrlRoot = imageUrlRoot;
+	}
+
+	public String getDirName() {
+		return dirName;
+	}
+
+	public void setDirName(String dirName) {
+		this.dirName = dirName;
+	}
+
+	public String getImageName() {
+		return imageName;
+	}
+
+	public void setImageName(String imageName) {
+		this.imageName = imageName;
 	}
 
 	public Boolean getActive() {

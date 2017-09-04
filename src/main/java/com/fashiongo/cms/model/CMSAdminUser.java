@@ -65,6 +65,9 @@ public class CMSAdminUser implements Serializable{
 	@Column(name="groupname")
 	private String groupName;
 	
+	@Column(name="roleid")
+	private Integer roleId;
+	
 	@Transient
 	private String sessionId;
 	
@@ -106,6 +109,14 @@ public class CMSAdminUser implements Serializable{
 
 	public void setGroupName(String groupName) {
 		this.groupName = groupName;
+	}
+
+	public Integer getRoleId() {
+		return roleId;
+	}
+
+	public void setRoleId(Integer roleId) {
+		this.roleId = roleId;
 	}
 
 	public String getSessionId() {

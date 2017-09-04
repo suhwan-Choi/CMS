@@ -6,7 +6,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 public class ApprovalRollBackListApprovalParam {
 	private String keywordType;
-	private String keywordText;
+	private String keywordText ="";
 	private Integer assignType;
 	private Integer categoryID1;
 	private Integer categoryID2;

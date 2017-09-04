@@ -98,6 +98,7 @@ public class EditItemService extends CommonService {
 		StoredProcedureQuery query = entityManager.createNamedStoredProcedureQuery("upWeb_CreateModifyEditedProduct");
 		
 		query.setParameter("WorkedBy", editItemSaveItemParam.getWorkedBy());
+		query.setParameter("RoIeIDofWorked", editItemSaveItemParam.getRoIeIDofWorked());
 		query.setParameter("SessionKey", editItemSaveItemParam.getSessionKey());
 		query.setParameter("SharedProductSeq", editItemSaveItemParam.getSharedProductSeq());
 		query.setParameter("ItemName", editItemSaveItemParam.getItemName());

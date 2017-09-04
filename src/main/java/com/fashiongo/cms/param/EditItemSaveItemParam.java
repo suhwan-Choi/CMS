@@ -2,6 +2,7 @@ package com.fashiongo.cms.param;
 
 public class EditItemSaveItemParam {
 	private Integer workedBy;
+	private Integer roIeIDofWorked;
 	private String sessionKey;
 	private Integer sharedProductSeq;
 	private String itemName;
@@ -23,6 +24,14 @@ public class EditItemSaveItemParam {
 		this.workedBy = workedBy;
 	}
 	
+	public Integer getRoIeIDofWorked() {
+		return roIeIDofWorked;
+	}
+
+	public void setRoIeIDofWorked(Integer roIeIDofWorked) {
+		this.roIeIDofWorked = roIeIDofWorked;
+	}
+
 	public String getSessionKey() {
 		return sessionKey;
 	}

@@ -32,6 +32,7 @@ import javax.persistence.StoredProcedureParameter;
 	
 	@NamedStoredProcedureQuery(name = "upWeb_CreateModifyEditedProduct", procedureName = "dbo.upWeb_CreateModifyEditedProduct", parameters = {
 			@StoredProcedureParameter(mode = ParameterMode.IN, name = "WorkedBy", type = Integer.class),
+			@StoredProcedureParameter(mode = ParameterMode.IN, name = "RoIeIDofWorked", type = Integer.class),
 			@StoredProcedureParameter(mode = ParameterMode.IN, name = "SessionKey", type = String.class),
 			@StoredProcedureParameter(mode = ParameterMode.IN, name = "SharedProductSeq", type = Integer.class),
 			@StoredProcedureParameter(mode = ParameterMode.IN, name = "ItemName", type = String.class),

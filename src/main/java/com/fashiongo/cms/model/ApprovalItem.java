@@ -127,6 +127,9 @@ public class ApprovalItem {
 	private String Hashtag4;
 	@Column(name = "hashtag5")
 	private String Hashtag5;
+	
+	@Column(name = "workstatus")
+	private Integer workStatus;
 
 	public Integer getSeq() {
 		return seq;
@@ -694,5 +697,11 @@ public class ApprovalItem {
 		this.totalCount = totalCount;
 	}
 
-	
+	public Integer getWorkStatus() {
+		return workStatus;
+	}
+
+	public void setWorkStatus(Integer workStatus) {
+		this.workStatus = workStatus;
+	}
 }

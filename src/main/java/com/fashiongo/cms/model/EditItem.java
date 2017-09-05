@@ -254,6 +254,9 @@ public class EditItem {
 	@Column(name = "approvalbyname")
 	private String approvalByName;
 	
+	@Column(name = "workstatus")
+	private Integer workStatus;
+	
 	@Column(name = "totalcount")
 	private Integer totalCount;
 
@@ -767,6 +770,14 @@ public class EditItem {
 
 	public void setApprovalByName(String approvalByName) {
 		this.approvalByName = approvalByName;
+	}
+
+	public Integer getWorkStatus() {
+		return workStatus;
+	}
+
+	public void setWorkStatus(Integer workStatus) {
+		this.workStatus = workStatus;
 	}
 
 	public Integer getTotalCount() {

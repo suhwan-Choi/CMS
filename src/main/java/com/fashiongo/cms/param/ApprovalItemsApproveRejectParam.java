@@ -1,10 +1,19 @@
 package com.fashiongo.cms.param;
 
-public class ApprovalItemsApproveParam {
-
+public class ApprovalItemsApproveRejectParam {
+	private String mode;
 	private Integer workedBy;
 	private String sessionKey;
 	private String approveList;
+
+
+	public String getMode() {
+		return mode;
+	}
+
+	public void setMode(String mode) {
+		this.mode = mode;
+	}
 
 	public Integer getWorkedBy() {
 		return workedBy;

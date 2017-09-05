@@ -16,7 +16,7 @@ import com.fashiongo.cms.model.ApprovalItem;
 import com.fashiongo.cms.model.EditItem;
 import com.fashiongo.cms.model.ProcedureResult;
 import com.fashiongo.cms.model.RollBackItems;
-import com.fashiongo.cms.param.ApprovalItemsApproveParam;
+import com.fashiongo.cms.param.ApprovalItemsApproveRejectParam;
 import com.fashiongo.cms.param.ApprovalRollBackListApprovalParam;
 import com.fashiongo.cms.param.ApprovalRollBackListRollBackParam;
 import com.fashiongo.cms.param.ApprovalRollBackSaveRejectParam;
@@ -67,20 +67,11 @@ public class ApprovalRollBackController {
 		return jsonResponse;
 	}
 
-	@RequestMapping(value = "/save_approval", method = RequestMethod.POST)
-	public @ResponseBody JSONResponse<ProcedureResult> saveApproval(ApprovalItemsApproveParam approvalItemsApproveParam)
+	@RequestMapping(value = "/save", method = RequestMethod.POST)
+	public @ResponseBody JSONResponse<ProcedureResult> saveApproval(ApprovalItemsApproveRejectParam approvalItemsApproveParam)
 			throws Exception {
 		JSONResponse<ProcedureResult> response = new JSONResponse<>();
 		approvalRollBackService.modifyApproveItems(approvalItemsApproveParam);
-		return response;
-	}
-
-	@RequestMapping(value = "/save_reject", method = RequestMethod.POST)
-	public @ResponseBody JSONResponse<?> saveReject(ApprovalRollBackSaveRejectParam approvalRollBackSaveRejectParam)
-			throws Exception {
-		JSONResponse<?> response = new JSONResponse<>();
-		approvalRollBackService.updateSaveReject(approvalRollBackSaveRejectParam);
-
 		return response;
 	}
 

@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import com.fashiongo.cms.model.ApprovalItem;
 import com.fashiongo.cms.model.ProcedureResult;
 import com.fashiongo.cms.model.RollBackItems;
-import com.fashiongo.cms.param.ApprovalItemsApproveParam;
+import com.fashiongo.cms.param.ApprovalItemsApproveRejectParam;
 import com.fashiongo.cms.param.ApprovalRollBackListApprovalParam;
 import com.fashiongo.cms.param.ApprovalRollBackListRollBackParam;
 import com.fashiongo.cms.param.ApprovalRollBackSaveRejectParam;
@@ -64,12 +64,6 @@ public class ApprovalRollBackService extends CommonService {
 		return (List<RollBackItems>) query.getResultList();
 	}
 
-	// public void mergeSaveApprove(ApprovalRollBackSaveAssignParam
-	// assignRollBackSaveAssignParam) {
-	// StoredProcedureQuery query =
-	// entityManager.createNamedStoredProcedureQuery("");
-	// }
-
 	/**
 	 * 
 	 * @param approvalItemsSaveParam
@@ -77,11 +71,16 @@ public class ApprovalRollBackService extends CommonService {
 	 * @author : Mason
 	 * @date : 2017. 9. 5.
 	 */
-	public ProcedureResult modifyApproveItems(ApprovalItemsApproveParam approvalItemsParamApprove) {
-		StoredProcedureQuery query = entityManager.createNamedStoredProcedureQuery("upWeb_ModifyApproveItem");
-		query.setParameter("WorkedBy", approvalItemsParamApprove.getWorkedBy());
-		query.setParameter("SessionKey", approvalItemsParamApprove.getSessionKey());
-		query.setParameter("ApproveList", approvalItemsParamApprove.getApproveList());
+	public ProcedureResult modifyApproveItems(ApprovalItemsApproveRejectParam approvalItemsApproveRejectParam) {
+		StoredProcedureQuery query;
+		if(approvalItemsApproveRejectParam.getMode().equals("approve")) {
+			query = entityManager.createNamedStoredProcedureQuery("upWeb_ModifyApproveItem");
+		}else {
+			query = entityManager.createNamedStoredProcedureQuery("upWeb_ModifyRejectItem");
+		}
+		query.setParameter("WorkedBy", approvalItemsApproveRejectParam.getWorkedBy());
+		query.setParameter("SessionKey", approvalItemsApproveRejectParam.getSessionKey());
+		query.setParameter("ApproveList", approvalItemsApproveRejectParam.getApproveList());
 
 		query.execute();
 
@@ -91,11 +90,7 @@ public class ApprovalRollBackService extends CommonService {
 
 		return procedureResult;
 
-	}
-
-	public void updateSaveReject(ApprovalRollBackSaveRejectParam assignRollBackSaveRejectParam) {
-		StoredProcedureQuery query = entityManager.createNamedStoredProcedureQuery("");
-	}
+	}	
 
 	public void updateSaveReshare(ApprovalRollBackSaveReshareParam assignRollBackSaveReshareParam) {
 		StoredProcedureQuery query = entityManager.createNamedStoredProcedureQuery("");

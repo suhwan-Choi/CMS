@@ -8,7 +8,6 @@ public class EditItemListParam {
 	private Integer pn;
 	private Integer ps;
 	private Integer userID;
-	private String searchDateType;
 	
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private Date searchStartDate;
@@ -46,14 +45,6 @@ public class EditItemListParam {
 	
 	public void setUserID(Integer userID) {
 		this.userID = userID;
-	}
-	
-	public String getSearchDateType() {
-		return searchDateType;
-	}
-	
-	public void setSearchDateType(String searchDateType) {
-		this.searchDateType = searchDateType;
 	}
 	
 	public Date getSearchStartDate() {

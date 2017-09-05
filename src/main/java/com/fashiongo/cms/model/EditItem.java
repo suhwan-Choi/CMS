@@ -15,7 +15,6 @@ import javax.persistence.StoredProcedureParameter;
 			@StoredProcedureParameter(mode = ParameterMode.IN, name = "Page", type = Integer.class),
 			@StoredProcedureParameter(mode = ParameterMode.IN, name = "PageSize", type = Integer.class),
 			@StoredProcedureParameter(mode = ParameterMode.IN, name = "UserID", type = Integer.class),
-			@StoredProcedureParameter(mode = ParameterMode.IN, name = "SearchDateType", type = String.class),
 			@StoredProcedureParameter(mode = ParameterMode.IN, name = "SearchStartDate", type = Date.class),
 			@StoredProcedureParameter(mode = ParameterMode.IN, name = "SearchEndDate", type = Date.class),
 			@StoredProcedureParameter(mode = ParameterMode.IN, name = "KeywordType", type = String.class),
@@ -254,6 +253,9 @@ public class EditItem {
 	
 	@Column(name = "approvalbyname")
 	private String approvalByName;
+	
+	@Column(name = "workstatus")
+	private Integer workStatus;
 	
 	@Column(name = "totalcount")
 	private Integer totalCount;
@@ -768,6 +770,14 @@ public class EditItem {
 
 	public void setApprovalByName(String approvalByName) {
 		this.approvalByName = approvalByName;
+	}
+
+	public Integer getWorkStatus() {
+		return workStatus;
+	}
+
+	public void setWorkStatus(Integer workStatus) {
+		this.workStatus = workStatus;
 	}
 
 	public Integer getTotalCount() {

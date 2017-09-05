@@ -30,7 +30,6 @@ public class EditItemService extends CommonService {
 		query.setParameter("Page", editItemListParam.getPn());
 		query.setParameter("PageSize", editItemListParam.getPs());
 		query.setParameter("UserID", editItemListParam.getUserID());
-		query.setParameter("SearchDateType", editItemListParam.getSearchDateType());
 		query.setParameter("SearchStartDate", editItemListParam.getSearchStartDate());
 		query.setParameter("SearchEndDate", editItemListParam.getSearchEndDate());
 		query.setParameter("KeywordType", editItemListParam.getKeywordType());
@@ -59,7 +58,6 @@ public class EditItemService extends CommonService {
 		
 		StoredProcedureQuery query = entityManager.createNamedStoredProcedureQuery("upWeb_GetEditItemUser");
 		
-		query.setParameter("SearchDateType", editItemListParam.getSearchDateType());
 		query.setParameter("SearchStartDate", editItemListParam.getSearchStartDate());
 		query.setParameter("SearchEndDate", editItemListParam.getSearchEndDate());
 		query.setParameter("KeywordType", editItemListParam.getKeywordType());

@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import com.fashiongo.cms.model.ApprovalItem;
+import com.fashiongo.cms.model.RollBackItems;
 import com.fashiongo.cms.param.ApprovalRollBackListApprovalParam;
 import com.fashiongo.cms.param.ApprovalRollBackListRollBackParam;
 import com.fashiongo.cms.param.ApprovalRollBackSaveAssignParam;
@@ -38,8 +39,28 @@ public class ApprovalRollBackService extends CommonService {
 
 	}
 
-	public void selectRollbackList(ApprovalRollBackListRollBackParam approvalRollBackListRollBackParam) {
-		StoredProcedureQuery query = entityManager.createNamedStoredProcedureQuery("");
+	@SuppressWarnings("unchecked")
+	/**
+	 * 
+	 * @param approvalRollBackListRollBackParam
+	 * @return
+	 * @author : Mason
+	 * @date : 2017. 9. 4.
+	 */
+	public List<RollBackItems> selectRollbackList(ApprovalRollBackListRollBackParam approvalRollBackListRollBackParam) {
+		StoredProcedureQuery query = entityManager.createNamedStoredProcedureQuery("upWeb_GetRollbackItemList");
+		query.setParameter("Page", approvalRollBackListRollBackParam.getPn());
+		query.setParameter("PageSize", approvalRollBackListRollBackParam.getPs());
+		query.setParameter("SearchStartDate", approvalRollBackListRollBackParam.getSearchStartDate());
+		query.setParameter("SearchEndDate", approvalRollBackListRollBackParam.getSearchEndDate());
+		query.setParameter("KeywordType", approvalRollBackListRollBackParam.getKeywordType());
+		query.setParameter("KeywordText", approvalRollBackListRollBackParam.getKeywordText());
+		query.setParameter("Status", approvalRollBackListRollBackParam.getStatus());
+		query.setParameter("CategoryID1", approvalRollBackListRollBackParam.getCategoryID1());
+		query.setParameter("CategoryID2", approvalRollBackListRollBackParam.getCategoryID2());
+		query.setParameter("CategoryID3", approvalRollBackListRollBackParam.getCategoryID3());
+
+		return (List<RollBackItems>) query.getResultList();
 	}
 
 	public void mergeSaveApprove(ApprovalRollBackSaveAssignParam assignRollBackSaveAssignParam) {

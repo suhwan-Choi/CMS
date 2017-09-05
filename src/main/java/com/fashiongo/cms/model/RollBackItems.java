@@ -27,7 +27,7 @@ public class RollBackItems {
 	private Integer seq;
 	@Column(name = "rollbackproductseq")
 	private Integer rollbackProductSeq;
-	@Column(name = "sharedProductSeq")
+	@Column(name = "sharedproductseq")
 	private Integer sharedProductSeq;
 	@Column(name = "username")
 	private String userName;

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fashiongo.cms.common.JSONResponse;
 import com.fashiongo.cms.model.ApprovalItem;
+import com.fashiongo.cms.model.RollBackItems;
 import com.fashiongo.cms.param.ApprovalRollBackListApprovalParam;
 import com.fashiongo.cms.param.ApprovalRollBackListRollBackParam;
 import com.fashiongo.cms.param.ApprovalRollBackSaveAssignParam;
@@ -45,11 +46,10 @@ public class ApprovalRollBackController {
 	}
 
 	@RequestMapping(value = "/list_rollback", method = RequestMethod.GET)
-	public @ResponseBody JSONResponse<?> listRollback(ApprovalRollBackListRollBackParam approvalRollBackListRollBackParam)
+	public @ResponseBody JSONResponse<List<RollBackItems>> listRollback(ApprovalRollBackListRollBackParam approvalRollBackListRollBackParam)
 			throws Exception {
-		JSONResponse<?> response = new JSONResponse<>();
-		approvalRollBackService.selectRollbackList(approvalRollBackListRollBackParam);
-
+		JSONResponse<List<RollBackItems>> response = new JSONResponse<>();
+		response.setData(approvalRollBackService.selectRollbackList(approvalRollBackListRollBackParam));
 		return response;
 	}
 

@@ -15,7 +15,6 @@ import com.fashiongo.cms.model.ImageList;
 import com.fashiongo.cms.model.NewItem;
 import com.fashiongo.cms.model.NewItemList;
 import com.fashiongo.cms.param.NewItemListParam;
-import com.fashiongo.cms.param.NewItemSaveShareParam;
 import com.fashiongo.cms.service.NewItemService;
 
 @RestController
@@ -57,22 +56,6 @@ public class NewItemController {
 		imageList = newItemService.selectImageList(productID);
 		jsonResponse.setData(imageList);
 		return jsonResponse;
-	}
-	
-	/**
-	 * 
-	 * @param newItemSaveShareParam
-	 * @return
-	 * @throws Exception
-	 * @author Reo
-	 * @date 2017. 8. 28.
-	 */
-	@RequestMapping(value = "/save_share", method = RequestMethod.POST)
- 	public @ResponseBody JSONResponse<String> saveShare(NewItemSaveShareParam newItemSaveShareParam) throws Exception{
- 		JSONResponse<String> response = new JSONResponse<String>();
- 		newItemService.mergeSaveShare(newItemSaveShareParam);
- 		
-		return response;
 	}
 	
 	/**

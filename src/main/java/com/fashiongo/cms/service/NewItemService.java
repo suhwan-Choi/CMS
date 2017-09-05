@@ -16,23 +16,10 @@ import com.fashiongo.cms.model.ImageList;
 import com.fashiongo.cms.model.NewItem;
 import com.fashiongo.cms.model.NewItemList;
 import com.fashiongo.cms.param.NewItemListParam;
-import com.fashiongo.cms.param.NewItemSaveShareParam;
 
 @Service
 public class NewItemService extends CommonService {
 	private static Logger logger = LoggerFactory.getLogger(NewItemService.class);
-	
-	public void selectList(NewItemListParam newItemListParam) {
-		StoredProcedureQuery query = entityManager.createNamedStoredProcedureQuery("");
-	}
-	
-	public void mergeSaveShare(NewItemSaveShareParam newItemSaveShareParam) {
-		StoredProcedureQuery query = entityManager.createNamedStoredProcedureQuery("");
-	}
-	
-	public void selectDetail(Integer itemId) {
-		StoredProcedureQuery query = entityManager.createNamedStoredProcedureQuery("");
-	}
 	
 	/**
 	 * 

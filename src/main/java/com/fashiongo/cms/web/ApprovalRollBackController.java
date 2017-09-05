@@ -5,6 +5,7 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fashiongo.cms.common.JSONResponse;
 import com.fashiongo.cms.model.ApprovalItem;
+import com.fashiongo.cms.model.EditItem;
 import com.fashiongo.cms.model.RollBackItems;
 import com.fashiongo.cms.param.ApprovalRollBackListApprovalParam;
 import com.fashiongo.cms.param.ApprovalRollBackListRollBackParam;
@@ -19,6 +21,7 @@ import com.fashiongo.cms.param.ApprovalRollBackSaveAssignParam;
 import com.fashiongo.cms.param.ApprovalRollBackSaveRejectParam;
 import com.fashiongo.cms.param.ApprovalRollBackSaveReshareParam;
 import com.fashiongo.cms.service.ApprovalRollBackService;
+import com.fashiongo.cms.service.EditItemService;
 
 @RestController
 @RequestMapping("/approval_rollback")
@@ -27,6 +30,9 @@ public class ApprovalRollBackController {
 
 	@Autowired
 	private ApprovalRollBackService approvalRollBackService;
+	
+	@Autowired
+	private EditItemService editItemService; 
 
 	/**
 	 * 
@@ -51,6 +57,13 @@ public class ApprovalRollBackController {
 		JSONResponse<List<RollBackItems>> response = new JSONResponse<>();
 		response.setData(approvalRollBackService.selectRollbackList(approvalRollBackListRollBackParam));
 		return response;
+	}
+	
+	@RequestMapping(value = "/detail/{sharedProductSeq}", method = RequestMethod.GET)
+	public JSONResponse<EditItem> detailRollbackItem(@PathVariable Integer  sharedProductSeq){
+		JSONResponse<EditItem> jsonResponse = new JSONResponse<>();
+		jsonResponse.setData(editItemService.selectEditItem(sharedProductSeq));
+		return jsonResponse; 
 	}
 
 	@RequestMapping(value = "/save_approval", method = RequestMethod.POST)

@@ -21,6 +21,7 @@ public class JWTTokenUtil {
 	private static final String CLAIM_KEY_USER_ACCOUNT 	= "userAccount";
 	private static final String CLAIM_KEY_GROUP_ID 		= "groupId";
 	private static final String CLAIM_KEY_GROUP_NAME 	= "groupName";
+	private static final String CLAIM_KEY_ROLE_ID		= "roleId";
 	private static final String CLAIM_KEY_CREATED 		= "created";
 	private static final String CLAIM_KEY_SESSION_ID	= "sessionId";
 	
@@ -154,8 +155,8 @@ public class JWTTokenUtil {
 	 *            time.
 	 * @return true if it was created before the last pass reset time.
 	 */
-	private Boolean isCreatedBeforeLastPasswordReset(Date created, Date lastPasswordReset) throws Exception {
-		return lastPasswordReset != null && created.before(lastPasswordReset);
+	private Boolean isCreatedBeforeLastPasswordReset(Date lastPasswordReset) throws Exception {
+		return lastPasswordReset.before(new Date());
 	}
 
 	/**
@@ -172,6 +173,7 @@ public class JWTTokenUtil {
 		claims.put(CLAIM_KEY_USER_ACCOUNT, adminUser.getUserAccount());
 		claims.put(CLAIM_KEY_GROUP_ID, adminUser.getGroupId());
 		claims.put(CLAIM_KEY_GROUP_NAME, adminUser.getGroupName());
+		claims.put(CLAIM_KEY_ROLE_ID, adminUser.getRoleId());
 		claims.put(CLAIM_KEY_SESSION_ID, adminUser.getSessionId());
 		claims.put(CLAIM_KEY_CREATED, new Date());
 
@@ -200,9 +202,8 @@ public class JWTTokenUtil {
 	 * @return the result of the check.
 	 */
 	public Boolean canTokenBeRefreshed(String token) throws Exception {
-		final Date created = getCreatedDateFromToken(token);
 		final Date lastPasswordReset = getBaseRefreshDate(token);
-		return !isCreatedBeforeLastPasswordReset(created, lastPasswordReset) && (!isTokenExpired(token));
+		return isCreatedBeforeLastPasswordReset(lastPasswordReset) && !isTokenExpired(token);
 	}
 
 	/**
@@ -251,6 +252,7 @@ public class JWTTokenUtil {
 		adminUser.setGroupId((Integer)claims.get(CLAIM_KEY_GROUP_ID));
 		adminUser.setGroupName((String)claims.get(CLAIM_KEY_GROUP_NAME));
 		adminUser.setUserAccount((String)claims.get(CLAIM_KEY_USER_ACCOUNT));
+		adminUser.setRoleId((Integer)claims.get(CLAIM_KEY_ROLE_ID));
 		adminUser.setSessionId((String)claims.get(CLAIM_KEY_SESSION_ID));
 		
 		return adminUser;

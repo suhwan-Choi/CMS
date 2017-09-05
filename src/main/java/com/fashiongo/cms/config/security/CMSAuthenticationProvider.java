@@ -48,6 +48,7 @@ public class CMSAuthenticationProvider implements AuthenticationProvider{
 		userInfo.setUserAccount(adminUser.getUserAccount());
 		userInfo.setGroupId(adminUser.getGroupId());
 		userInfo.setGroupName(adminUser.getGroupName());
+		userInfo.setRoleId(adminUser.getRoleId());
 		userInfo.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());
 		
 		authService.insertLoginHistory(authentication, userInfo);

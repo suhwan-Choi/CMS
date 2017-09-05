@@ -1,7 +1,6 @@
 package com.fashiongo.cms.config.security.jwt;
 
 import java.io.OutputStream;
-import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -16,7 +15,6 @@ import org.springframework.stereotype.Component;
 import com.fashiongo.cms.common.JSONResponse;
 import com.fashiongo.cms.model.BaseInfo;
 import com.fashiongo.cms.model.CMSAdminUser;
-import com.fashiongo.cms.model.GroupManager;
 import com.fashiongo.cms.service.CategoryService;
 import com.fashiongo.cms.service.GroupManagerService;
 import com.fashiongo.cms.util.JWTTokenUtil;

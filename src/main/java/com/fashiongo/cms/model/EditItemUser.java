@@ -12,7 +12,6 @@ import javax.persistence.StoredProcedureParameter;
 
 @NamedStoredProcedureQueries({
 	@NamedStoredProcedureQuery(name = "upWeb_GetEditItemUser", procedureName = "dbo.upWeb_GetEditItemUser", parameters = {
-			@StoredProcedureParameter(mode = ParameterMode.IN, name = "SearchDateType", type = String.class),
 			@StoredProcedureParameter(mode = ParameterMode.IN, name = "SearchStartDate", type = Date.class),
 			@StoredProcedureParameter(mode = ParameterMode.IN, name = "SearchEndDate", type = Date.class),
 			@StoredProcedureParameter(mode = ParameterMode.IN, name = "KeywordType", type = String.class),

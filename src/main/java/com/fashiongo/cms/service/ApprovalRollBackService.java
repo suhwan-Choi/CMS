@@ -9,10 +9,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import com.fashiongo.cms.model.ApprovalItem;
+import com.fashiongo.cms.model.ProcedureResult;
 import com.fashiongo.cms.model.RollBackItems;
+import com.fashiongo.cms.param.ApprovalItemsApproveParam;
 import com.fashiongo.cms.param.ApprovalRollBackListApprovalParam;
 import com.fashiongo.cms.param.ApprovalRollBackListRollBackParam;
-import com.fashiongo.cms.param.ApprovalRollBackSaveAssignParam;
 import com.fashiongo.cms.param.ApprovalRollBackSaveRejectParam;
 import com.fashiongo.cms.param.ApprovalRollBackSaveReshareParam;
 
@@ -23,7 +24,7 @@ public class ApprovalRollBackService extends CommonService {
 	@SuppressWarnings("unchecked")
 	public List<ApprovalItem> selectApprovalList(ApprovalRollBackListApprovalParam approvalRollBackListApprovalParam) {
 		StoredProcedureQuery query = entityManager.createNamedStoredProcedureQuery("upWeb_GetApprovalItemList");
-		
+
 		query.setParameter("Page", approvalRollBackListApprovalParam.getPn());
 		query.setParameter("PageSize", approvalRollBackListApprovalParam.getPs());
 		query.setParameter("SearchStartDate", approvalRollBackListApprovalParam.getSearchStartDate());
@@ -63,8 +64,33 @@ public class ApprovalRollBackService extends CommonService {
 		return (List<RollBackItems>) query.getResultList();
 	}
 
-	public void mergeSaveApprove(ApprovalRollBackSaveAssignParam assignRollBackSaveAssignParam) {
-		StoredProcedureQuery query = entityManager.createNamedStoredProcedureQuery("");
+	// public void mergeSaveApprove(ApprovalRollBackSaveAssignParam
+	// assignRollBackSaveAssignParam) {
+	// StoredProcedureQuery query =
+	// entityManager.createNamedStoredProcedureQuery("");
+	// }
+
+	/**
+	 * 
+	 * @param approvalItemsSaveParam
+	 * @return
+	 * @author : Mason
+	 * @date : 2017. 9. 5.
+	 */
+	public ProcedureResult modifyApproveItems(ApprovalItemsApproveParam approvalItemsParamApprove) {
+		StoredProcedureQuery query = entityManager.createNamedStoredProcedureQuery("upWeb_ModifyApproveItem");
+		query.setParameter("WorkedBy", approvalItemsParamApprove.getWorkedBy());
+		query.setParameter("SessionKey", approvalItemsParamApprove.getSessionKey());
+		query.setParameter("ApproveList", approvalItemsParamApprove.getApproveList());
+
+		query.execute();
+
+		ProcedureResult procedureResult = new ProcedureResult();
+		procedureResult.setResultCode((Integer) query.getOutputParameterValue("ResultCode"));
+		procedureResult.setErrorMessage((String) query.getOutputParameterValue("ErrorMessage"));
+
+		return procedureResult;
+
 	}
 
 	public void updateSaveReject(ApprovalRollBackSaveRejectParam assignRollBackSaveRejectParam) {

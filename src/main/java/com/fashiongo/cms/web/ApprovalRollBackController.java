@@ -14,10 +14,11 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fashiongo.cms.common.JSONResponse;
 import com.fashiongo.cms.model.ApprovalItem;
 import com.fashiongo.cms.model.EditItem;
+import com.fashiongo.cms.model.ProcedureResult;
 import com.fashiongo.cms.model.RollBackItems;
+import com.fashiongo.cms.param.ApprovalItemsApproveParam;
 import com.fashiongo.cms.param.ApprovalRollBackListApprovalParam;
 import com.fashiongo.cms.param.ApprovalRollBackListRollBackParam;
-import com.fashiongo.cms.param.ApprovalRollBackSaveAssignParam;
 import com.fashiongo.cms.param.ApprovalRollBackSaveRejectParam;
 import com.fashiongo.cms.param.ApprovalRollBackSaveReshareParam;
 import com.fashiongo.cms.service.ApprovalRollBackService;
@@ -30,9 +31,9 @@ public class ApprovalRollBackController {
 
 	@Autowired
 	private ApprovalRollBackService approvalRollBackService;
-	
+
 	@Autowired
-	private EditItemService editItemService; 
+	private EditItemService editItemService;
 
 	/**
 	 * 
@@ -52,26 +53,25 @@ public class ApprovalRollBackController {
 	}
 
 	@RequestMapping(value = "/list_rollback", method = RequestMethod.GET)
-	public @ResponseBody JSONResponse<List<RollBackItems>> listRollback(ApprovalRollBackListRollBackParam approvalRollBackListRollBackParam)
-			throws Exception {
+	public @ResponseBody JSONResponse<List<RollBackItems>> listRollback(
+			ApprovalRollBackListRollBackParam approvalRollBackListRollBackParam) throws Exception {
 		JSONResponse<List<RollBackItems>> response = new JSONResponse<>();
 		response.setData(approvalRollBackService.selectRollbackList(approvalRollBackListRollBackParam));
 		return response;
 	}
-	
+
 	@RequestMapping(value = "/detail/{sharedProductSeq}", method = RequestMethod.GET)
-	public JSONResponse<EditItem> detailRollbackItem(@PathVariable Integer  sharedProductSeq){
+	public JSONResponse<EditItem> detailRollbackItem(@PathVariable Integer sharedProductSeq) {
 		JSONResponse<EditItem> jsonResponse = new JSONResponse<>();
 		jsonResponse.setData(editItemService.selectEditItem(sharedProductSeq));
-		return jsonResponse; 
+		return jsonResponse;
 	}
 
 	@RequestMapping(value = "/save_approval", method = RequestMethod.POST)
-	public @ResponseBody JSONResponse<?> saveApproval(ApprovalRollBackSaveAssignParam approvalRollBackSaveAssignParam)
+	public @ResponseBody JSONResponse<ProcedureResult> saveApproval(ApprovalItemsApproveParam approvalItemsApproveParam)
 			throws Exception {
-		JSONResponse<?> response = new JSONResponse<>();
-		approvalRollBackService.mergeSaveApprove(approvalRollBackSaveAssignParam);
-
+		JSONResponse<ProcedureResult> response = new JSONResponse<>();
+		approvalRollBackService.modifyApproveItems(approvalItemsApproveParam);
 		return response;
 	}
 

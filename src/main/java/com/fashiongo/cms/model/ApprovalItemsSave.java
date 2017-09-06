@@ -18,7 +18,7 @@ import javax.persistence.StoredProcedureParameter;
 		@NamedStoredProcedureQuery(name = "upWeb_ModifyRejectItem", procedureName = "dbo.upWeb_ModifyRejectItem", parameters = {
 				@StoredProcedureParameter(mode = ParameterMode.IN, name = "WorkedBy", type = Integer.class),
 				@StoredProcedureParameter(mode = ParameterMode.IN, name = "SessionKey", type = String.class),
-				@StoredProcedureParameter(mode = ParameterMode.IN, name = "ApproveList", type = String.class),
+				@StoredProcedureParameter(mode = ParameterMode.IN, name = "RejectList", type = String.class),
 				@StoredProcedureParameter(mode = ParameterMode.OUT, name = "ResultCode", type = Integer.class),
 				@StoredProcedureParameter(mode = ParameterMode.OUT, name = "ErrorMessage", type = String.class), }, resultClasses = ApprovalItemsSave.class), })
 @Entity

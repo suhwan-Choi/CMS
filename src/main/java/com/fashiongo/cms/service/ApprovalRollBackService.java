@@ -11,7 +11,8 @@ import org.springframework.stereotype.Service;
 import com.fashiongo.cms.model.ApprovalItem;
 import com.fashiongo.cms.model.ProcedureResult;
 import com.fashiongo.cms.model.RollBackItems;
-import com.fashiongo.cms.param.ApprovalItemsApproveRejectParam;
+import com.fashiongo.cms.param.ApprovalItemsApproveParam;
+import com.fashiongo.cms.param.ApprovalItemsRejectParam;
 import com.fashiongo.cms.param.ApprovalRollBackListApprovalParam;
 import com.fashiongo.cms.param.ApprovalRollBackListRollBackParam;
 import com.fashiongo.cms.param.ApprovalRollBackSaveRejectParam;
@@ -71,16 +72,11 @@ public class ApprovalRollBackService extends CommonService {
 	 * @author : Mason
 	 * @date : 2017. 9. 5.
 	 */
-	public ProcedureResult modifyApproveItems(ApprovalItemsApproveRejectParam approvalItemsApproveRejectParam) {
-		StoredProcedureQuery query;
-		if(approvalItemsApproveRejectParam.getMode().equals("approve")) {
-			query = entityManager.createNamedStoredProcedureQuery("upWeb_ModifyApproveItem");
-		}else {
-			query = entityManager.createNamedStoredProcedureQuery("upWeb_ModifyRejectItem");
-		}
-		query.setParameter("WorkedBy", approvalItemsApproveRejectParam.getWorkedBy());
-		query.setParameter("SessionKey", approvalItemsApproveRejectParam.getSessionKey());
-		query.setParameter("ApproveList", approvalItemsApproveRejectParam.getApproveList());
+	public ProcedureResult modifyApproveItems(ApprovalItemsApproveParam approvalItemsApproveParam) {
+		StoredProcedureQuery query = entityManager.createNamedStoredProcedureQuery("upWeb_ModifyApproveItem");
+		query.setParameter("WorkedBy", approvalItemsApproveParam.getWorkedBy());
+		query.setParameter("SessionKey", approvalItemsApproveParam.getSessionKey());
+		query.setParameter("ApproveList", approvalItemsApproveParam.getApproveList());
 
 		query.execute();
 
@@ -94,5 +90,20 @@ public class ApprovalRollBackService extends CommonService {
 
 	public void updateSaveReshare(ApprovalRollBackSaveReshareParam assignRollBackSaveReshareParam) {
 		StoredProcedureQuery query = entityManager.createNamedStoredProcedureQuery("");
+	}
+
+	public ProcedureResult modifyRejectItems(ApprovalItemsRejectParam approvalItemsRejectParam) {
+		StoredProcedureQuery query = entityManager.createNamedStoredProcedureQuery("upWeb_ModifyRejectItem");
+		query.setParameter("WorkedBy", approvalItemsRejectParam.getWorkedBy());
+		query.setParameter("SessionKey", approvalItemsRejectParam.getSessionKey());
+		query.setParameter("RejectList", approvalItemsRejectParam.getRejectList());
+
+		query.execute();
+
+		ProcedureResult procedureResult = new ProcedureResult();
+		procedureResult.setResultCode((Integer) query.getOutputParameterValue("ResultCode"));
+		procedureResult.setErrorMessage((String) query.getOutputParameterValue("ErrorMessage"));
+
+		return procedureResult;
 	}
 }

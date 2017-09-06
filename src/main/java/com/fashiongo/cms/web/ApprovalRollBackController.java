@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -16,7 +17,8 @@ import com.fashiongo.cms.model.ApprovalItem;
 import com.fashiongo.cms.model.EditItem;
 import com.fashiongo.cms.model.ProcedureResult;
 import com.fashiongo.cms.model.RollBackItems;
-import com.fashiongo.cms.param.ApprovalItemsApproveRejectParam;
+import com.fashiongo.cms.param.ApprovalItemsApproveParam;
+import com.fashiongo.cms.param.ApprovalItemsRejectParam;
 import com.fashiongo.cms.param.ApprovalRollBackListApprovalParam;
 import com.fashiongo.cms.param.ApprovalRollBackListRollBackParam;
 import com.fashiongo.cms.param.ApprovalRollBackSaveRejectParam;
@@ -67,11 +69,19 @@ public class ApprovalRollBackController {
 		return jsonResponse;
 	}
 
-	@RequestMapping(value = "/save", method = RequestMethod.POST)
-	public @ResponseBody JSONResponse<ProcedureResult> saveApproval(ApprovalItemsApproveRejectParam approvalItemsApproveParam)
+	@RequestMapping(value = "approval/save", method = RequestMethod.POST)
+	public @ResponseBody JSONResponse<ProcedureResult> saveApproval(@RequestBody ApprovalItemsApproveParam approvalItemsApproveParam)
 			throws Exception {
 		JSONResponse<ProcedureResult> response = new JSONResponse<>();
 		approvalRollBackService.modifyApproveItems(approvalItemsApproveParam);
+		return response;
+	}
+
+	@RequestMapping(value = "reject/save", method = RequestMethod.POST)
+	public @ResponseBody JSONResponse<ProcedureResult> saveReject(@RequestBody ApprovalItemsRejectParam approvalItemsRejectParam)
+			throws Exception {
+		JSONResponse<ProcedureResult> response = new JSONResponse<>();
+		approvalRollBackService.modifyRejectItems(approvalItemsRejectParam);
 		return response;
 	}
 

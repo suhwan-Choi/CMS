@@ -515,6 +515,12 @@ public class ApprovalItem {
 	private Date approvalOn;
 	@Column(name = "approvalbyname")
 	private String approvalByName;
+	
+	/*@Column(name = "sharedon")
+	private Date sharedOn;
+	
+	@Column(name = "sharedbyname")
+	private String sharedByName;*/
 
 	public String getEdit_ItemName() {
 		return edit_ItemName;
@@ -715,4 +721,20 @@ public class ApprovalItem {
 	public void setWorkStatus(Integer workStatus) {
 		this.workStatus = workStatus;
 	}
+
+	/*public Date getSharedOn() {
+		return sharedOn;
+	}
+
+	public void setSharedOn(Date sharedOn) {
+		this.sharedOn = sharedOn;
+	}
+
+	public String getSharedByName() {
+		return sharedByName;
+	}
+
+	public void setSharedByName(String sharedByName) {
+		this.sharedByName = sharedByName;
+	}*/
 }

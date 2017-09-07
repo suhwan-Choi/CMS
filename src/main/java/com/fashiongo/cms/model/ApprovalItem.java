@@ -463,6 +463,9 @@ public class ApprovalItem {
 
 	@Column(name = "edit_itemname")
 	private String edit_ItemName;
+	
+	@Column(name = "edit_categoryid1")
+	private Integer edit_CategoryID1;
 
 	@Column(name = "edit_categoryname1")
 	private String edit_CategoryName1;
@@ -519,6 +522,14 @@ public class ApprovalItem {
 
 	public void setEdit_ItemName(String edit_ItemName) {
 		this.edit_ItemName = edit_ItemName;
+	}
+
+	public Integer getEdit_CategoryID1() {
+		return edit_CategoryID1;
+	}
+
+	public void setEdit_CategoryID1(Integer edit_CategoryID1) {
+		this.edit_CategoryID1 = edit_CategoryID1;
 	}
 
 	public String getEdit_CategoryName1() {

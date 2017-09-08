@@ -25,6 +25,7 @@ import com.fashiongo.cms.param.ApprovalRollBackSaveRejectParam;
 import com.fashiongo.cms.param.ApprovalRollBackSaveReshareParam;
 import com.fashiongo.cms.service.ApprovalRollBackService;
 import com.fashiongo.cms.service.EditItemService;
+import com.fashiongo.cms.service.ItemShareService;
 
 @RestController
 @RequestMapping("/approval_rollback")
@@ -36,6 +37,9 @@ public class ApprovalRollBackController {
 
 	@Autowired
 	private EditItemService editItemService;
+
+	@Autowired
+	private ItemShareService itemShareService;
 
 	/**
 	 * 
@@ -50,7 +54,6 @@ public class ApprovalRollBackController {
 			ApprovalRollBackListApprovalParam approvalRollBackListapprovalParam) throws Exception {
 		JSONResponse<List<ApprovalItem>> response = new JSONResponse<>();
 		response.setData(approvalRollBackService.selectApprovalList(approvalRollBackListapprovalParam));
-
 		return response;
 	}
 
@@ -70,27 +73,26 @@ public class ApprovalRollBackController {
 	}
 
 	@RequestMapping(value = "approval/save", method = RequestMethod.POST)
-	public @ResponseBody JSONResponse<ProcedureResult> saveApproval(@RequestBody ApprovalItemsApproveParam approvalItemsApproveParam)
-			throws Exception {
+	public @ResponseBody JSONResponse<ProcedureResult> saveApproval(
+			@RequestBody ApprovalItemsApproveParam approvalItemsApproveParam) throws Exception {
 		JSONResponse<ProcedureResult> response = new JSONResponse<>();
-		approvalRollBackService.modifyApproveItems(approvalItemsApproveParam);
+		response.setData(approvalRollBackService.modifyApproveItems(approvalItemsApproveParam));
 		return response;
 	}
 
 	@RequestMapping(value = "reject/save", method = RequestMethod.POST)
-	public @ResponseBody JSONResponse<ProcedureResult> saveReject(@RequestBody ApprovalItemsRejectParam approvalItemsRejectParam)
-			throws Exception {
+	public @ResponseBody JSONResponse<ProcedureResult> saveReject(
+			@RequestBody ApprovalItemsRejectParam approvalItemsRejectParam) throws Exception {
 		JSONResponse<ProcedureResult> response = new JSONResponse<>();
-		approvalRollBackService.modifyRejectItems(approvalItemsRejectParam);
+		response.setData(approvalRollBackService.modifyRejectItems(approvalItemsRejectParam));
 		return response;
 	}
 
-	@RequestMapping(value = "/save_reshare", method = RequestMethod.POST)
-	public @ResponseBody JSONResponse<?> saveReshare(ApprovalRollBackSaveReshareParam approvalRollBackSaveReshareParam)
-			throws Exception {
-		JSONResponse<?> response = new JSONResponse<>();
-		approvalRollBackService.updateSaveReshare(approvalRollBackSaveReshareParam);
-
+	@RequestMapping(value = "onereshare/save", method = RequestMethod.POST)
+	public @ResponseBody JSONResponse<ProcedureResult> saveReshare(
+			@RequestBody ApprovalRollBackSaveReshareParam approvalRollBackSaveReshareParam) throws Exception {
+		JSONResponse<ProcedureResult> response = new JSONResponse<>();
+		response.setData(itemShareService.mergeSaveItemReshare(approvalRollBackSaveReshareParam));
 		return response;
 	}
 

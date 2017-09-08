@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.fashiongo.cms.model.ItemShareUser;
 import com.fashiongo.cms.model.ProcedureResult;
+import com.fashiongo.cms.param.ApprovalRollBackSaveReshareParam;
 import com.fashiongo.cms.param.ItemShareParam;
 
 @Service
@@ -53,5 +54,26 @@ public class ItemShareService extends CommonService {
 		procedureResult.setErrorMessage((String) query.getOutputParameterValue("ErrorMessage"));
 
 		return procedureResult;
+	}
+	
+	@Transactional(propagation = Propagation.SUPPORTS)
+	public ProcedureResult mergeSaveItemReshare(ApprovalRollBackSaveReshareParam approvalRollBackSaveReshareParam) {
+		StoredProcedureQuery query;
+		query = entityManager.createNamedStoredProcedureQuery("upWeb_CreateItemReshare");
+		
+		query.setParameter("WorkedBy", approvalRollBackSaveReshareParam.getWorkedBy());
+		query.setParameter("SessionKey", approvalRollBackSaveReshareParam.getSessionKey());
+		query.setParameter("ReshareList", approvalRollBackSaveReshareParam.getReshareList());
+		query.setParameter("ReshareUser", approvalRollBackSaveReshareParam.getReshareUser());
+		
+		query.execute();
+		
+		ProcedureResult procedureResult = new ProcedureResult();
+
+		procedureResult.setResultCode((Integer) query.getOutputParameterValue("ResultCode"));
+		procedureResult.setErrorMessage((String) query.getOutputParameterValue("ErrorMessage"));
+		
+		return procedureResult;
+		
 	}
 }

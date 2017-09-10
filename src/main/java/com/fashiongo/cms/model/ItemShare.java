@@ -26,7 +26,7 @@ import javax.persistence.StoredProcedureParameter;
 			@StoredProcedureParameter(mode = ParameterMode.OUT, name = "ResultCode", type = Integer.class),
 			@StoredProcedureParameter(mode = ParameterMode.OUT, name = "ErrorMessage", type = String.class)
 			})  ,
-	@NamedStoredProcedureQuery(name = "upWeb_CreateItemReshareSearch", procedureName = "dbo.upWeb_CreateItemReshareSearch", parameters = {
+	@NamedStoredProcedureQuery(name = "upWeb_CreateItemReassignSearch", procedureName = "dbo.upWeb_CreateItemReassignSearch", parameters = {
 			@StoredProcedureParameter(mode = ParameterMode.IN, name = "WorkedBy", type = Integer.class),
 			@StoredProcedureParameter(mode = ParameterMode.IN, name = "SessionKey", type = String.class),
 			@StoredProcedureParameter(mode = ParameterMode.IN, name = "SearchStartDate", type = Date.class),

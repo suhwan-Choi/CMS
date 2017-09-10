@@ -60,7 +60,7 @@ public class ItemShareService extends CommonService {
 	@Transactional(propagation = Propagation.SUPPORTS)
 	public ProcedureResult mergeSaveItemReshare(ApprovalRollBackSaveReshareParam approvalRollBackSaveReshareParam) {
 		StoredProcedureQuery query;
-		query = entityManager.createNamedStoredProcedureQuery("upWeb_CreateItemReshare");
+		query = entityManager.createNamedStoredProcedureQuery("upWeb_CreateItemReassign");
 		
 		query.setParameter("WorkedBy", approvalRollBackSaveReshareParam.getWorkedBy());
 		query.setParameter("SessionKey", approvalRollBackSaveReshareParam.getSessionKey());
@@ -82,7 +82,7 @@ public class ItemShareService extends CommonService {
 	public ProcedureResult mergeSaveItemReshareSearch(ApprovalRollBackSaveReshareSearchParam approvalRollBackSaveReshareCheckParam) {
 		
 		StoredProcedureQuery query;
-		query = entityManager.createNamedStoredProcedureQuery("upWeb_CreateItemReshareSearch");
+		query = entityManager.createNamedStoredProcedureQuery("upWeb_CreateItemReassignSearch");
 
 		query.execute();
 

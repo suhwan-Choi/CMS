@@ -9,7 +9,7 @@ import javax.persistence.ParameterMode;
 import javax.persistence.StoredProcedureParameter;
 
 @NamedStoredProcedureQueries({
-		@NamedStoredProcedureQuery(name = "upWeb_CreateItemReshare", procedureName = "dbo.upWeb_CreateItemReshare", parameters = {
+		@NamedStoredProcedureQuery(name = "upWeb_CreateItemReassign", procedureName = "dbo.upWeb_CreateItemReassign", parameters = {
 				@StoredProcedureParameter(mode = ParameterMode.IN, name = "WorkedBy", type = Integer.class),
 				@StoredProcedureParameter(mode = ParameterMode.IN, name = "SessionKey", type = String.class),
 				@StoredProcedureParameter(mode = ParameterMode.IN, name = "ReshareList", type = String.class),

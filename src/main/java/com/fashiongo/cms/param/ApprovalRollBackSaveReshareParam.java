@@ -25,7 +25,7 @@ public class ApprovalRollBackSaveReshareParam {
 	}
 
 	public String getReshareList() {
-		return reshareList;
+		return reshareList.replaceAll("\'", "\\\"");
 	}
 
 	public void setReshareList(String reshareList) {
@@ -33,7 +33,7 @@ public class ApprovalRollBackSaveReshareParam {
 	}
 
 	public String getReshareUser() {
-		return reshareUser;
+		return reshareUser.replaceAll("\'", "\\\"");
 	}
 
 	public void setReshareUser(String reshareUser) {

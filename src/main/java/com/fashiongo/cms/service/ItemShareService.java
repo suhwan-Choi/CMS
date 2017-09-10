@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.fashiongo.cms.model.ItemShareUser;
 import com.fashiongo.cms.model.ProcedureResult;
+import com.fashiongo.cms.param.ApprovalRollBackSaveReshareSearchParam;
 import com.fashiongo.cms.param.ApprovalRollBackSaveReshareParam;
 import com.fashiongo.cms.param.ItemShareParam;
 
@@ -75,5 +76,33 @@ public class ItemShareService extends CommonService {
 		
 		return procedureResult;
 		
+	}
+	
+	@Transactional(propagation = Propagation.SUPPORTS)
+	public ProcedureResult mergeSaveItemReshareSearch(ApprovalRollBackSaveReshareSearchParam approvalRollBackSaveReshareCheckParam) {
+		
+		StoredProcedureQuery query;
+		query = entityManager.createNamedStoredProcedureQuery("upWeb_CreateItemReshareSearch");
+
+		query.execute();
+
+		query.setParameter("WorkedBy", approvalRollBackSaveReshareCheckParam.getWorkedBy());
+		query.setParameter("SessionKey", approvalRollBackSaveReshareCheckParam.getSessionKey());
+		query.setParameter("SearchStartDate", approvalRollBackSaveReshareCheckParam.getSearchStartDate());
+		query.setParameter("SearchEndDate", approvalRollBackSaveReshareCheckParam.getSearchEndDate());
+		query.setParameter("Status", approvalRollBackSaveReshareCheckParam.getStatus());
+		query.setParameter("KeywordType", approvalRollBackSaveReshareCheckParam.getKeywordType());
+		query.setParameter("KeywordText", approvalRollBackSaveReshareCheckParam.getKeywordText());
+		query.setParameter("CategoryID1", approvalRollBackSaveReshareCheckParam.getCategoryID1());
+		query.setParameter("CategoryID2", approvalRollBackSaveReshareCheckParam.getCategoryID2());
+		query.setParameter("CategoryID3", approvalRollBackSaveReshareCheckParam.getCategoryID3());
+		query.setParameter("ReshareUser", approvalRollBackSaveReshareCheckParam.getReshareUser());
+		
+		ProcedureResult procedureResult = new ProcedureResult();
+
+		procedureResult.setResultCode((Integer) query.getOutputParameterValue("ResultCode"));
+		procedureResult.setErrorMessage((String) query.getOutputParameterValue("ErrorMessage"));
+		
+		return procedureResult;
 	}
 }

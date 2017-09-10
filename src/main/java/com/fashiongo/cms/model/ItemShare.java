@@ -25,6 +25,21 @@ import javax.persistence.StoredProcedureParameter;
 			@StoredProcedureParameter(mode = ParameterMode.IN, name = "Share", type = String.class),
 			@StoredProcedureParameter(mode = ParameterMode.OUT, name = "ResultCode", type = Integer.class),
 			@StoredProcedureParameter(mode = ParameterMode.OUT, name = "ErrorMessage", type = String.class)
+			})  ,
+	@NamedStoredProcedureQuery(name = "upWeb_CreateItemReshareSearch", procedureName = "dbo.upWeb_CreateItemReshareSearch", parameters = {
+			@StoredProcedureParameter(mode = ParameterMode.IN, name = "WorkedBy", type = Integer.class),
+			@StoredProcedureParameter(mode = ParameterMode.IN, name = "SessionKey", type = String.class),
+			@StoredProcedureParameter(mode = ParameterMode.IN, name = "SearchStartDate", type = Date.class),
+			@StoredProcedureParameter(mode = ParameterMode.IN, name = "SearchEndDate", type = Date.class),
+			@StoredProcedureParameter(mode = ParameterMode.IN, name = "Status", type = String.class),
+			@StoredProcedureParameter(mode = ParameterMode.IN, name = "KeywordType", type = String.class),
+			@StoredProcedureParameter(mode = ParameterMode.IN, name = "KeywordText", type = String.class),
+			@StoredProcedureParameter(mode = ParameterMode.IN, name = "CategoryID1", type = Integer.class),
+			@StoredProcedureParameter(mode = ParameterMode.IN, name = "CategoryID2", type = Integer.class),
+			@StoredProcedureParameter(mode = ParameterMode.IN, name = "CategoryID3", type = Integer.class),
+			@StoredProcedureParameter(mode = ParameterMode.IN, name = "ReshareUser", type = String.class),
+			@StoredProcedureParameter(mode = ParameterMode.OUT, name = "ResultCode", type = Integer.class),
+			@StoredProcedureParameter(mode = ParameterMode.OUT, name = "ErrorMessage", type = String.class)
 			})  
 	})
 @Entity

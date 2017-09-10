@@ -2,16 +2,17 @@ package com.fashiongo.cms.param;
 
 import java.util.Date;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fashiongo.cms.config.JSONDateDeserializer;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 public class AccessCodeSaveParam {
 	private Integer codeID;
 	private Boolean active;
 
-	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	@JsonDeserialize(using = JSONDateDeserializer.class)
 	private Date startedOn;
 
-	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	@JsonDeserialize(using = JSONDateDeserializer.class)
 	private Date expiredOn;
 	private String accessCode;
 	private Integer workedBy;

@@ -93,7 +93,7 @@ public class EditItemService extends CommonService {
 	@Transactional(propagation=Propagation.SUPPORTS)
 	public ProcedureResult mergeSaveItem(EditItemSaveItemParam editItemSaveItemParam) {
 		
-		StoredProcedureQuery query = entityManager.createNamedStoredProcedureQuery("upWeb_CreateModifyEditedProduct");
+		StoredProcedureQuery query = entityManager.createNamedStoredProcedureQuery("upWeb_ModifyEditItem");
 		
 		query.setParameter("WorkedBy", editItemSaveItemParam.getWorkedBy());
 		query.setParameter("RoIeIDofWorked", editItemSaveItemParam.getRoIeIDofWorked());

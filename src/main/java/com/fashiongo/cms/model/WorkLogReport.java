@@ -32,11 +32,19 @@ public class WorkLogReport{
 	private Integer reSharedCount;
 	
 	@Column(name = "rollbackcount")
-	private Integer rollBackCount;
-	
+	private Integer rollBackCount;	
+
 	@Column(name = "dom")
 	private Integer dom;
 	
+	public Integer getRollBackCount() {
+		return rollBackCount;
+	}
+
+	public void setRollBackCount(Integer rollBackCount) {
+		this.rollBackCount = rollBackCount;
+	}
+
 	public Integer getDom() {
 		return dom;
 	}
@@ -75,14 +83,6 @@ public class WorkLogReport{
 
 	public void setReSharedCount(Integer reSharedCount) {
 		this.reSharedCount = reSharedCount;
-	}
-
-	public Integer getRollBackCount() {
-		return rollBackCount;
-	}
-
-	public void setRollBackCount(Integer rollBackCount) {
-		this.rollBackCount = rollBackCount;
 	}
 
 	public Integer getEditedCount() {

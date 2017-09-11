@@ -1,7 +1,5 @@
 package com.fashiongo.cms.model;
 
-import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -38,7 +36,7 @@ public class NewItem{
 	}
 
 	@Column(name = "active")
-    private String active;
+    private Boolean active;
     
     @Column(name = "activatedon")
     private String activatedOn;
@@ -182,11 +180,11 @@ public class NewItem{
 		this.imageName = imageName;
 	}
 
-	public String getActive() {
+	public Boolean getActive() {
 		return active;
 	}
 
-	public void setActive(String active) {
+	public void setActive(Boolean active) {
 		this.active = active;
 	}
 

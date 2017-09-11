@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.fashiongo.cms.model.AccessIP;
 import com.fashiongo.cms.model.ImageList;
 import com.fashiongo.cms.model.NewItem;
 import com.fashiongo.cms.model.NewItemList;
@@ -30,11 +29,11 @@ public class NewItemService extends CommonService {
 	 */
 	@Transactional(readOnly = true)
 	@SuppressWarnings("unchecked")
-	public List<NewItem> selectDetailNewItem(Integer productID) {
+	public NewItem selectDetailNewItem(Integer productID) {
 		StoredProcedureQuery query = entityManager.createNamedStoredProcedureQuery("upWeb_GetItemDetail");
 		query.setParameter("ProductID", productID);
 
-		return (List<NewItem>) query.getResultList();
+		return (NewItem) query.getSingleResult();
 	}
 	
 	/**
@@ -84,21 +83,5 @@ public class NewItemService extends CommonService {
 		newItemList = (List<ImageList>) query.getResultList();
 
 		return newItemList;
-	}
-	
-	/**
-	 * 
-	 * @param productID
-	 * @return
-	 * @author Reo
-	 * @date 2017. 8. 25.
-	 */
-	@Transactional(propagation=Propagation.SUPPORTS)
-	@SuppressWarnings("unchecked")
-	public List<NewItem> selectDetailAccessIP(Integer productID) {
-		StoredProcedureQuery query = entityManager.createNamedStoredProcedureQuery("upWeb_GetAccessIP");
-		query.setParameter("ProductID", productID);
-
-		return (List<NewItem>) query.getResultList();
 	}
 }

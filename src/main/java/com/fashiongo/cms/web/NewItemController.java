@@ -67,10 +67,11 @@ public class NewItemController {
 	 * @date 2017. 8. 28.
 	 */
 	@RequestMapping(value = "/detail/{productID}", method = RequestMethod.GET)
-	public @ResponseBody JSONResponse<List<NewItem>> detailNewItem(@PathVariable Integer productID) throws Exception {
-		JSONResponse<List<NewItem>> jsonResponse = new JSONResponse<>();
-		List<NewItem> newItem = newItemService.selectDetailNewItem(productID);
-		jsonResponse.setData(newItem);
+	public @ResponseBody JSONResponse<NewItem> detailNewItem(@PathVariable Integer productID) throws Exception {
+		
+		JSONResponse<NewItem> jsonResponse = new JSONResponse<>();
+		jsonResponse.setData(newItemService.selectDetailNewItem(productID));
+		
 		return jsonResponse;
 	}
 }

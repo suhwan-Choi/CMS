@@ -21,6 +21,13 @@ public class ItemShareParam{
 	@JsonDeserialize(using = JSONDateDeserializer.class)
 	private Date searchEndDate;
 	private String share;
+	
+	public Integer getWorkedBy() {
+		return workedBy;
+	}
+	public void setWorkedBy(Integer workedBy) {
+		this.workedBy = workedBy;
+	}
 	public Date getSearchStartDate() {
 		return searchStartDate;
 	}
@@ -33,17 +40,11 @@ public class ItemShareParam{
 	public void setSearchEndDate(Date searchEndDate) {
 		this.searchEndDate = searchEndDate;
 	}
-	public Integer getWorkedBy() {
-		return workedBy;
-	}
 	public String getKeywordText() {
 		return keywordText;
 	}
 	public void setKeywordText(String keywordText) {
 		this.keywordText = keywordText;
-	}
-	public void setWorkedBy(Integer workedBy) {
-		this.workedBy = workedBy;
 	}
 	public String getSessionKey() {
 		return sessionKey;

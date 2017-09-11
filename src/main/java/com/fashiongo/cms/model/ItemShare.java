@@ -11,7 +11,7 @@ import javax.persistence.ParameterMode;
 import javax.persistence.StoredProcedureParameter;
 
 @NamedStoredProcedureQueries({
-	@NamedStoredProcedureQuery(name = "upWeb_CreateItemShare", procedureName = "dbo.upWeb_CreateItemShare", parameters = {
+	@NamedStoredProcedureQuery(name = "upWeb_CreateItemAssgin", procedureName = "dbo.upWeb_CreateItemAssgin", parameters = {
 			@StoredProcedureParameter(mode = ParameterMode.IN, name = "WorkedBy", type = Integer.class),
 			@StoredProcedureParameter(mode = ParameterMode.IN, name = "SessionKey", type = String.class),
 			@StoredProcedureParameter(mode = ParameterMode.IN, name = "KeywordType", type = String.class),

@@ -65,7 +65,7 @@ public class ApprovalRollBackController {
 		return response;
 	}
 
-	@RequestMapping(value = "/detail/{sharedProductSeq}", method = RequestMethod.GET)
+	@RequestMapping(value = "/detail_rollback/{sharedProductSeq}", method = RequestMethod.GET)
 	public JSONResponse<EditItem> detailRollbackItem(@PathVariable Integer sharedProductSeq) {
 		JSONResponse<EditItem> jsonResponse = new JSONResponse<>();
 		jsonResponse.setData(editItemService.selectEditItem(sharedProductSeq));

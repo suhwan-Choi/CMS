@@ -7,6 +7,8 @@ import javax.persistence.StoredProcedureQuery;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.fashiongo.cms.model.ApprovalItem;
 import com.fashiongo.cms.model.ProcedureResult;
@@ -15,7 +17,6 @@ import com.fashiongo.cms.param.ApprovalItemsApproveParam;
 import com.fashiongo.cms.param.ApprovalItemsRejectParam;
 import com.fashiongo.cms.param.ApprovalRollBackListApprovalParam;
 import com.fashiongo.cms.param.ApprovalRollBackListRollBackParam;
-import com.fashiongo.cms.param.ApprovalRollBackSaveRejectParam;
 import com.fashiongo.cms.param.ApprovalRollBackSaveReshareParam;
 
 @Service
@@ -23,6 +24,7 @@ public class ApprovalRollBackService extends CommonService {
 	private static Logger logger = LoggerFactory.getLogger(ApprovalRollBackService.class);
 
 	@SuppressWarnings("unchecked")
+	@Transactional(readOnly = true)
 	public List<ApprovalItem> selectApprovalList(ApprovalRollBackListApprovalParam approvalRollBackListApprovalParam) {
 		StoredProcedureQuery query = entityManager.createNamedStoredProcedureQuery("upWeb_GetApprovalItemList");
 
@@ -41,7 +43,6 @@ public class ApprovalRollBackService extends CommonService {
 
 	}
 
-	@SuppressWarnings("unchecked")
 	/**
 	 * 
 	 * @param approvalRollBackListRollBackParam
@@ -49,6 +50,8 @@ public class ApprovalRollBackService extends CommonService {
 	 * @author : Mason
 	 * @date : 2017. 9. 4.
 	 */
+	@SuppressWarnings("unchecked")
+	@Transactional(readOnly = true)
 	public List<RollBackItems> selectRollbackList(ApprovalRollBackListRollBackParam approvalRollBackListRollBackParam) {
 		StoredProcedureQuery query = entityManager.createNamedStoredProcedureQuery("upWeb_GetRollbackItemList");
 		query.setParameter("Page", approvalRollBackListRollBackParam.getPn());
@@ -72,6 +75,7 @@ public class ApprovalRollBackService extends CommonService {
 	 * @author : Mason
 	 * @date : 2017. 9. 5.
 	 */
+	@Transactional(propagation=Propagation.SUPPORTS)
 	public ProcedureResult modifyApproveItems(ApprovalItemsApproveParam approvalItemsApproveParam) {
 		StoredProcedureQuery query = entityManager.createNamedStoredProcedureQuery("upWeb_ModifyApproveItem");
 		query.setParameter("WorkedBy", approvalItemsApproveParam.getWorkedBy());
@@ -92,6 +96,7 @@ public class ApprovalRollBackService extends CommonService {
 		StoredProcedureQuery query = entityManager.createNamedStoredProcedureQuery("");
 	}
 
+	@Transactional(propagation=Propagation.SUPPORTS)
 	public ProcedureResult modifyRejectItems(ApprovalItemsRejectParam approvalItemsRejectParam) {
 		StoredProcedureQuery query = entityManager.createNamedStoredProcedureQuery("upWeb_ModifyRejectItem");
 		query.setParameter("WorkedBy", approvalItemsRejectParam.getWorkedBy());

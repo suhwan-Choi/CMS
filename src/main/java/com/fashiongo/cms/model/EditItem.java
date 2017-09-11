@@ -29,7 +29,7 @@ import javax.persistence.StoredProcedureParameter;
 			@StoredProcedureParameter(mode = ParameterMode.IN, name = "SharedProductSeq", type = Integer.class)
 	}, resultClasses = com.fashiongo.cms.model.EditItem.class),
 	
-	@NamedStoredProcedureQuery(name = "upWeb_CreateModifyEditedProduct", procedureName = "dbo.upWeb_CreateModifyEditedProduct", parameters = {
+	@NamedStoredProcedureQuery(name = "upWeb_ModifyEditItem", procedureName = "dbo.upWeb_ModifyEditItem", parameters = {
 			@StoredProcedureParameter(mode = ParameterMode.IN, name = "WorkedBy", type = Integer.class),
 			@StoredProcedureParameter(mode = ParameterMode.IN, name = "RoIeIDofWorked", type = Integer.class),
 			@StoredProcedureParameter(mode = ParameterMode.IN, name = "SessionKey", type = String.class),
@@ -236,11 +236,11 @@ public class EditItem {
 	@Column(name = "edit_hashtag5")
 	private String edit_Hashtag5;
 	
-	@Column(name = "sharedon")
-	private Date sharedOn;
+	@Column(name = "assignedon")
+	private Date assignedOn;
 	
-	@Column(name = "sharedbyname")
-	private String sharedByName;
+	@Column(name = "assignedbyname")
+	private String assignedByName;
 	
 	@Column(name = "lasteditedon")
 	private Date lastEditedOn;
@@ -724,20 +724,20 @@ public class EditItem {
 		this.edit_Hashtag5 = edit_Hashtag5;
 	}
 
-	public Date getSharedOn() {
-		return sharedOn;
+	public Date getAssignedOn() {
+		return assignedOn;
 	}
 
-	public void setSharedOn(Date sharedOn) {
-		this.sharedOn = sharedOn;
+	public void setAssignedOn(Date assignedOn) {
+		this.assignedOn = assignedOn;
 	}
 
-	public String getSharedByName() {
-		return sharedByName;
+	public String getAssignedByName() {
+		return assignedByName;
 	}
 
-	public void setSharedByName(String sharedByName) {
-		this.sharedByName = sharedByName;
+	public void setAssignedByName(String assignedByName) {
+		this.assignedByName = assignedByName;
 	}
 
 	public Date getLastEditedOn() {

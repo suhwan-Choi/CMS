@@ -35,7 +35,7 @@ public class ItemShareService extends CommonService {
 	@Transactional(propagation=Propagation.SUPPORTS)
 	public ProcedureResult mergeSaveItemShare(ItemShareParam itemShareParam) {
 		StoredProcedureQuery query;
-		query = entityManager.createNamedStoredProcedureQuery("upWeb_CreateItemShare");
+		query = entityManager.createNamedStoredProcedureQuery("upWeb_CreateItemAssgin");
 		query.setParameter("WorkedBy", itemShareParam.getWorkedBy());
 		query.setParameter("SessionKey", itemShareParam.getSessionKey());
 		query.setParameter("KeywordType", itemShareParam.getKeywordType());

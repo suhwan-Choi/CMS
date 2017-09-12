@@ -13,11 +13,13 @@ import javax.persistence.StoredProcedureParameter;
 				@StoredProcedureParameter(mode = ParameterMode.IN, name = "Page", type = Integer.class),
 				@StoredProcedureParameter(mode = ParameterMode.IN, name = "PageSize", type = Integer.class),
 				@StoredProcedureParameter(mode = ParameterMode.IN, name = "GroupName", type = String.class),
+				@StoredProcedureParameter(mode = ParameterMode.IN, name = "GroupRoleType", type = Integer.class),
 				@StoredProcedureParameter(mode = ParameterMode.IN, name = "Active", type = Boolean.class) }, resultClasses = com.fashiongo.cms.model.GroupManagerList.class),
 		@NamedStoredProcedureQuery(name = "upWeb_CreateAccessGroup", procedureName = "dbo.upWeb_CreateAccessGroup", parameters = {
 				@StoredProcedureParameter(mode = ParameterMode.IN, name = "GroupName", type = String.class),
 				@StoredProcedureParameter(mode = ParameterMode.IN, name = "Active", type = Boolean.class),
 				@StoredProcedureParameter(mode = ParameterMode.IN, name = "GroupDescription", type = String.class),
+				@StoredProcedureParameter(mode = ParameterMode.IN, name = "GroupRoleType", type = Integer.class),
 				@StoredProcedureParameter(mode = ParameterMode.IN, name = "WorkedBy", type = Integer.class),
 				@StoredProcedureParameter(mode = ParameterMode.IN, name = "Permission", type = String.class),
 				@StoredProcedureParameter(mode = ParameterMode.OUT, name = "ResultCode", type = Integer.class),
@@ -27,6 +29,7 @@ import javax.persistence.StoredProcedureParameter;
 				@StoredProcedureParameter(mode = ParameterMode.IN, name = "GroupName", type = String.class),
 				@StoredProcedureParameter(mode = ParameterMode.IN, name = "Active", type = Boolean.class),
 				@StoredProcedureParameter(mode = ParameterMode.IN, name = "GroupDescription", type = String.class),
+				@StoredProcedureParameter(mode = ParameterMode.IN, name = "GroupRoleType", type = Integer.class),
 				@StoredProcedureParameter(mode = ParameterMode.IN, name = "WorkedBy", type = Integer.class),
 				@StoredProcedureParameter(mode = ParameterMode.IN, name = "Permission", type = String.class),
 				@StoredProcedureParameter(mode = ParameterMode.OUT, name = "ResultCode", type = Integer.class),
@@ -52,6 +55,9 @@ public class GroupManagerList {
 
 	@Column(name = "groupdescription")
 	private String groupDescription;
+	
+	@Column(name = "grouproletypename")
+	private String groupRoleTypeName;
 
 	@Column(name = "totalcount")
 	private Integer totalCount;
@@ -94,6 +100,14 @@ public class GroupManagerList {
 
 	public void setGroupDescription(String groupDescription) {
 		this.groupDescription = groupDescription;
+	}
+
+	public String getGroupRoleTypeName() {
+		return groupRoleTypeName;
+	}
+
+	public void setGroupRoleTypeName(String groupRoleTypeName) {
+		this.groupRoleTypeName = groupRoleTypeName;
 	}
 
 	public Integer getTotalCount() {

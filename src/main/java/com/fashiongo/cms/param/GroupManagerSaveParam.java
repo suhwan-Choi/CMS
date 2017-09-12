@@ -4,6 +4,7 @@ public class GroupManagerSaveParam {
 	private Integer groupID;
 	private String groupName;
 	private Boolean active;
+	private Integer groupRoleType;
 	private String groupDescription;
 	private Integer workedBy;
 	private String permission;
@@ -30,6 +31,14 @@ public class GroupManagerSaveParam {
 
 	public void setActive(Boolean active) {
 		this.active = active;
+	}
+
+	public Integer getGroupRoleType() {
+		return groupRoleType;
+	}
+
+	public void setGroupRoleType(Integer groupRoleType) {
+		this.groupRoleType = groupRoleType;
 	}
 
 	public String getGroupDescription() {

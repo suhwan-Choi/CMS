@@ -13,16 +13,19 @@ import javax.persistence.StoredProcedureParameter;
 public class GroupManager {
 	
 	@Column(name = "groupid")
-	protected Integer groupID;
+	private Integer groupID;
 
 	@Column(name = "groupname")
-	protected String groupName;
+	private String groupName;
 
 	@Column(name = "active")
-	protected Boolean groupActive;
+	private Boolean groupActive;
+
+	@Column(name = "grouproletype")
+	private Integer groupRoleType;
 
 	@Column(name = "groupdescription")
-	protected String groupDescription;
+	private String groupDescription;
 
 	@Id
 	@Column(name = "menuid")
@@ -77,6 +80,14 @@ public class GroupManager {
 
 	public void setGroupActive(Boolean groupActive) {
 		this.groupActive = groupActive;
+	}
+	
+	public Integer getGroupRoleType() {
+		return groupRoleType;
+	}
+
+	public void setGroupRoleType(Integer groupRoleType) {
+		this.groupRoleType = groupRoleType;
 	}
 
 	public String getGroupDescription() {

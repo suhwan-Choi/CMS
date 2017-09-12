@@ -5,6 +5,7 @@ public class GroupManagerListParam {
 	private Boolean active;
 	private Integer ps;
 	private Integer pn;
+	private Integer groupRoleType;
 
 	public String getGroupName() {
 		return groupName;
@@ -38,4 +39,13 @@ public class GroupManagerListParam {
 		this.pn = pn;
 	}
 
+	public Integer getGroupRoleType() {
+		return groupRoleType;
+	}
+
+	public void setGroupRoleType(Integer groupRoleType) {
+		this.groupRoleType = groupRoleType;
+	}
+
+	
 }

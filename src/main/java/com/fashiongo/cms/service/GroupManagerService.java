@@ -37,6 +37,7 @@ public class GroupManagerService extends CommonService {
 		query.setParameter("Page", groupManagerListParam.getPn());
 		query.setParameter("PageSize", groupManagerListParam.getPs());
 		query.setParameter("GroupName", groupManagerListParam.getGroupName());
+		query.setParameter("GroupRoleType", groupManagerListParam.getGroupRoleType());
 		query.setParameter("Active", groupManagerListParam.getActive());
 
 		return (List<GroupManagerList>) query.getResultList();
@@ -78,6 +79,7 @@ public class GroupManagerService extends CommonService {
 			query.setParameter("WorkedBy", groupManagerSaveParam.getWorkedBy());
 		}
 
+		query.setParameter("GroupRoleType", groupManagerSaveParam.getGroupRoleType());
 		query.setParameter("GroupName", groupManagerSaveParam.getGroupName());
 		query.setParameter("Active", groupManagerSaveParam.getActive());
 		query.setParameter("GroupDescription", groupManagerSaveParam.getGroupDescription());

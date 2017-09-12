@@ -503,10 +503,10 @@ public class ApprovalItem {
 	private String edit_Hashtag4;
 	@Column(name = "edit_hashtag5")
 	private String edit_Hashtag5;
-	@Column(name = "assignon")
-	private Date assignOn;
-	@Column(name = "assigntoname")
-	private String assignToName;
+	@Column(name = "assignedon")
+	private Date assignedOn;
+	@Column(name = "assignedbyname")
+	private String assignedByName;
 	@Column(name = "lasteditedon")
 	private Date lastEditedOn;
 	@Column(name = "editedbyname")
@@ -658,20 +658,20 @@ public class ApprovalItem {
 		this.edit_Hashtag5 = edit_Hashtag5;
 	}
 
-	public Date getAssignOn() {
-		return assignOn;
+	public Date getAssignedOn() {
+		return assignedOn;
 	}
 
-	public void setAssignOn(Date assignOn) {
-		this.assignOn = assignOn;
+	public void setAssignedOn(Date assignedOn) {
+		this.assignedOn = assignedOn;
 	}
 
-	public String getAssignToName() {
-		return assignToName;
+	public String getAssignedByName() {
+		return assignedByName;
 	}
 
-	public void setAssignToName(String assignToName) {
-		this.assignToName = assignToName;
+	public void setAssignedByName(String assignedByName) {
+		this.assignedByName = assignedByName;
 	}
 
 	public Date getLastEditedOn() {

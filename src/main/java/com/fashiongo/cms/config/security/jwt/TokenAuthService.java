@@ -1,6 +1,7 @@
 package com.fashiongo.cms.config.security.jwt;
 
 import java.io.OutputStream;
+import java.text.SimpleDateFormat;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -72,6 +73,10 @@ public class TokenAuthService {
 			String jwtToken = request.getHeader(headerString);
 			
 			logger.info("getAuthentication jwtToken :: " + jwtToken);
+			
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			
+			logger.info("getExpirationDateFromToken :: " +sdf.format(jwtTokenUtil.getExpirationDateFromToken(jwtToken)));
 			
 			if(jwtTokenUtil.validateToken(jwtToken)) {
 				String username = jwtTokenUtil.getUsernameFromToken(jwtToken);

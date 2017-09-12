@@ -11,7 +11,7 @@ import javax.persistence.ParameterMode;
 import javax.persistence.StoredProcedureParameter;
 
 @NamedStoredProcedureQueries({
-	@NamedStoredProcedureQuery(name = "upWeb_CreateItemAssgin", procedureName = "dbo.upWeb_CreateItemAssgin", parameters = {
+	@NamedStoredProcedureQuery(name = "upWeb_CreateItemAssign", procedureName = "dbo.upWeb_CreateItemAssign", parameters = {
 			@StoredProcedureParameter(mode = ParameterMode.IN, name = "WorkedBy", type = Integer.class),
 			@StoredProcedureParameter(mode = ParameterMode.IN, name = "SessionKey", type = String.class),
 			@StoredProcedureParameter(mode = ParameterMode.IN, name = "KeywordType", type = String.class),
@@ -22,9 +22,7 @@ import javax.persistence.StoredProcedureParameter;
 			@StoredProcedureParameter(mode = ParameterMode.IN, name = "SearchDateType", type = String.class),
 			@StoredProcedureParameter(mode = ParameterMode.IN, name = "SearchStartDate", type = Date.class),
 			@StoredProcedureParameter(mode = ParameterMode.IN, name = "SearchEndDate", type = Date.class),
-			@StoredProcedureParameter(mode = ParameterMode.IN, name = "Share", type = String.class),
-			@StoredProcedureParameter(mode = ParameterMode.OUT, name = "ResultCode", type = Integer.class),
-			@StoredProcedureParameter(mode = ParameterMode.OUT, name = "ErrorMessage", type = String.class)
+			@StoredProcedureParameter(mode = ParameterMode.IN, name = "Share", type = String.class)
 			})  ,
 	@NamedStoredProcedureQuery(name = "upWeb_CreateItemReassignSearch", procedureName = "dbo.upWeb_CreateItemReassignSearch", parameters = {
 			@StoredProcedureParameter(mode = ParameterMode.IN, name = "WorkedBy", type = Integer.class),
@@ -45,14 +43,14 @@ import javax.persistence.StoredProcedureParameter;
 @Entity
 public class ItemShare{
 	@Id
-    @Column(name = "workedby")
-    private Integer workedBy;
+	@Column(name = "totalcount")
+	private Integer totalCount;
 
-	public Integer getWorkedBy() {
-		return workedBy;
+	public Integer getTotalCount() {
+		return totalCount;
 	}
 
-	public void setWorkedBy(Integer workedBy) {
-		this.workedBy = workedBy;
+	public void setTotalCount(Integer totalCount) {
+		this.totalCount = totalCount;
 	}
 }

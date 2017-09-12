@@ -3,6 +3,7 @@ package com.fashiongo.cms.web;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -49,6 +50,15 @@ public class EditItemController {
  		
 		JSONResponse<ProcedureResult> response = new JSONResponse<ProcedureResult>();
 		response.setData(editItemService.insertSaveRollback(editItmSaveRollBackParam));
+ 		
+		return response;
+	}
+	
+	@RequestMapping(value = "/detail/{sharedProductSeq}", method = RequestMethod.GET)
+ 	public @ResponseBody JSONResponse<EditItem> detail(@PathVariable int sharedProductSeq) throws Exception{
+		
+ 		JSONResponse<EditItem> response = new JSONResponse<EditItem>();
+ 		response.setData(editItemService.selectEditItem(sharedProductSeq));
  		
 		return response;
 	}

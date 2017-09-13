@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fashiongo.cms.common.JSONResponse;
-import com.fashiongo.cms.model.CMSAdminUser;
 import com.fashiongo.cms.model.ProcedureResult;
 import com.fashiongo.cms.model.UserManagerDetail;
 import com.fashiongo.cms.model.UserManagerList;

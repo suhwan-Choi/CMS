@@ -22,7 +22,9 @@ import javax.persistence.StoredProcedureParameter;
 			@StoredProcedureParameter(mode = ParameterMode.IN, name = "SearchDateType", type = String.class),
 			@StoredProcedureParameter(mode = ParameterMode.IN, name = "SearchStartDate", type = Date.class),
 			@StoredProcedureParameter(mode = ParameterMode.IN, name = "SearchEndDate", type = Date.class),
-			@StoredProcedureParameter(mode = ParameterMode.IN, name = "Share", type = String.class)
+			@StoredProcedureParameter(mode = ParameterMode.IN, name = "Share", type = String.class),
+			@StoredProcedureParameter(mode = ParameterMode.OUT, name = "ResultCode", type = Integer.class),
+			@StoredProcedureParameter(mode = ParameterMode.OUT, name = "ErrorMessage", type = String.class)
 			})  ,
 	@NamedStoredProcedureQuery(name = "upWeb_CreateItemReassignSearch", procedureName = "dbo.upWeb_CreateItemReassignSearch", parameters = {
 			@StoredProcedureParameter(mode = ParameterMode.IN, name = "WorkedBy", type = Integer.class),

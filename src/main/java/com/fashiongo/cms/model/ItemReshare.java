@@ -13,7 +13,9 @@ import javax.persistence.StoredProcedureParameter;
 				@StoredProcedureParameter(mode = ParameterMode.IN, name = "WorkedBy", type = Integer.class),
 				@StoredProcedureParameter(mode = ParameterMode.IN, name = "SessionKey", type = String.class),
 				@StoredProcedureParameter(mode = ParameterMode.IN, name = "ReshareList", type = String.class),
-				@StoredProcedureParameter(mode = ParameterMode.IN, name = "ReshareUser", type = String.class), }) })
+				@StoredProcedureParameter(mode = ParameterMode.IN, name = "ReshareUser", type = String.class),
+				@StoredProcedureParameter(mode = ParameterMode.OUT, name = "ResultCode", type = Integer.class),
+				@StoredProcedureParameter(mode = ParameterMode.OUT, name = "ErrorMessage", type = String.class), }, resultClasses = ItemReshare.class) })
 @Entity
 public class ItemReshare {
 	@Id

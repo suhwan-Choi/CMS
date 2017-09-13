@@ -130,6 +130,7 @@ public class ApprovalItem {
 	
 	@Column(name = "workstatus")
 	private Integer workStatus;
+	
 
 	public Integer getSeq() {
 		return seq;
@@ -515,6 +516,8 @@ public class ApprovalItem {
 	private Date approvalOn;
 	@Column(name = "approvalbyname")
 	private String approvalByName;
+	@Column(name = "approvalstatus")
+	private Integer approvalStatus;
 	
 	/*@Column(name = "sharedon")
 	private Date sharedOn;
@@ -721,6 +724,16 @@ public class ApprovalItem {
 	public void setWorkStatus(Integer workStatus) {
 		this.workStatus = workStatus;
 	}
+
+	public Integer getApprovalStatus() {
+		return approvalStatus;
+	}
+
+	public void setApprovalStatus(Integer approvalStatus) {
+		this.approvalStatus = approvalStatus;
+	}
+	
+	
 
 	/*public Date getSharedOn() {
 		return sharedOn;

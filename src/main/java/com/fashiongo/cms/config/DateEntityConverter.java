@@ -20,13 +20,13 @@ public class DateEntityConverter implements AttributeConverter <Date, Date>{
 
 	@Override
 	public Date convertToEntityAttribute(Date dbData) {
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		/*SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		logger.info("============================================================================");
 		logger.info(dbData == null ? "null" : "not null");
 		if(dbData != null) {			
 			logger.info(sdf.format(dbData));
 		}
-		logger.info("============================================================================");
+		logger.info("============================================================================");*/
 		return dbData;
 	}
 

@@ -31,7 +31,6 @@ public class HttpResponseAdvice implements ResponseBodyAdvice<Object>{
 			Object refreshToken = httpReq.getAttribute(attrubute);
 			
 			if(refreshToken != null) {
-				System.out.println("refreshToken :: " + refreshToken);
 				((JSONResponse<Object>) body).setToken(refreshToken.toString());
 			}
 		}

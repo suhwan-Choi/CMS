@@ -9,7 +9,7 @@ import javax.persistence.Converter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-@Converter(autoApply = true)
+@Converter
 public class DateEntityConverter implements AttributeConverter <Date, Date>{
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
@@ -23,7 +23,7 @@ public class DateEntityConverter implements AttributeConverter <Date, Date>{
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		logger.info("============================================================================");
 		logger.info(dbData == null ? "null" : "not null");
-		if(dbData != null) {
+		if(dbData != null) {			
 			logger.info(sdf.format(dbData));
 		}
 		logger.info("============================================================================");

@@ -84,7 +84,6 @@ public class ItemShareService extends CommonService {
 		StoredProcedureQuery query;
 		query = entityManager.createNamedStoredProcedureQuery("upWeb_CreateItemReassignSearch");
 
-		query.execute();
 
 		query.setParameter("WorkedBy", approvalRollBackSaveReshareCheckParam.getWorkedBy());
 		query.setParameter("SessionKey", approvalRollBackSaveReshareCheckParam.getSessionKey());
@@ -98,6 +97,7 @@ public class ItemShareService extends CommonService {
 		query.setParameter("CategoryID3", approvalRollBackSaveReshareCheckParam.getCategoryID3());
 		query.setParameter("ReshareUser", approvalRollBackSaveReshareCheckParam.getReshareUser());
 		
+		query.execute();
 		ProcedureResult procedureResult = new ProcedureResult();
 
 		procedureResult.setResultCode((Integer) query.getOutputParameterValue("ResultCode"));

@@ -20,6 +20,7 @@ import org.springframework.context.annotation.Configuration;
 @EnableAutoConfiguration
 @ComponentScan
 public class SearchApplication extends SpringBootServletInitializer{
+	
 	@PostConstruct
 	void started() {
 		TimeZone.setDefault(TimeZone.getTimeZone("America/Los_Angeles"));

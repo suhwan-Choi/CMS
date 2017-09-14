@@ -1,23 +1,14 @@
 package com.fashiongo.cms.model;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.GregorianCalendar;
-import java.util.TimeZone;
 
 import javax.persistence.Column;
-import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.NamedStoredProcedureQueries;
 import javax.persistence.NamedStoredProcedureQuery;
 import javax.persistence.ParameterMode;
 import javax.persistence.StoredProcedureParameter;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-
-import com.fashiongo.cms.config.DateEntityConverter;
 
 @NamedStoredProcedureQueries({
 	@NamedStoredProcedureQuery(name = "upWeb_GetEditItemList", procedureName = "dbo.upWeb_GetEditItemList", parameters = {
@@ -245,7 +236,6 @@ public class EditItem {
 	@Column(name = "edit_hashtag5")
 	private String edit_Hashtag5;
 	
-	@Convert(converter = DateEntityConverter.class)
 	@Column(name = "assignedon")
 	private Date assignedOn;
 	
@@ -266,6 +256,9 @@ public class EditItem {
 	
 	@Column(name = "workstatus")
 	private Integer workStatus;
+	
+	@Column(name = "approvalstatus")
+	private Integer approvalStatus;
 	
 	@Column(name = "totalcount")
 	private Integer totalCount;
@@ -788,6 +781,14 @@ public class EditItem {
 
 	public void setWorkStatus(Integer workStatus) {
 		this.workStatus = workStatus;
+	}
+
+	public Integer getApprovalStatus() {
+		return approvalStatus;
+	}
+
+	public void setApprovalStatus(Integer approvalStatus) {
+		this.approvalStatus = approvalStatus;
 	}
 
 	public Integer getTotalCount() {

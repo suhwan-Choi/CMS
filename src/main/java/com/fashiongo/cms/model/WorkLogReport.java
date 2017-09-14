@@ -25,14 +25,30 @@ public class WorkLogReport{
 	@Column(name = "enddate")
 	private Date endDate;
 	
-	@Column(name = "sharedcount")
-	private Integer sharedCount;
+	@Column(name = "assignedcount")
+	private Integer assignedCount;
 	
-	@Column(name = "resharedcount")
-	private Integer reSharedCount;
+	@Column(name = "reassignedcount")
+	private Integer reAssignedCount;
 	
 	@Column(name = "rollbackcount")
 	private Integer rollBackCount;	
+
+	public Integer getAssignedCount() {
+		return assignedCount;
+	}
+
+	public void setAssignedCount(Integer assignedCount) {
+		this.assignedCount = assignedCount;
+	}
+
+	public Integer getReAssignedCount() {
+		return reAssignedCount;
+	}
+
+	public void setReAssignedCount(Integer reAssignedCount) {
+		this.reAssignedCount = reAssignedCount;
+	}
 
 	@Column(name = "dom")
 	private Integer dom;
@@ -67,22 +83,6 @@ public class WorkLogReport{
 
 	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
-	}
-
-	public Integer getSharedCount() {
-		return sharedCount;
-	}
-
-	public void setSharedCount(Integer sharedCount) {
-		this.sharedCount = sharedCount;
-	}
-
-	public Integer getReSharedCount() {
-		return reSharedCount;
-	}
-
-	public void setReSharedCount(Integer reSharedCount) {
-		this.reSharedCount = reSharedCount;
 	}
 
 	public Integer getEditedCount() {

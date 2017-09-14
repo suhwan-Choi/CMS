@@ -41,12 +41,12 @@ public class WorkLogReportUser implements Serializable{
 	private Integer editedCount;	
 	
 	@Id
-	@Column(name = "sharedcount")
-	private Integer sharedCount;
+	@Column(name = "assignedcount")
+	private Integer assignedCount;
 	
 	@Id
-	@Column(name = "resharedcount")
-	private Integer reSharedCount;
+	@Column(name = "reassignedcount")
+	private Integer reAssignedCount;
 	
 	@Id
 	@Column(name = "approvedcount")
@@ -92,24 +92,24 @@ public class WorkLogReportUser implements Serializable{
 		return editedCount;
 	}
 
+	public Integer getAssignedCount() {
+		return assignedCount;
+	}
+
+	public void setAssignedCount(Integer assignedCount) {
+		this.assignedCount = assignedCount;
+	}
+
+	public Integer getReAssignedCount() {
+		return reAssignedCount;
+	}
+
+	public void setReAssignedCount(Integer reAssignedCount) {
+		this.reAssignedCount = reAssignedCount;
+	}
+
 	public void setEditedCount(Integer editedCount) {
 		this.editedCount = editedCount;
-	}
-
-	public Integer getSharedCount() {
-		return sharedCount;
-	}
-
-	public void setSharedCount(Integer sharedCount) {
-		this.sharedCount = sharedCount;
-	}
-
-	public Integer getReSharedCount() {
-		return reSharedCount;
-	}
-
-	public void setReSharedCount(Integer reSharedCount) {
-		this.reSharedCount = reSharedCount;
 	}
 
 	public Integer getApprovedCount() {

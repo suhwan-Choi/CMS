@@ -38,13 +38,29 @@ public class WorkLogReportExcel implements Serializable{
 	private String userName;
 	
 	@Id
-	@Column(name = "sharedcount")
-	private Integer sharedCount;
-
-	@Id
-	@Column(name = "resharedcount")
-	private Integer reSharedCount;
+	@Column(name = "assignedcount")
+	private Integer assignedCount;
 	
+	@Id
+	@Column(name = "reassignedcount")
+	private Integer reAssignedCount;
+	
+	public Integer getAssignedCount() {
+		return assignedCount;
+	}
+
+	public void setAssignedCount(Integer assignedCount) {
+		this.assignedCount = assignedCount;
+	}
+
+	public Integer getReAssignedCount() {
+		return reAssignedCount;
+	}
+
+	public void setReAssignedCount(Integer reAssignedCount) {
+		this.reAssignedCount = reAssignedCount;
+	}
+
 	@Id
 	@Column(name = "rollbackcount")
 	private Integer rollBackCount;
@@ -91,22 +107,6 @@ public class WorkLogReportExcel implements Serializable{
 
 	public void setUserName(String userName) {
 		this.userName = userName;
-	}
-
-	public Integer getSharedCount() {
-		return sharedCount;
-	}
-
-	public void setSharedCount(Integer sharedCount) {
-		this.sharedCount = sharedCount;
-	}
-
-	public Integer getReSharedCount() {
-		return reSharedCount;
-	}
-
-	public void setReSharedCount(Integer reSharedCount) {
-		this.reSharedCount = reSharedCount;
 	}
 
 	public Integer getRollBackCount() {

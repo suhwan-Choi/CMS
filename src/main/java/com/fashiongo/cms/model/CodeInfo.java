@@ -24,8 +24,13 @@ public class CodeInfo implements Serializable{
 	@Column(name = "codeid")
 	private Integer codeID;
 	
+	@Id
 	@Column(name = "codename")
 	private String codeName;
+	
+	@Id
+	@Column(name = "categoryid")
+	private Integer categoryID;
 
 	public String getCodeType() {
 		return codeType;
@@ -49,5 +54,13 @@ public class CodeInfo implements Serializable{
 
 	public void setCodeName(String codeName) {
 		this.codeName = codeName;
+	}
+
+	public Integer getCategoryID() {
+		return categoryID;
+	}
+
+	public void setCategoryID(Integer categoryID) {
+		this.categoryID = categoryID;
 	}
 }

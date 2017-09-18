@@ -2,8 +2,6 @@ package com.fashiongo.cms.service;
 
 import java.util.Date;
 
-import javax.persistence.ParameterMode;
-import javax.persistence.StoredProcedureParameter;
 import javax.persistence.StoredProcedureQuery;
 
 import org.slf4j.Logger;

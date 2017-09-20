@@ -15,6 +15,7 @@ public class EditItemSaveItemParam {
 	private Integer fabricID;
 	private String searchKeyword;
 	private String hashTag;
+	private Boolean isApproveItems;
 	
 	public Integer getWorkedBy() {
 		return workedBy;
@@ -126,5 +127,13 @@ public class EditItemSaveItemParam {
 	
 	public void setHashTag(String hashTag) {
 		this.hashTag = hashTag;
+	}
+
+	public Boolean getIsApproveItems() {
+		return isApproveItems;
+	}
+
+	public void setIsApproveItems(Boolean isApproveItems) {
+		this.isApproveItems = isApproveItems;
 	}
 }

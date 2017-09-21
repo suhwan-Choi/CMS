@@ -35,6 +35,10 @@ public class RollBackItems {
 	private String reason;
 	@Column(name = "requeston")
 	private Date requestOn;
+	@Column(name = "resolvedon")
+	private Date resolvedOn;
+	@Column(name = "resolvedstatus")
+	private Integer resolvedStatus;
 	@Column(name = "totalcount")
 	private Integer totalCount;
 
@@ -84,6 +88,22 @@ public class RollBackItems {
 
 	public void setRequestOn(Date requestOn) {
 		this.requestOn = requestOn;
+	}
+
+	public Date getResolvedOn() {
+		return resolvedOn;
+	}
+
+	public void setResolvedOn(Date resolvedOn) {
+		this.resolvedOn = resolvedOn;
+	}
+
+	public Integer getResolvedStatus() {
+		return resolvedStatus;
+	}
+
+	public void setResolvedStatus(Integer resolvedStatus) {
+		this.resolvedStatus = resolvedStatus;
 	}
 
 	public Integer getTotalCount() {

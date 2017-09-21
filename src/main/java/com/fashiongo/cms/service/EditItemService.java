@@ -118,4 +118,32 @@ public class EditItemService extends CommonService {
 		
 		return procedureResult;
 	}
+	
+	@Transactional(propagation=Propagation.SUPPORTS)
+	public ProcedureResult approveSaveItem(EditItemSaveItemParam editItemSaveItemParam) {
+		
+		StoredProcedureQuery query = entityManager.createNamedStoredProcedureQuery("upWeb_ModifyEditApproveItem");
+		
+		query.setParameter("WorkedBy", editItemSaveItemParam.getWorkedBy());
+		query.setParameter("SessionKey", editItemSaveItemParam.getSessionKey());
+		query.setParameter("SharedProductSeq", editItemSaveItemParam.getSharedProductSeq());
+		query.setParameter("ItemName", editItemSaveItemParam.getItemName());
+		query.setParameter("CategoryID", editItemSaveItemParam.getCategoryID());
+		query.setParameter("ParentCategoryID", editItemSaveItemParam.getParentCategoryID());
+		query.setParameter("ParentParentCategoryID", editItemSaveItemParam.getParentParentCategoryID());
+		query.setParameter("LengthID", editItemSaveItemParam.getLengthID());
+		query.setParameter("StyleID", editItemSaveItemParam.getStyleID());
+		query.setParameter("PatternID", editItemSaveItemParam.getPatternID());
+		query.setParameter("FabricID", editItemSaveItemParam.getFabricID());
+		query.setParameter("SearchKeyword", editItemSaveItemParam.getSearchKeyword());
+		query.setParameter("HashTag", editItemSaveItemParam.getHashTag());
+
+		query.execute();
+
+		ProcedureResult procedureResult = new ProcedureResult();
+		procedureResult.setResultCode((Integer) query.getOutputParameterValue("ResultCode"));
+		procedureResult.setErrorMessage((String) query.getOutputParameterValue("ErrorMessage"));
+		
+		return procedureResult;
+	} 
 }

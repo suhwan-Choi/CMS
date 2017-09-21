@@ -64,12 +64,19 @@ public class EditItemController {
 	}
 	
 	@RequestMapping(value = "/save_item", method = RequestMethod.POST)
- 	public @ResponseBody JSONResponse<EditItemSaveResult> saveItem(@RequestBody EditItemSaveItemParam editItemSaveItemParam) throws Exception{
+	public @ResponseBody JSONResponse<EditItemSaveResult> saveItem(@RequestBody EditItemSaveItemParam editItemSaveItemParam) throws Exception{
  		
 		JSONResponse<EditItemSaveResult> response = new JSONResponse<EditItemSaveResult>();
 		EditItemSaveResult editItemSaveResult = new EditItemSaveResult();
 		
-		ProcedureResult procedureResult = editItemService.mergeSaveItem(editItemSaveItemParam);
+		ProcedureResult procedureResult = null;
+		
+		if (editItemSaveItemParam.getIsApproveItems()) {
+			procedureResult = editItemService.approveSaveItem(editItemSaveItemParam);
+		} else {
+			procedureResult = editItemService.mergeSaveItem(editItemSaveItemParam);
+		}
+		
 		editItemSaveResult.setProcedureResult(procedureResult);
 		
 		if (procedureResult.getResultCode() == 0) {

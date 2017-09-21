@@ -196,6 +196,17 @@ public class NewItemList{
 	public void setVendorCategoryName(String vendorCategoryName) {
 		this.vendorCategoryName = vendorCategoryName;
 	}
+	
+	@Column(name = "modifiedon")
+	private Date modifiedOn;
+
+	public Date getModifiedOn() {
+		return modifiedOn;
+	}
+
+	public void setModifiedOn(Date modifiedOn) {
+		this.modifiedOn = modifiedOn;
+	}
 
 	@Column(name = "activatedon")
     private Date activatedOn;

@@ -48,6 +48,24 @@ import javax.persistence.StoredProcedureParameter;
 			@StoredProcedureParameter(mode = ParameterMode.OUT, name = "ErrorMessage", type = String.class)
 	}),
 	
+	@NamedStoredProcedureQuery(name = "upWeb_ModifyEditApproveItem", procedureName = "dbo.upWeb_ModifyEditApproveItem", parameters = {
+			@StoredProcedureParameter(mode = ParameterMode.IN, name = "WorkedBy", type = Integer.class),
+			@StoredProcedureParameter(mode = ParameterMode.IN, name = "SessionKey", type = String.class),
+			@StoredProcedureParameter(mode = ParameterMode.IN, name = "SharedProductSeq", type = Integer.class),
+			@StoredProcedureParameter(mode = ParameterMode.IN, name = "ItemName", type = String.class),
+			@StoredProcedureParameter(mode = ParameterMode.IN, name = "CategoryID", type = Integer.class),
+			@StoredProcedureParameter(mode = ParameterMode.IN, name = "ParentCategoryID", type = Integer.class),
+			@StoredProcedureParameter(mode = ParameterMode.IN, name = "ParentParentCategoryID", type = Integer.class),
+			@StoredProcedureParameter(mode = ParameterMode.IN, name = "LengthID", type = Integer.class),
+			@StoredProcedureParameter(mode = ParameterMode.IN, name = "StyleID", type = Integer.class),
+			@StoredProcedureParameter(mode = ParameterMode.IN, name = "PatternID", type = Integer.class),
+			@StoredProcedureParameter(mode = ParameterMode.IN, name = "FabricID", type = Integer.class),	
+			@StoredProcedureParameter(mode = ParameterMode.IN, name = "SearchKeyword", type = String.class),
+			@StoredProcedureParameter(mode = ParameterMode.IN, name = "HashTag", type = String.class),
+			@StoredProcedureParameter(mode = ParameterMode.OUT, name = "ResultCode", type = Integer.class),
+			@StoredProcedureParameter(mode = ParameterMode.OUT, name = "ErrorMessage", type = String.class)
+	}),
+	
 	@NamedStoredProcedureQuery(name = "upWeb_CreateRollbackRequest", procedureName = "dbo.upWeb_CreateRollbackRequest", parameters = {
 			@StoredProcedureParameter(mode = ParameterMode.IN, name = "WorkedBy", type = Integer.class),
 			@StoredProcedureParameter(mode = ParameterMode.IN, name = "SessionKey", type = String.class),

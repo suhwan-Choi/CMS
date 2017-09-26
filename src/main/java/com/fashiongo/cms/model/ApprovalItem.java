@@ -130,7 +130,17 @@ public class ApprovalItem {
 	
 	@Column(name = "workstatus")
 	private Integer workStatus;
-	
+
+	@Column(name = "appliedstatus")
+	private String appliedStatus;
+
+	public String getAppliedStatus() {
+		return appliedStatus;
+	}
+
+	public void setAppliedStatus(String appliedStatus) {
+		this.appliedStatus = appliedStatus;
+	}
 
 	public Integer getSeq() {
 		return seq;

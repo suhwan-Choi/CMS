@@ -278,6 +278,9 @@ public class EditItem {
 	@Column(name = "approvalstatus")
 	private Integer approvalStatus;
 	
+	@Column(name = "appliedstatus")
+	private Integer appliedStatus;
+	
 	@Column(name = "totalcount")
 	private Integer totalCount;
 
@@ -815,5 +818,13 @@ public class EditItem {
 
 	public void setTotalCount(Integer totalCount) {
 		this.totalCount = totalCount;
+	}
+
+	public Integer getAppliedStatus() {
+		return appliedStatus;
+	}
+
+	public void setAppliedStatus(Integer appliedStatus) {
+		this.appliedStatus = appliedStatus;
 	}
 }

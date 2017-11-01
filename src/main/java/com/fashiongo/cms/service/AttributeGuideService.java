@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.fashiongo.cms.model.GuideAttribute;
 import com.fashiongo.cms.model.GuideCategory;
+import com.fashiongo.cms.model.GuideUpdate;
 import com.fashiongo.cms.param.GuideAttributeListParam;
 import com.fashiongo.cms.param.GuideCategoryListParam;
 
@@ -37,6 +38,13 @@ public class AttributeGuideService extends CommonService {
 		query.setParameter("KeywordText", guideAttributeListParam.getKeywordText());
 
 		return (List<GuideAttribute>) query.getResultList();
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<GuideUpdate> selectUpdateGuideList() {
+		Query query = entityManager.createNamedStoredProcedureQuery("upWeb_GetGuideUpdateList");
+		
+		return(List<GuideUpdate>) query.getResultList();
 	}
 
 }

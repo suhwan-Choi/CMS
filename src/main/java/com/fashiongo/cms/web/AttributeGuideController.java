@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fashiongo.cms.common.JSONResponse;
 import com.fashiongo.cms.model.GuideAttribute;
 import com.fashiongo.cms.model.GuideCategory;
+import com.fashiongo.cms.model.GuideUpdate;
 import com.fashiongo.cms.param.GuideAttributeListParam;
 import com.fashiongo.cms.param.GuideCategoryListParam;
 import com.fashiongo.cms.service.AttributeGuideService;
@@ -32,6 +33,13 @@ public class AttributeGuideController {
 	public JSONResponse<List<GuideAttribute>> listGuideAttribute(GuideAttributeListParam guideAttributeListParam) {
 		JSONResponse<List<GuideAttribute>> response = new JSONResponse<List<GuideAttribute>>();
 		response.setData(attributeGuideService.selectGuideAttributeList(guideAttributeListParam));
+		return response;
+	}
+
+	@RequestMapping(value = "/update/list", method = RequestMethod.GET)
+	public JSONResponse<List<GuideUpdate>> listGuideUpdate() {
+		JSONResponse<List<GuideUpdate>> response = new JSONResponse<List<GuideUpdate>>();
+		response.setData(attributeGuideService.selectUpdateGuideList());
 		return response;
 	}
 }

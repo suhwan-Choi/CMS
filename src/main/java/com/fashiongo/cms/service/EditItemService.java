@@ -10,8 +10,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.fashiongo.cms.model.EditDetailItem;
 import com.fashiongo.cms.model.EditItem;
 import com.fashiongo.cms.model.EditItemUser;
+import com.fashiongo.cms.model.EditSimpleItem;
+import com.fashiongo.cms.model.EditThumbnailItem;
 import com.fashiongo.cms.model.ProcedureResult;
 import com.fashiongo.cms.param.EditItemListParam;
 import com.fashiongo.cms.param.EditItemSaveItemParam;
@@ -23,23 +26,29 @@ public class EditItemService extends CommonService {
 	
 	@Transactional(readOnly=true)
 	@SuppressWarnings("unchecked")
-	public List<EditItem> selectList(EditItemListParam editItemListParam) {
+	public List<EditSimpleItem> selectSimpleList(EditItemListParam editItemListParam) {
 		
-		StoredProcedureQuery query = entityManager.createNamedStoredProcedureQuery("upWeb_GetEditItemList");
+		StoredProcedureQuery query = setListParameter(entityManager.createNamedStoredProcedureQuery("upWeb_GetEditItemSimpleList"), editItemListParam);
 		
-		query.setParameter("Page", editItemListParam.getPn());
-		query.setParameter("PageSize", editItemListParam.getPs());
-		query.setParameter("UserID", editItemListParam.getUserID());
-		query.setParameter("SearchStartDate", editItemListParam.getSearchStartDate());
-		query.setParameter("SearchEndDate", editItemListParam.getSearchEndDate());
-		query.setParameter("KeywordType", editItemListParam.getKeywordType());
-		query.setParameter("KeywordText", editItemListParam.getKeywordText());
-		query.setParameter("Status", editItemListParam.getStatus());
-		query.setParameter("CategoryID1", editItemListParam.getCategoryID1());
-		query.setParameter("CategoryID2", editItemListParam.getCategoryID2());
-		query.setParameter("CategoryID3", editItemListParam.getCategoryID3());
-
-		return (List<EditItem>) query.getResultList();
+		return (List<EditSimpleItem>) query.getResultList(); 
+	}
+	
+	@Transactional(readOnly=true)
+	@SuppressWarnings("unchecked")
+	public List<EditThumbnailItem> selectThumbnailList(EditItemListParam editItemListParam) {
+		
+		StoredProcedureQuery query = setListParameter(entityManager.createNamedStoredProcedureQuery("upWeb_GetEditItemThumbnailList"), editItemListParam);
+		
+		return (List<EditThumbnailItem>) query.getResultList(); 
+	}
+	
+	@Transactional(readOnly=true)
+	@SuppressWarnings("unchecked")
+	public List<EditDetailItem> selectDetailList(EditItemListParam editItemListParam) {
+		
+		StoredProcedureQuery query = setListParameter(entityManager.createNamedStoredProcedureQuery("upWeb_GetEditItemDetailList"), editItemListParam);
+		
+		return (List<EditDetailItem>) query.getResultList(); 
 	}
 	
 	@Transactional(readOnly=true)
@@ -58,14 +67,17 @@ public class EditItemService extends CommonService {
 		
 		StoredProcedureQuery query = entityManager.createNamedStoredProcedureQuery("upWeb_GetEditItemUser");
 		
-		query.setParameter("SearchStartDate", editItemListParam.getSearchStartDate());
-		query.setParameter("SearchEndDate", editItemListParam.getSearchEndDate());
 		query.setParameter("KeywordType", editItemListParam.getKeywordType());
 		query.setParameter("KeywordText", editItemListParam.getKeywordText());
+		query.setParameter("CategoryID", editItemListParam.getCategoryID());
+		query.setParameter("LengthID", editItemListParam.getLengthID());
+		query.setParameter("StyleID", editItemListParam.getStyleID());
+		query.setParameter("PatternID", editItemListParam.getPattrenID());
+		query.setParameter("FabricID", editItemListParam.getFabricID());
+		query.setParameter("SearchDateType", editItemListParam.getSearchDateType());
+		query.setParameter("SearchStartDate", editItemListParam.getSearchStartDate());
+		query.setParameter("SearchEndDate", editItemListParam.getSearchEndDate());
 		query.setParameter("Status", editItemListParam.getStatus());
-		query.setParameter("CategoryID1", editItemListParam.getCategoryID1());
-		query.setParameter("CategoryID2", editItemListParam.getCategoryID2());
-		query.setParameter("CategoryID3", editItemListParam.getCategoryID3());
 		
 		return (List<EditItemUser>) query.getResultList();
 	}
@@ -145,5 +157,26 @@ public class EditItemService extends CommonService {
 		procedureResult.setErrorMessage((String) query.getOutputParameterValue("ErrorMessage"));
 		
 		return procedureResult;
-	} 
+	}
+	
+	private StoredProcedureQuery setListParameter(StoredProcedureQuery query, EditItemListParam editItemListParam) {
+		
+		query.setParameter("Page", editItemListParam.getPn());
+		query.setParameter("PageSize", editItemListParam.getPs());
+		query.setParameter("UserID", editItemListParam.getUserID());
+		query.setParameter("KeywordType", editItemListParam.getKeywordType());
+		query.setParameter("KeywordText", editItemListParam.getKeywordText());
+		query.setParameter("CategoryID", editItemListParam.getCategoryID());
+		query.setParameter("LengthID", editItemListParam.getLengthID());
+		query.setParameter("StyleID", editItemListParam.getStyleID());
+		query.setParameter("PatternID", editItemListParam.getPattrenID());
+		query.setParameter("FabricID", editItemListParam.getFabricID());
+		query.setParameter("SearchDateType", editItemListParam.getSearchDateType());
+		query.setParameter("SearchStartDate", editItemListParam.getSearchStartDate());
+		query.setParameter("SearchEndDate", editItemListParam.getSearchEndDate());
+		query.setParameter("Status", editItemListParam.getStatus());
+		query.setParameter("ViewType", editItemListParam.getViewType());
+		
+		return query;
+	}
 }

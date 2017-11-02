@@ -13,7 +13,7 @@ import javax.persistence.StoredProcedureParameter;
 				@StoredProcedureParameter(mode = ParameterMode.IN, name = "CategoryID", type = Integer.class),
 				@StoredProcedureParameter(mode = ParameterMode.IN, name = "KeywordType", type = String.class),
 				@StoredProcedureParameter(mode = ParameterMode.IN, name = "KeywordText", type = String.class),
-				@StoredProcedureParameter(mode = ParameterMode.IN, name = "NoCms", type = Boolean.class), }, resultClasses = GuideCategory.class) })
+				 }, resultClasses = GuideCategory.class) })
 @Entity
 public class GuideCategory {
 	@Id
@@ -38,11 +38,11 @@ public class GuideCategory {
 	@Column(name = "categoryname3")
 	private String categoryName3;
 
+	@Column(name = "mapid")
+	private Integer mapID;
+
 	@Column(name = "imagename")
 	private String imageName;
-
-	@Column(name = "imagecnt")
-	private Integer imageCnt;
 
 	@Column(name = "descriptionkor")
 	private String descriptionKor;
@@ -106,20 +106,20 @@ public class GuideCategory {
 		this.categoryName3 = categoryName3;
 	}
 
+	public Integer getMapID() {
+		return mapID;
+	}
+
+	public void setMapID(Integer mapID) {
+		this.mapID = mapID;
+	}
+
 	public String getImageName() {
 		return imageName;
 	}
 
 	public void setImageName(String imageName) {
 		this.imageName = imageName;
-	}
-
-	public Integer getImageCnt() {
-		return imageCnt;
-	}
-
-	public void setImageCnt(Integer imageCnt) {
-		this.imageCnt = imageCnt;
 	}
 
 	public String getDescriptionKor() {

@@ -37,6 +37,9 @@ public class GuideUpdate {
 
 	@Column(name = "attributetypeid")
 	private Integer attributeTypeID;
+	
+	@Column(name = "mapid")
+	private Integer mapID;
 
 	@Column(name = "attributename")
 	private String attributeName;
@@ -111,6 +114,14 @@ public class GuideUpdate {
 
 	public void setAttributeTypeID(Integer attributeTypeID) {
 		this.attributeTypeID = attributeTypeID;
+	}
+
+	public Integer getMapID() {
+		return mapID;
+	}
+
+	public void setMapID(Integer mapID) {
+		this.mapID = mapID;
 	}
 
 	public String getAttributeName() {

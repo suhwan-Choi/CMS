@@ -38,6 +38,9 @@ public class GuideAttribute {
 
 	@Column(name = "attributetypeid")
 	private Integer attributeTypeID;
+	
+	@Column(name = "mapid")
+	private Integer mapID;
 
 	@Column(name = "attributeid")
 	private Integer attributeID;
@@ -47,9 +50,6 @@ public class GuideAttribute {
 
 	@Column(name = "imagename")
 	private String ImageName;
-
-	@Column(name = "imagecnt")
-	private Integer imageCnt;
 
 	@Column(name = "descriptionkor")
 	private String descriptionKor;
@@ -116,6 +116,14 @@ public class GuideAttribute {
 		this.attributeTypeID = attributeTypeID;
 	}
 
+	public Integer getMapID() {
+		return mapID;
+	}
+
+	public void setMapID(Integer mapID) {
+		this.mapID = mapID;
+	}
+
 	public Integer getAttributeID() {
 		return attributeID;
 	}
@@ -138,14 +146,6 @@ public class GuideAttribute {
 
 	public void setImageName(String imageName) {
 		ImageName = imageName;
-	}
-
-	public Integer getImageCnt() {
-		return imageCnt;
-	}
-
-	public void setImageCnt(Integer imageCnt) {
-		this.imageCnt = imageCnt;
 	}
 
 	public String getDescriptionKor() {

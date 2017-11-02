@@ -22,7 +22,6 @@ public class AttributeGuideService extends CommonService {
 		query.setParameter("CategoryID", guideCategoryListParam.getCategoryID());
 		query.setParameter("KeywordType", guideCategoryListParam.getKeywordType());
 		query.setParameter("KeywordText", guideCategoryListParam.getKeywordText());
-		query.setParameter("NoCms", guideCategoryListParam.getNoCms());
 
 		return (List<GuideCategory>) query.getResultList();
 	}

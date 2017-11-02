@@ -9,7 +9,7 @@ public class GuideAttributeListParam {
 
 	private String keywordType;
 
-	private String keywordText;
+	private String keywordText = "";
 
 	public Integer getAttributeTypeID() {
 		return attributeTypeID;

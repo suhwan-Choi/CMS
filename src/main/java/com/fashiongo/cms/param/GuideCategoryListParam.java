@@ -3,7 +3,7 @@ package com.fashiongo.cms.param;
 public class GuideCategoryListParam {
 	private Integer categoryID;
 	private String keywordType;
-	private String keywordText;
+	private String keywordText = "";
 
 	public Integer getCategoryID() {
 		return categoryID;

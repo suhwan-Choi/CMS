@@ -18,10 +18,14 @@ public class EditItemListParam {
 	private String keywordType;
 	private String KeywordText;
 	private String status;
+	private String searchDateType;
 	
-	private Integer categoryID1;
-	private Integer	categoryID2;
-	private Integer categoryID3;
+	private Integer categoryID;
+	private Integer lengthID;
+	private Integer styleID;
+	private Integer pattrenID;
+	private Integer fabricID;
+	private Integer viewType = 1;
 	
 	public Integer getPn() {
 		return pn;
@@ -86,28 +90,60 @@ public class EditItemListParam {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	
-	public Integer getCategoryID1() {
-		return categoryID1;
+
+	public Integer getViewType() {
+		return viewType;
 	}
-	
-	public void setCategoryID1(Integer categoryID1) {
-		this.categoryID1 = categoryID1;
+
+	public void setViewType(Integer viewType) {
+		this.viewType = viewType;
 	}
-	
-	public Integer getCategoryID2() {
-		return categoryID2;
+
+	public String getSearchDateType() {
+		return searchDateType;
 	}
-	
-	public void setCategoryID2(Integer categoryID2) {
-		this.categoryID2 = categoryID2;
+
+	public void setSearchDateType(String searchDateType) {
+		this.searchDateType = searchDateType;
 	}
-	
-	public Integer getCategoryID3() {
-		return categoryID3;
+
+	public Integer getCategoryID() {
+		return categoryID;
 	}
-	
-	public void setCategoryID3(Integer categoryID3) {
-		this.categoryID3 = categoryID3;
+
+	public void setCategoryID(Integer categoryID) {
+		this.categoryID = categoryID;
+	}
+
+	public Integer getLengthID() {
+		return lengthID;
+	}
+
+	public void setLengthID(Integer lengthID) {
+		this.lengthID = lengthID;
+	}
+
+	public Integer getStyleID() {
+		return styleID;
+	}
+
+	public void setStyleID(Integer styleID) {
+		this.styleID = styleID;
+	}
+
+	public Integer getPattrenID() {
+		return pattrenID;
+	}
+
+	public void setPattrenID(Integer pattrenID) {
+		this.pattrenID = pattrenID;
+	}
+
+	public Integer getFabricID() {
+		return fabricID;
+	}
+
+	public void setFabricID(Integer fabricID) {
+		this.fabricID = fabricID;
 	}
 }

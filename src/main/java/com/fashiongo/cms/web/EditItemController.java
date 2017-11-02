@@ -28,10 +28,21 @@ public class EditItemController {
 	private EditItemService editItemService;
 	
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
- 	public @ResponseBody JSONResponse<List<EditItem>> list(EditItemListParam editItemListParam) throws Exception{
+ 	public @ResponseBody JSONResponse<List<?>> list(EditItemListParam editItemListParam) throws Exception{
 		
- 		JSONResponse<List<EditItem>> response = new JSONResponse<List<EditItem>>();
- 		response.setData(editItemService.selectList(editItemListParam));
+ 		JSONResponse<List<?>> response = new JSONResponse<List<?>>();
+ 		
+ 		int viewType = editItemListParam.getViewType();
+ 		
+ 		if (viewType == 1) {
+ 			response.setData(editItemService.selectThumbnailList(editItemListParam));
+ 			
+ 		} else if (viewType == 2) {
+ 			response.setData(editItemService.selectSimpleList(editItemListParam));
+ 			
+ 		} else {
+ 			response.setData(editItemService.selectDetailList(editItemListParam));
+ 		}
  		
 		return response;
 	}

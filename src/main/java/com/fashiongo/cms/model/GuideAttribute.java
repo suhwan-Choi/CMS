@@ -14,7 +14,17 @@ import javax.persistence.StoredProcedureParameter;
 				@StoredProcedureParameter(mode = ParameterMode.IN, name = "AttributeID", type = Integer.class),
 				@StoredProcedureParameter(mode = ParameterMode.IN, name = "CategoryID", type = Integer.class),
 				@StoredProcedureParameter(mode = ParameterMode.IN, name = "KeywordType", type = String.class),
-				@StoredProcedureParameter(mode = ParameterMode.IN, name = "KeywordText", type = String.class) }, resultClasses = GuideAttribute.class) })
+				@StoredProcedureParameter(mode = ParameterMode.IN, name = "KeywordText", type = String.class) }, resultClasses = GuideAttribute.class),
+		@NamedStoredProcedureQuery(name = "upWeb_ModifyGuideAttribute", procedureName = "dbo.upWeb_ModifyGuideAttribute", parameters = {
+				@StoredProcedureParameter(mode = ParameterMode.IN, name = "WorkedBy", type = Integer.class),
+				@StoredProcedureParameter(mode = ParameterMode.IN, name = "AttributeTypeID", type = Integer.class),
+				@StoredProcedureParameter(mode = ParameterMode.IN, name = "MapID", type = Integer.class),
+				@StoredProcedureParameter(mode = ParameterMode.IN, name = "DescriptionKor", type = String.class),
+				@StoredProcedureParameter(mode = ParameterMode.IN, name = "DescriptionEng", type = String.class),
+				@StoredProcedureParameter(mode = ParameterMode.IN, name = "ImageList", type = String.class),
+				@StoredProcedureParameter(mode = ParameterMode.OUT, name = "ResultCode", type = Integer.class),
+				@StoredProcedureParameter(mode = ParameterMode.OUT, name = "ErrorMessage", type = String.class) }), })
+
 @Entity
 public class GuideAttribute {
 	@Id
@@ -38,7 +48,7 @@ public class GuideAttribute {
 
 	@Column(name = "attributetypeid")
 	private Integer attributeTypeID;
-	
+
 	@Column(name = "mapid")
 	private Integer mapID;
 
